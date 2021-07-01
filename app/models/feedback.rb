@@ -1,3 +1,3 @@
 class Feedback < ApplicationRecord
-  belongs_to :user, index: true, foreign_key: true
+  belongs_to :user
 end
