@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
-  belongs_to :room, index: true, foreign_key: true
-  belongs_to :user, index: true, foreign_key: true
+  enum status: %i[free booked busy released]
+
+  belongs_to :room
+  belongs_to :user
 end
