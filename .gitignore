@@ -4,8 +4,22 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore bundler config.
-/.bundle
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+## Environment normalization:
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -26,6 +40,7 @@
 /storage/*
 !/storage/.keep
 
+# Ignore Byebug command history file.
 /public/assets
 .byebug_history
 
@@ -38,3 +53,9 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
