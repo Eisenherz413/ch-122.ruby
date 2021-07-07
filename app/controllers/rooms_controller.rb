@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1 or /rooms/1.json
   def show
     # services
+    @room = Room.find(params[:id])
   end
 
   # GET /rooms/new

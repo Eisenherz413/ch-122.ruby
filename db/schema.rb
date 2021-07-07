@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rooms_services", force: :cascade do |t|
+  create_table "room_services", force: :cascade do |t|
     t.integer "room_id"
     t.integer "service_id"
     t.datetime "created_at", precision: 6, null: false
@@ -83,6 +83,6 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
   add_foreign_key "issues", "users"
   add_foreign_key "orders", "rooms"
   add_foreign_key "orders", "users"
-  add_foreign_key "rooms_services", "rooms"
-  add_foreign_key "rooms_services", "services"
+  add_foreign_key "room_services", "rooms"
+  add_foreign_key "room_services", "services"
 end
