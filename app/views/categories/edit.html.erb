@@ -3,4 +3,6 @@
 <%= render 'form', category: @category %>
 
 <!--<%#= link_to 'Show', @category %> |-->
-<%= link_to 'Back', categories_path, class: "btn btn-outline-secondary" %>
+<%= link_to categories_path do %>
+  <%= image_tag('back.svg', size: "30x30", alt: "Back") %>
+<% end %>
