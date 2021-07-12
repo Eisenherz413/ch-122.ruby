@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_093348) do
+ActiveRecord::Schema.define(version: 2021_07_10_210807) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_07_09_093348) do
     t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
     t.index ["id"], name: "rooms_id_uindex", unique: true
   end
 
