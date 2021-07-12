@@ -45,6 +45,12 @@
   margin: 0 auto;
 }
 
+.img-fluid {
+  width: 500px;
+  max-height: 303px;
+  min-height: 303px;
+}
+
 li.borderless {
   margin-top: 0;
   border: 0;

@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @rooms = Room.all
-    # @rooms = Room.left_joins(room_images).where(room_images.purpose = 'cover')
+    @image = Image.find(11)
   end
 
   # GET /rooms/1 or /rooms/1.json
