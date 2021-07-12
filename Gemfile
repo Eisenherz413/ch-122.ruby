@@ -59,3 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Ruby code style checking and code formatting tool
 gem 'rubocop', '~> 1.18', '>= 1.18.1'
+
+# awesome icons
+gem "font-awesome-rails"
