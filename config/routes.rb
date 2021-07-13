@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :issues
-  resources :categories
+  resources :categories, only: [:new, :edit, :update]
   resources :room_services
   resources :feedbacks
   resources :orders
