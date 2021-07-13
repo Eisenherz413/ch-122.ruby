@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_07_12_173631) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -62,13 +62,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_173631) do
     t.string "purpose"
   end
 
-  create_table "room_services", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.integer "capacity"
     t.integer "price"
@@ -76,7 +69,13 @@ ActiveRecord::Schema.define(version: 2021_07_12_173631) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
-    t.index ["id"], name: "rooms_id_uindex", unique: true
+  end
+
+  create_table "rooms_services", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "service_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "services", force: :cascade do |t|
@@ -102,6 +101,6 @@ ActiveRecord::Schema.define(version: 2021_07_12_173631) do
   add_foreign_key "orders", "users"
   add_foreign_key "room_images", "images"
   add_foreign_key "room_images", "rooms"
-  add_foreign_key "room_services", "rooms", primary_key: "id"
-  add_foreign_key "room_services", "services", primary_key: "id"
+  add_foreign_key "rooms_services", "rooms"
+  add_foreign_key "rooms_services", "services"
 end
