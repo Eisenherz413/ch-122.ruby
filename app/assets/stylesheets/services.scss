@@ -1,3 +1,65 @@
-// Place all the styles related to the Services controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  background-color: inherit;
+  color: black;
+}
+h1 {
+  text-align: center;
+}
+input[type="text"] {
+  width: 600px;
+  height: 50px;
+  border: 2px solid dodgerblue;
+  border-radius: 3px;
+}
+.tbl {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+textarea {
+  width: 600px;
+  height: 100px;
+  border: 2px solid dodgerblue;
+  border-radius: 3px;
+
+}
+input[type="submit"] {
+  width: 115px;
+  height: 35px;
+}
+td {
+  font-size: 15px;
+}
+.display-4 {
+  margin-top: 20px;
+}
+.tbl-2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+
+}
+#er {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  height: 70px;
+  width: 500px;
+
+}
+ul {
+  list-style: none;
+
+}
+.tbl-3 td {
+  border: 1px solid black;
+}
+

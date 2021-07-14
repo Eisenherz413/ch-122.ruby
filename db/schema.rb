@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_114550) do
+ActiveRecord::Schema.define(version: 2021_07_09_082841) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -47,17 +47,17 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "capacity"
-    t.float "price"
-    t.string "number"
+  create_table "room_services", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "service_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rooms_services", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "service_id"
+  create_table "rooms", force: :cascade do |t|
+    t.integer "capacity"
+    t.float "price"
+    t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "icon_url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,6 +84,6 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
   add_foreign_key "issues", "users"
   add_foreign_key "orders", "rooms"
   add_foreign_key "orders", "users"
-  add_foreign_key "rooms_services", "rooms"
-  add_foreign_key "rooms_services", "services"
+  add_foreign_key "room_services", "rooms"
+  add_foreign_key "room_services", "services"
 end

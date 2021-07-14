@@ -1,14 +1,53 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>-->
+<div class="container" style="margin-top: 50px"><div class="row"><div class="col-10"></div><div class="col-2"><button type="button" class="btn btn-outline-secondary"><%= link_to 'All services', services_path %></button></div></div></div>
+<table class="tbl-2">
+  <tr>
+    <td><p class="h4">Icon:</p></td>
+    <td><p class="h5"><%= image_tag(@service.icon_url)%></p></td>
+  </tr>
+  <tr>
+    <td><p class="h4">Icon url:</p></td>
+    <td><p class="h5"><%= @service.icon_url %></p></td>
+  </tr>
+<tr>
+  <td><p class="h4">Name:</p></td>
+  <td><p class="h5"><%= @service.name %></p></td>
+</tr>
+<tr>
+  <td><p class="h4">Description:</p></td>
+  <td><p class="h5"><%= @service.description %></p></td>
+</tr>
+</table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @service.name %>
-</p>
+<div class="row justify-content-center">
+  <% if @service.rooms.empty? %>
+    <h1 class="display-5" style="margin-top: 30px; color: red;" >There are no rooms using this service</h1>
+    <% else %>
+    <h1 class="display-4" style="margin-top: 30px">Rooms using this service</h1>
+<div class="col-4">
+<table class="table table-hover" style="margin-top: 40px">
+  <thead>
+  <tr>
+    <td class="h4">#</td>
+    <td class="h4">Capacity</td>
+    <td class="h4">Price</td>
+    <td class="h4">Number</td>
+  </tr>
+  </thead>
+<tbody>
+  <% @service.rooms.uniq.each do |room| %>
+      <tr>
+        <th scope="row"><%= room.id %></th>
+        <td class="h5"><%= room.capacity %></td>
+        <td class="h5"><%= room.price %></td>
+        <td class="h5"><%= room.number %></td>
 
-<p>
-  <strong>Description:</strong>
-  <%= @service.description %>
-</p>
+      </tr>
+    <% end  %>
+</tbody>
+</table>
+</div>
+    <% end %>
+</div>
 
-<%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+

@@ -1,8 +1,6 @@
-<%= form_with(model: service) do |form| %>
+<%= form_with(model: service, name: 'form' ) do |form| %>
   <% if service.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
-
+    <div id="er" class="alert alert-danger" role="alert">
       <ul>
         <% service.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,18 +8,44 @@
       </ul>
     </div>
   <% end %>
+  <table class="tbl">
+    <div class="icon_field">
+    <tr>
+        <td><%= form.label :icon_url %></td>
+        <td>
+          <select id="icons" >
+            <% target_folder_path = File.join(Rails.root, "/app/assets/images/Icons") %>
+            <% Dir.children(target_folder_path).each do |icon| %>
+              <option value="Icons/<%= icon %>" data-imagesrc="/assets/Icons/<%= icon %>"></option>
+            <% end %>
+          </select>
+          <input type="hidden" id="service_icon_url" name="service[icon_url]" />
+        </td>
+      </tr>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="name_field">
+<tr>
+    <td><%= form.label :name %></td>
+  <td><%= form.text_field :name, placeholder: 'service name'%></td>
+</tr>
+    </div>
+    <div class="description-field">
+    <tr>
+    <td><%= form.label :description %></td>
+    <td><%= form.text_area :description, placeholder: 'description'%></td>
+    </tr>
+    </div>
+    <div class="button">
+    <tr>
+      <td></td>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but'%><button type="button" class="btn btn-outline-secondary"><%= link_to 'All services', services_path %></button>
+     </td>
+    </tr>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</table>
 <% end %>
+<%= javascript_pack_tag 'dis_button', 'data-turbolinks-track': 'reload' %>
+
