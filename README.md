@@ -11,11 +11,19 @@ Things you may want to cover:
 
 * Configuration
 
+  yarn install
+
+
 * Database creation
+  
+  bin/rails db:migrate RAILS_ENV=development
+
 
 * Database initialization
-    #rake db:seed:dump
   
+  rails db:seed
+  
+
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)

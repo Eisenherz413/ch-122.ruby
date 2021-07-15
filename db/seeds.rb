@@ -11,6 +11,11 @@ Image.create!([
   {name: "10", path: "10.jpg"},
   {name: "main-page-image", path: "main-page-image.jpg"}
 ])
+Room.create!([
+  {capacity: 2, price: 3, number: "34a", title: "Twin Guest Room"},
+  {capacity: 4, price: 5, number: "34t", title: "King Guest Room"},
+  {capacity: 4, price: 3, number: "3", title: "King Deluxe Room"}
+])
 Service.create!([
   {name: "Wi-FI", description: "Example"},
   {name: "TV", description: ""},
@@ -42,11 +47,6 @@ User.create!([
 ])
 Issue.create!([
   {category_id: 1, user_id: 1, text: "example", status: "opened"}
-])
-Room.create!([
-  {capacity: 2, price: 3, number: "34a", title: "Twin Guest Room"},
-  {capacity: 4, price: 5, number: "34t", title: "King Guest Room"},
-  {capacity: 4, price: 3, number: "3", title: "King Deluxe Room"}
 ])
 RoomImage.create!([
   {room_id: "1.0", image_id: "1.0", purpose: "cover"},
