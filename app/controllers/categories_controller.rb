@@ -38,13 +38,23 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: "Category was successfully updated." }
+        flash.now[:notice] = "Category was successfully updated!"
+        format.html { render :edit, status: :ok }
         format.json { render :show_hidden, status: :ok, location: @category }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
+    # respond_to do |format|
+    #   if @category.update(category_params)
+    #     format.html { redirect_to @category, notice: "Category was successfully updated." }
+    #     format.json { render :show_hidden, status: :ok, location: @category }
+    #   else
+    #     format.html { render :edit, status: :unprocessable_entity }
+    #     format.json { render json: @category.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /categories/1 or /categories/1.json
