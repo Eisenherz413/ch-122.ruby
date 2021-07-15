@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_29_114550) do
+ActiveRecord::Schema.define(version: 2021_07_12_173631) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
     t.string "text"
     t.integer "user_id"
     t.decimal "stars"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "name"
+    t.string "path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,12 +54,21 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "room_images", force: :cascade do |t|
+    t.decimal "room_id"
+    t.decimal "image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "purpose"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.integer "capacity"
-    t.float "price"
+    t.integer "price"
     t.string "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
   end
 
   create_table "rooms_services", force: :cascade do |t|
@@ -83,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_114550) do
   add_foreign_key "issues", "users"
   add_foreign_key "orders", "rooms"
   add_foreign_key "orders", "users"
+  add_foreign_key "room_images", "images"
+  add_foreign_key "room_images", "rooms"
   add_foreign_key "rooms_services", "rooms"
   add_foreign_key "rooms_services", "services"
 end
