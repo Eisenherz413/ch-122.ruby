@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_07_12_173631) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

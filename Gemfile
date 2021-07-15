@@ -32,6 +32,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
+# avoiding polling for changes Gem.win_platform
+gem 'wdm', '>= 0.1.0'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -60,3 +62,6 @@ gem 'rubocop', '~> 1.18', '>= 1.18.1'
 gem 'bootstrap', '~> 5.0.1'
 gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
+
+# awesome icons
+gem "font-awesome-rails"
