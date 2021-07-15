@@ -11,6 +11,9 @@ import "channels"
 import * as bootstrap from 'bootstrap'
 import "../stylesheets/application"
 
+// require moment
+// require daterangepicker
+
 document.addEventListener("DOMContentLoaded", function(event) {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

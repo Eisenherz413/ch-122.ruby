@@ -14,7 +14,8 @@ Things you may want to cover:
 * Database creation
 
 * Database initialization
-
+    #rake db:seed:dump
+  
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
@@ -22,3 +23,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+

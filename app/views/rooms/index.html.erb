@@ -1,13 +1,38 @@
 <div class="room-top-container">
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-    url(<%=asset_path(@image.path)%>) no-repeat center 70%;
+    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
     background-size: cover; height: 250px;
   ">
     <div class="mask mask-custom" style="">
       <h1 class="display-4 fst-italic">Rooms</h1>
       <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
     </div>
+  </div>
+</div>
+
+<div class="search-container">
+  <div class="check-container">
+    <p class="search-container-title">CHECK IN / CHECK OUT</p>
+    <div class="check-input">
+      <div class="check-input-subtitle">
+        <span class="subtitle">SELECT DATES</span>
+      </div>
+      <button class="calendar-button">
+        <i class="arrow down"></i>
+      </button>
+    </div>
+  </div>
+  <div class="capacity-container">
+      <p class="search-container-title">CAPACITY</p>
+    <div class="capacity-info-buttons">
+      <button class="capacity-button minus">-</button>
+      <span class="capacity-subtitle">2</span>
+      <button class="capacity-button plus">+</button>
+    </div>
+  </div>
+  <div class="search-button-container">
+    <button class="search-button">SEARCH ROOMS</button>
   </div>
 </div>
 
