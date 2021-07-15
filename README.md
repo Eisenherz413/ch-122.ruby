@@ -20,9 +20,15 @@ Things you may want to cover:
 
 
 * Database initialization
+
+  To add data to seeds.db:
   
+  rake db:seed:dump
+
+  To add data from seeds.db:
+
   rails db:seed
-  
+
 
 * How to run the test suite
 
