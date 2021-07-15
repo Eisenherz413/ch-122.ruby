@@ -64,4 +64,134 @@ li.borderless {
 .card-text .link:hover {
   background-color: white;
   color: blue;
+<<<<<<< Updated upstream
+=======
+}
+
+/* search panel */
+
+.search-container {
+  display: flex;
+  width: 1200px;
+  height: 150px;
+  background-color: white;
+  padding: 20px 80px;
+  justify-content: space-between;
+  box-shadow: 0 15px 25px -4px #C7C7C7;
+  top: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 200px auto auto;
+}
+
+.search-container > div {
+  width: 100%;
+}
+
+.check-container,
+.capacity-container {
+  margin-right: 120px;
+}
+
+.search-container-title {
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.check-container {
+  display: block;
+  width: 600px;
+}
+
+.check-input {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  align-items: flex-end;
+}
+
+.check-input-subtitle {
+  position: relative;
+  width: 100%;
+}
+
+.subtitle {
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  line-height: 2.1;
+}
+
+.calendar-button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-color: white;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.capacity-container {
+  display: block;
+}
+
+.capacity-container > p {
+  margin-left: 30px;
+}
+
+.capacity-info-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.capacity-subtitle {
+  font-size: 18px;
+  font-weight: bolder;
+  line-height: normal;
+  padding-top: 9px;
+}
+
+.capacity-button {
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+  line-height: normal;
+  font-weight: 300;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.capacity-button.minus {
+  margin-left: 30px;
+}
+
+.capacity-button.plus {
+  margin-right: 30px;
+}
+
+.search-button-container {
+  align-items: flex-end;
+  display: flex;
+}
+
+.search-button {
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin: 0 auto 20px;
+  border: 0;
+  background-color: #333333;
+  color: #F3F3F3;
+>>>>>>> Stashed changes
 }
