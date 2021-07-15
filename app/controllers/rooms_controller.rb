@@ -4,7 +4,6 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @rooms = Room.all
-    @image = Image.find(11)
   end
 
   # GET /rooms/1 or /rooms/1.json
