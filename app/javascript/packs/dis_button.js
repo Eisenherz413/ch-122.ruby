@@ -1,10 +1,9 @@
 let button = document.getElementById("but");
 let name_field = document.getElementById("service_name");
-// $('#but').disabled = true;
 name_field.onchange = function(){
-     if(name_field.value.length >= 5){
+     if(name_field.value.length >= 2){
          button.disabled = false;
-     } else if (name_field.value.length < 5) {
+     } else if (name_field.value.length < 2) {
          button.disabled = true;
      }
 

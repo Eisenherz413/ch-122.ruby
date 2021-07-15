@@ -11,9 +11,24 @@ Things you may want to cover:
 
 * Configuration
 
+  yarn install
+
+
 * Database creation
+  
+  bin/rails db:migrate RAILS_ENV=development
+
 
 * Database initialization
+
+  To add data to seeds.db:
+  
+  rake db:seed:dump
+
+  To add data from seeds.db:
+
+  rails db:seed
+
 
 * How to run the test suite
 
@@ -22,3 +37,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+

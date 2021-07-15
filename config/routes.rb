@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :room_images
+  resources :images
   resources :issues
   resources :categories
   resources :room_services
