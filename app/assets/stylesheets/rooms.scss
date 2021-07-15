@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.container {
-margin-top: 140px;
-}
-
 .list-group-item span {
   font-size: 15px;
 }
@@ -68,6 +64,8 @@ li.borderless {
 .card-text .link:hover {
   background-color: white;
   color: blue;
+<<<<<<< Updated upstream
+=======
 }
 
 /* search panel */
@@ -82,7 +80,9 @@ li.borderless {
   box-shadow: 0 15px 25px -4px #C7C7C7;
   top: 0;
   position: absolute;
-  margin: 200px 17% 0;
+  left: 0;
+  right: 0;
+  margin: 200px auto auto;
 }
 
 .search-container > div {
@@ -193,4 +193,5 @@ li.borderless {
   border: 0;
   background-color: #333333;
   color: #F3F3F3;
+>>>>>>> Stashed changes
 }
