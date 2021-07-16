@@ -17,14 +17,14 @@ Room.create!([
   {capacity: 4, price: 3, number: "3", title: "King Deluxe Room"}
 ])
 Service.create!([
-  {name: "Wi-FI", description: "Example"},
-  {name: "TV", description: ""},
-  {name: "Refrigerator", description: "Example"},
-  {name: "Hair dryer", description: ""},
-  {name: "Mini bar", description: "Example"},
-  {name: "Safe", description: ""},
-  {name: "Electric kettle", description: ""},
-  {name: "Air conditioner", description: ""}
+  {name: "WIFI", description: "Example", icon_url: "Icons/wifi.png"},
+  {name: "TV", description: "", icon_url: "Icons/tv.png"},
+  {name: "Refrigerator", description: "Example",icon_url: "Icons/fridge.png"},
+  {name: "Hair dryer", description: "", icon_url: "Icons/hairdryer.png"},
+  {name: "Mini bar", description: "Example", icon_url: "Icons/bar.png"},
+  {name: "Safe", description: "", icon_url: "Icons/safe.png"},
+  {name: "Electric kettle", description: "", icon_url: "Icons/kettle.png"},
+  {name: "Air conditioner", description: "", icon_url: "Icons/conditioner.png"}
 ])
 Category.create!([
   {name: "Fix", description: "Description"}
@@ -32,14 +32,14 @@ Category.create!([
 RoomService.create!([
   {room_id: 1, service_id: 1},
   {room_id: 2, service_id: 2},
-  {room_id: 1, service_id: 2},
   {room_id: 1, service_id: 3},
-  {room_id: 3, service_id: 4},
+  {room_id: 1, service_id: 4},
   {room_id: 3, service_id: 5},
-  {room_id: 2, service_id: 6},
-  {room_id: 3, service_id: 7},
-  {room_id: 1, service_id: 8},
-  {room_id: 2, service_id: 4}
+  {room_id: 3, service_id: 6},
+  {room_id: 2, service_id: 7},
+  {room_id: 3, service_id: 8},
+  {room_id: 1, service_id: 9},
+  {room_id: 2, service_id: 10}
 ])
 User.create!([
   {full_name: "test", email: "test", role: nil, status: nil},

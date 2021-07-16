@@ -12,95 +12,95 @@
 
 ActiveRecord::Schema.define(version: 2021_07_12_173631) do
 
-  create_table "categories", force: :cascade do |t|
-    t.integer "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'categories', force: :cascade do |t|
+    t.integer 'name'
+    t.string 'description'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "feedbacks", force: :cascade do |t|
-    t.string "text"
-    t.integer "user_id"
-    t.decimal "stars"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'feedbacks', force: :cascade do |t|
+    t.string 'text'
+    t.integer 'user_id'
+    t.decimal 'stars'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "name"
-    t.string "path"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'images', force: :cascade do |t|
+    t.string 'name'
+    t.string 'path'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "issues", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "user_id"
-    t.string "text"
-    t.integer "status", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'issues', force: :cascade do |t|
+    t.integer 'category_id'
+    t.integer 'user_id'
+    t.string 'text'
+    t.integer 'status', default: 0
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
-    t.float "total_price"
-    t.integer "room_id"
-    t.integer "user_id"
-    t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'orders', force: :cascade do |t|
+    t.datetime 'check_in'
+    t.datetime 'check_out'
+    t.float 'total_price'
+    t.integer 'room_id'
+    t.integer 'user_id'
+    t.integer 'status'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "room_images", force: :cascade do |t|
-    t.decimal "room_id"
-    t.decimal "image_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "purpose"
+  create_table 'room_images', force: :cascade do |t|
+    t.decimal 'room_id'
+    t.decimal 'image_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'purpose'
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "capacity"
-    t.integer "price"
-    t.string "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
+  create_table 'rooms', force: :cascade do |t|
+    t.integer 'capacity'
+    t.integer 'price'
+    t.string 'number'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'title'
   end
 
-  create_table "room_services", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "service_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'room_services', force: :cascade do |t|
+    t.integer 'room_id'
+    t.integer 'service_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'services', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "full_name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "role"
-    t.integer "status"
+  create_table 'users', force: :cascade do |t|
+    t.string 'full_name'
+    t.string 'email'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'role'
+    t.integer 'status'
   end
 
-  add_foreign_key "feedbacks", "users"
-  add_foreign_key "issues", "categories"
-  add_foreign_key "issues", "users"
-  add_foreign_key "orders", "rooms"
-  add_foreign_key "orders", "users"
-  add_foreign_key "room_images", "images"
-  add_foreign_key "room_images", "rooms"
-  add_foreign_key "room_services", "rooms"
-  add_foreign_key "room_services", "services"
+  add_foreign_key 'feedbacks', 'users'
+  add_foreign_key 'issues', 'categories'
+  add_foreign_key 'issues', 'users'
+  add_foreign_key 'orders', 'rooms'
+  add_foreign_key 'orders', 'users'
+  add_foreign_key 'room_images', 'images'
+  add_foreign_key 'room_images', 'rooms'
+  add_foreign_key 'rooms_services', 'rooms'
+  add_foreign_key 'rooms_services', 'services'
 end
