@@ -3,6 +3,7 @@ class CreateServices < ActiveRecord::Migration[6.1]
     create_table :services do |t|
       t.string :name
       t.text :description
+      t.string :icon_url
 
       t.timestamps
     end
