@@ -18,7 +18,7 @@
             <p class="card-text"><%= service.description %></p>
           <button type="button" class="btn btn-outline-secondary"><%= link_to 'Rooms', service %></button>
             <button type="button" class="btn btn-outline-warning"><%= link_to 'Edit', edit_service_path(service) %></button>
-            <%= button_to 'Destroy',service, method: :delete, data: {confirm: 'Are you sure?'} , class: "btn btn-outline-danger"%>
+            <%= button_to 'Destroy',service, method: :delete, data: {confirm: 'Room services will be also deleted, continue?'} , class: "btn btn-outline-danger"%>
           </div>
     </div>
         </div>
