@@ -26,9 +26,9 @@
   <div class="capacity-container">
       <p class="search-container-title">CAPACITY</p>
     <div class="capacity-info-buttons">
-      <button class="capacity-button minus">-</button>
-      <span class="capacity-subtitle">2</span>
-      <button class="capacity-button plus">+</button>
+      <button class="capacity-button minus" id="minus">-</button>
+      <span class="capacity-subtitle" id="capacity"></span>
+      <button class="capacity-button plus" id="plus">+</button>
     </div>
   </div>
   <div class="search-button-container">
@@ -60,3 +60,5 @@
     </div>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'search' %>
