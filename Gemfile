@@ -33,7 +33,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 # avoiding polling for changes Gem.win_platform
-gem 'wdm', '>= 0.1.0'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -56,6 +55,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+platforms :mswin do
+  gem "wdm", :group => [:development, :test]
+end
 
 # Ruby code style checking and code formatting tool
 gem 'rubocop', '~> 1.18', '>= 1.18.1'
