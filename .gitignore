@@ -87,3 +87,6 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 .idea/project.iml
 .idea/dataSources.xml
+
+# Gemfile.lock
+Gemfile.lock
