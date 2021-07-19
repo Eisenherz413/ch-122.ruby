@@ -67,4 +67,4 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
 
 # awesome icons
-gem "font-awesome-rails"
+# gem "font-awesome-rails"

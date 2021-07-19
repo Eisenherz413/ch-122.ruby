@@ -66,8 +66,14 @@ Feedback.create!([
   {text: "example", user_id: 1, stars: "4.0"}
 ])
 
-# enum categories
+enum categories
 Category.create(name: 0, description: 'You can leave a word of advice in this section, help us to become even better!')
 Category.create(name: 1, description: 'In this section you can report any kind of breakdown in your room')
 Category.create(name: 2, description: 'If you have something you want us to react quickly, please type it here')
 Category.create(name: 3, description: '')
+
+Order.create!([{check_in: "2021-07-02 17:00", check_out: "2021-07-05 17:00", total_price: 100, room_id: 1, user_id: 1, status: 0},
+               {check_in: "2021-07-01 12:00", check_out: "2021-07-04 12:00", total_price: 150, room_id: 2, user_id: 2, status: 1},
+               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 1, user_id: 1, status: 2},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 3}
+              ])

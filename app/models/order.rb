@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  enum status: %i[free booked busy released]
+  enum status: %i[processed confirmed completed cancelled]
   belongs_to :room
   belongs_to :user
 
