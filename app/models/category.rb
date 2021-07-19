@@ -4,5 +4,5 @@ class Category < ActiveRecord::Base
   validates :description, length: { maximum: 150 }, format: { with: /\A\D([A-z0-9])/,
                                                               message:  "should not start from a digit" }
   has_many :issues
-  enum name: %i[Advice Breakage Urgent Other]
+  enum name: [:Advice, :Breakage, :Urgent, :SOther]
 end

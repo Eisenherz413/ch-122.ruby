@@ -66,8 +66,12 @@ Feedback.create!([
   {text: "example", user_id: 1, stars: "4.0"}
 ])
 
-# enum categories
+enum categories
 Category.create(name: 0, description: 'You can leave a word of advice in this section, help us to become even better!')
 Category.create(name: 1, description: 'In this section you can report any kind of breakdown in your room')
 Category.create(name: 2, description: 'If you have something you want us to react quickly, please type it here')
 Category.create(name: 3, description: '')
+
+# Order.create!([
+#
+#               ])
