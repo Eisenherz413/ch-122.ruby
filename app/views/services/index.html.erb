@@ -17,8 +17,8 @@
             <h5 class="card-title"><%= image_tag(service.icon_url, class: "col-2")%>&nbsp;<%= service.name %></h5>
             <p class="card-text"><%= service.description %></p>
           <button type="button" class="btn btn-outline-secondary"><%= link_to 'Rooms', service %></button>
-            <button type="button" class="btn btn-outline-warning"><%= link_to 'Edit', edit_service_path(service), data: {confirm: 'Room services will be also deleted, continue?'} %></button>
-            <%= button_to 'Destroy',service, method: :delete, data: {confirm: 'Room services will be also deleted, continue?'} , class: "btn btn-outline-danger"%>
+            <button type="button" class="btn btn-outline-warning"><%= link_to 'Edit', edit_service_path(service) %></button>
+            <button type="button" class="btn btn-outline-danger"><%= link_to 'Destroy',service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}%></button>
           </div>
     </div>
         </div>
