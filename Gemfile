@@ -56,9 +56,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-platforms :mswin do
-  gem "wdm", :group => [:development, :test]
-end
+# platforms :mswin do
+#   gem "wdm", :group => [:development, :test]
+# end
+
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 # Ruby code style checking and code formatting tool
 gem 'rubocop', '~> 1.18', '>= 1.18.1'
