@@ -1,4 +1,4 @@
-<div class="room-top-container">
+<div class="rooms-top-container">
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
     url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
@@ -26,9 +26,9 @@
   <div class="capacity-container">
       <p class="search-container-title">CAPACITY</p>
     <div class="capacity-info-buttons">
-      <button class="capacity-button minus">-</button>
-      <span class="capacity-subtitle">2</span>
-      <button class="capacity-button plus">+</button>
+      <button class="capacity-button minus" id="minus">-</button>
+      <span class="capacity-subtitle" id="capacity"></span>
+      <button class="capacity-button plus" id="plus">+</button>
     </div>
   </div>
   <div class="search-button-container">
@@ -50,10 +50,9 @@
         <p class="card-text">This is a room for <%= room.capacity %> people.</p>
         <div class="card_footer">
           <span class="d-block">
-            <span class="display-4 text-primary">$<%= room.price %></span>
-            / per night
+            <span class="display-4 text-primary">$<%= room.price %></span> / per night
           </span>
-          <div class="card-footer-button col-md-8">
+          <div class="card-footer-button col-md-3">
             <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
           </div>
         </div>
@@ -61,3 +60,5 @@
     </div>
   <% end %>
 </div>
+
+<%= javascript_pack_tag 'search' %>

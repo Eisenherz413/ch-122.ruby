@@ -1,0 +1,40 @@
+// Place all the styles related to the Rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.rooms-top-container {
+  margin-bottom: 150px;
+}
+
+.list-group-item span {
+  font-size: 15px;
+}
+
+.card {
+  width: 600px;
+  float: none;
+  margin: 0 auto 40px;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer-button .btn {
+  float: right;
+  position: absolute;
+  margin: 18px;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.card_footer {
+  display: flex;
+}
+
+.back {
+  margin: 20px;
+}

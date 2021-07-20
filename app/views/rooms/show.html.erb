@@ -40,35 +40,36 @@
       Capacity: <%= @room.capacity %>
     </p>
 
-    <p class="card-text">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-      </svg>
-    Services:
-    </p>
-    <ul class="list-group">
-      <% @room.services.each do |rooms_service| %>
-        <li class="list-group-item borderless">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-            <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
-          </svg>
-          <span class="card-text">
-            <%=  link_to rooms_service.name, rooms_service.description, {:class => "link"} %>
-          </span>
-        </li>
-      <% end %>
-    </ul>
+    <% if @room.services.empty? %>
+      <p class="card-text">No services are implied.</p>
+    <% else %>
+      <p class="card-text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+          <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg>
+      Services:
+      </p>
+      <ul class="list-group">
+        <% @room.services.each do |service| %>
+          <li class="list-group-item borderless">
+            <img class="service-icon" alt="service icon" src=<%=asset_path(service.icon_url)%>>
+            <span class="card-text">
+              <%=  link_to service.name, service.description, {:class => "link"} %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <div class="card_footer">
           <span class="d-block">
             <span class="display-4 text-primary">$<%= @room.price %></span>
             / per night
           </span>
-      <div class="card-footer-button col-md-8">
+      <div class="card-footer-button col-md-3">
         <a href="#" class="btn btn-primary text-white bottom-0 end-0">Book now</a>
       </div>
     </div>
-
   </div>
 </div>
