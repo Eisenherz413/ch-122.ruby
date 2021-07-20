@@ -32,13 +32,13 @@ Category.create!([
 RoomService.create!([
   {room_id: 1, service_id: 1},
   {room_id: 2, service_id: 2},
-  {room_id: 1, service_id: 3},
-  {room_id: 1, service_id: 4},
-  {room_id: 3, service_id: 5},
+  {room_id: 3, service_id: 3},
+  {room_id: 4, service_id: 4},
+  {room_id: 5, service_id: 5},
   {room_id: 3, service_id: 6},
   {room_id: 2, service_id: 7},
-  {room_id: 3, service_id: 8},
-  {room_id: 1, service_id: 9},
+  {room_id: 4, service_id: 8},
+  {room_id: 5, service_id: 9},
   {room_id: 2, service_id: 10}
 ])
 User.create!([
