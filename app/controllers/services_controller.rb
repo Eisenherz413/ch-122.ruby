@@ -46,26 +46,30 @@ class ServicesController < ApplicationController
       end
     end
   end
-
+  def check_service(service)
+    @permission = true
+    service.rooms.each do |room|
+      Order.find(room.orders.ids).each do |model|
+        status = Order.statuses[model.status]
+        if status != 3 && status != 4
+          @permission = false
+          return @permission
+        end
+      end
+    end
+    return @permission
+  end
   # DELETE /services/1 or /services/1.json
   def destroy
-    permission = false
-    @service.rooms.each do |room|
-       Order.find(room.orders.ids).each do |model|
-         status = Order.statuses[model.status]
-         if status != 3 && status != 4
-           permission = true
-         redirect_to services_url, notice: 'You cannot delete services with active orders'
-         return
-          end
-       end
-       end
-    if permission === false
+    check_service(@service)
+    if @permission === true
       @service.destroy
       respond_to do |format|
         format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
         format.json { head :no_content }
-          end
+      end
+    else
+      redirect_to services_url, notice: 'You cannot delete services with active orders'
     end
   end
 
@@ -79,4 +83,5 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:name, :description, :icon_url)
     end
+  helper_method :check_service
   end
