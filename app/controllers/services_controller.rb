@@ -49,10 +49,23 @@ class ServicesController < ApplicationController
 
   # DELETE /services/1 or /services/1.json
   def destroy
-    @service.destroy
-    respond_to do |format|
-      format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
-      format.json { head :no_content }
+    permission = false
+    @service.rooms.each do |room|
+       Order.find(room.orders.ids).each do |model|
+         status = Order.statuses[model.status]
+         if status != 3 && status != 4
+           permission = true
+         redirect_to services_url, notice: 'You cannot delete services with active orders'
+         return
+          end
+       end
+       end
+    if permission === false
+      @service.destroy
+      respond_to do |format|
+        format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
+        format.json { head :no_content }
+          end
     end
   end
 
@@ -66,4 +79,4 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:name, :description, :icon_url)
     end
-end
+  end

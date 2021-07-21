@@ -6,11 +6,5 @@ class Service < ApplicationRecord
 
   has_many :room_services, :dependent => :destroy
   has_many :rooms, through: :room_services
-  #  before_destroy :check_dependencies
-  # private
-  # def check_dependencies
-  #   if self.rooms.
-  # end
-
-
+  # has_many :orders, through: :rooms
 end
