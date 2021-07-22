@@ -22,3 +22,4 @@ function increaseCapacity() {
         capacitySpan.innerText = capacity;
     }
 }
+// $('#mdp-demo').multiDatesPicker();

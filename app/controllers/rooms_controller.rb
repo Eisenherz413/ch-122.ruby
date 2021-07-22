@@ -3,12 +3,15 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result.includes(:orders)
+    if params[:orders_check_in_eq] && params[:orders_check_in_eq]!=''
+      @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
+    end
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
-    # services
     @room = Room.find(params[:id])
   end
 
@@ -66,6 +69,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:capacity, :price, :number)
+      params.require(:room).permit(:capacity, :price, :number, :search)
     end
 end

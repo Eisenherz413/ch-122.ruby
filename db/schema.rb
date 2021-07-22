@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_18_092521) do
+ActiveRecord::Schema.define(version: 2021_07_21_093245) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_07_18_092521) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.date "check_in"
+    t.date "check_out"
     t.float "total_price"
     t.integer "room_id"
     t.integer "user_id"

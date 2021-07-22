@@ -11,6 +11,39 @@
   </div>
 </div>
 
+  <div id="mdp-demo"></div>
+
+  <%= search_form_for @q, class: "advance-search-container" do |f| %>
+  <div class="search-input">
+    <p><%= f.label :orders_check_out, "From" %></p>
+    <%= f.date_field :orders_check_out_gt, class: 'search-form-input', style: 'width: 200px', 'datepicker' => true %>
+  </div>
+
+  <div class="search-input">
+    <p><%= f.label :orders_check_in, "To" %></p>
+    <%= f.date_field :orders_check_in_lt, class: 'search-form-input', style: 'width: 200px', 'datepicker' => true %>
+  </div>
+
+    <div class="search-input">
+      <p><%= f.label :capacity %></p>
+      <%= f.number_field :capacity_eq, class: 'search-form-input', style: 'width: 200px' %>
+    </div>
+
+    <div class="search-input">
+      <p><%= f.label :price, "Price from" %></p>
+      <%= f.number_field :price_gteq, class: 'search-form-input', style: 'width: 200px' %>
+    </div>
+
+    <div class="search-input">
+      <p><%= f.label :price, "Price to" %></p>
+      <%= f.number_field :price_lteq, class: 'search-form-input', style: 'width: 200px' %>
+    </div>
+
+    <div class="advance-search-button">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
 <div class="search-container">
   <div class="check-container">
     <p class="search-container-title">CHECK IN / CHECK OUT</p>
@@ -24,7 +57,7 @@
     </div>
   </div>
   <div class="capacity-container">
-      <p class="search-container-title">CAPACITY</p>
+    <p class="search-container-title">CAPACITY</p>
     <div class="capacity-info-buttons">
       <button class="capacity-button minus" id="minus">-</button>
       <span class="capacity-subtitle" id="capacity"></span>
@@ -38,7 +71,6 @@
 
 <div class="container">
   <% @rooms.each do |room| %>
-
     <div class="card mb-8">
       <% room.room_images.each do |room_images| %>
         <% if room_images.purpose == 'cover' %>
