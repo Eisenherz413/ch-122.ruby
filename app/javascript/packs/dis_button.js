@@ -12,7 +12,7 @@ let ddData = document.getElementById("icons").values;
 let hidden = document.getElementById("service_icon_url");
 $('#icons').ddslick({
     data: ddData,
-    width: 100,
+    width: 200,
     imagePosition: "left",
     selectText: "Select icon",
     onSelected: function (data) {
@@ -20,5 +20,3 @@ $('#icons').ddslick({
 
     }
 });
-
-

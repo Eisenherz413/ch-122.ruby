@@ -13,17 +13,16 @@
     <tr>
         <td><%= form.label :icon_url %></td>
         <td>
-          <select id="icons" >
+          <select id="icons">
             <% target_folder_path = File.join(Rails.root, "/app/assets/images/Icons") %>
             <% Dir.children(target_folder_path).each do |icon| %>
-              <option value="Icons/<%= icon %>" data-imagesrc="/assets/Icons/<%= icon %>"></option>
+              <option value="Icons/<%= icon %>" data-imagesrc="/assets/Icons/<%= icon %>"><%= icon %></option>
             <% end %>
           </select>
           <input type="hidden" id="service_icon_url" name="service[icon_url]" />
         </td>
       </tr>
     </div>
-
     <div class="name_field">
 <tr>
     <td><%= form.label :name %></td>
@@ -40,7 +39,7 @@
     <tr>
       <td></td>
 
-      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but'%><button type="button" class="btn btn-outline-secondary"><%= link_to 'All services', services_path %></button>
+      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but'%><%= button_to 'All services', services_path, class: 'btn btn-outline-secondary' %>
      </td>
     </tr>
     </div>
