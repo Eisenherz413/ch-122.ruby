@@ -6,4 +6,16 @@ class Service < ApplicationRecord
 
   has_many :room_services, :dependent => :destroy
   has_many :rooms, through: :room_services
+
+  def self.can_destroy_service(service)
+    service.rooms.each do |room|
+      Order.find(room.orders.ids).each do |order|
+        status = Order.statuses.key(Order.statuses[order.status])
+        if status != 'cancelled' && status != 'completed'
+          return false
+        end
+      end
+    end
+    return true
+  end
 end
