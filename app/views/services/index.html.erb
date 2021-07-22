@@ -22,7 +22,7 @@
             <% if Service.can_destroy_service(service) %>
             <button type="button" class="btn btn-outline-danger"><%= link_to 'Destroy',service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}%></button>
               <% else %>
-              <div id="disabled_button_title">
+              <div class="disabled_button_title">
               <button type="button" class="btn btn-outline-danger" disabled><%= link_to 'Destroy',service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}%></button>
               </div>
               <%= javascript_pack_tag 'disabled_button_title', 'data-turbolinks-track': 'reload' %>

@@ -46,17 +46,6 @@ class ServicesController < ApplicationController
       end
     end
   end
-  # def check_service(service)
-  #   service.rooms.each do |room|
-  #     Order.find(room.orders.ids).each do |order|
-  #       status = Order.statuses.key(Order.statuses[order.status])
-  #       if status != 'cancelled' && status != 'completed'
-  #         return false
-  #       end
-  #     end
-  #   end
-  #   return true
-  # end
   # DELETE /services/1 or /services/1.json
   def destroy
     if Service.can_destroy_service(@service)
@@ -80,5 +69,4 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:name, :description, :icon_url)
     end
-  # helper_method :check_service
 end
