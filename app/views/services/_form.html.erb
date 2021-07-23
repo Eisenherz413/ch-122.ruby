@@ -39,7 +39,7 @@
     <tr>
       <td></td>
 
-      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but'%><%= button_to 'All services', services_path, class: 'btn btn-outline-secondary' %>
+      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to 'All services', services_path, class: 'btn btn-outline-secondary', role: 'button'%>
      </td>
     </tr>
     </div>
