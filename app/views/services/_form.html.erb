@@ -1,3 +1,4 @@
+
 <%= form_with(model: service, name: 'form' ) do |form| %>
   <% if service.errors.any? %>
     <div id="er" class="alert alert-danger" role="alert">
@@ -15,7 +16,7 @@
         <td>
           <select id="icons">
             <% target_folder_path = File.join(Rails.root, "/app/assets/images/Icons") %>
-            <% Dir.children(target_folder_path).each do |icon| %>
+            <% Dir.children(target_folder_path).sort.each do |icon| %>
               <option value="Icons/<%= icon %>" data-imagesrc="/assets/Icons/<%= icon %>"><%= icon %></option>
             <% end %>
           </select>

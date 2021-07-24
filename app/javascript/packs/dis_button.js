@@ -6,7 +6,6 @@ name_field.onchange = function(){
      } else if (name_field.value.length < 2) {
          button.disabled = true;
      }
-
 };
 let ddData = document.getElementById("icons").values;
 let hidden = document.getElementById("service_icon_url");
