@@ -72,3 +72,7 @@ gem 'jquery-rails'
 
 #add active link
 gem 'active_link_to'
+
+#internalization
+gem 'rails-i18n'
+

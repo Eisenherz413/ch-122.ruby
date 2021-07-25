@@ -1,0 +1,14 @@
+uk:
+  services:
+    index:
+      add_service: "Додати"
+      show_rooms: "Кімнати"
+      edit: "Редагувати"
+      destroy: "Видалити"
+  global:
+    menu:
+      services: "Сервіси"
+      rooms: "Кімнати"
+      categories: "Категорії"
+      room_services: "Сервіси кімнат"
+      orders: "Замовлення"

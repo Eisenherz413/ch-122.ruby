@@ -23,17 +23,23 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="nav navbar-nav">
-            <%= active_link_to 'Services',services_path, class: "nav-link"%>
-            <%= active_link_to 'Rooms', rooms_path, class: "nav-link"%>
-            <%= active_link_to 'Categories', categories_path, class: "nav-link"%>
-            <%= active_link_to 'Room services', room_services_path, class: "nav-link"%>
-            <%= active_link_to 'Orders', orders_path, class: "nav-link" %>
+            <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
 
 
           </div>
         </div>
       </div>
     </nav>
+    <div class="container">
+      <div class="row" style="margin-top: 20px; float: right; display: inline-block;">
+      <div><%= link_to "EN", url_for(locale: :en) %> <%= link_to 'UK', url_for(locale: :uk) %></div>
+      </div>
+    </div>
+
 
     <%= yield %>
   </body>

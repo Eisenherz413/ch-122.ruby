@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  scope "(:locale)" , locale: /#{I18n.available_locales.join("|")}/ do
   root 'rooms#index'
   resources :room_images
   resources :images
@@ -11,5 +12,6 @@ Rails.application.routes.draw do
   resources :services
   resources :users
   resources :samples
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
