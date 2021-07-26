@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'rooms#index', as: 'rooms_index'
   resources :room_images
   resources :images
   resources :issues
