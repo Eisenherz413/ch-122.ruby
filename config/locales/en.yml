@@ -5,6 +5,19 @@ en:
       show_rooms: "Rooms"
       edit: "Edit"
       destroy: "Destroy"
+    show:
+      icon_pic: "Icon"
+      icon_url: "Icon url"
+      name: "Name"
+      service_description: "Description"
+      there_are_no_rooms_using_this_service: "There are no rooms using this service"
+      rooms_using_this_service: "Rooms using this service"
+      table:
+       capacity: "Capacity"
+       price: "Price"
+       number: "Number"
+    edit:
+      editing_service: "Editing"
   global:
     menu:
       services: "Services"
@@ -12,6 +25,19 @@ en:
       categories: "Categories"
       room_services: "Room services"
       orders: "Orders"
+    forms:
+      create_button: "Create"
+      all_services: "All services"
+      update_button: "Update"
+  activerecord:
+    attributes:
+      service:
+       icon: "Icon"
+       service_name: "Name"
+       description: "Description"
+       placeholder_service_name: "Service name"
+       placeholder_service_description: "Description"
+
 
 
 

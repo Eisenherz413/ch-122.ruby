@@ -5,6 +5,19 @@ uk:
       show_rooms: "Кімнати"
       edit: "Редагувати"
       destroy: "Видалити"
+    show:
+      icon_pic: "Іконка"
+      icon_url: "Адреса"
+      name: "Назва"
+      service_description: "Опис"
+      there_are_no_rooms_using_this_service: "Жодна кімната не використовує даний сервіс"
+      rooms_using_this_service: "Кімнати, які використовують даний сервіс"
+      table:
+        capacity: "Ємність"
+        price: "Ціна"
+        number: "Номер"
+    edit:
+      editing_service: "Редагування"
   global:
     menu:
       services: "Сервіси"
@@ -12,3 +25,15 @@ uk:
       categories: "Категорії"
       room_services: "Сервіси кімнат"
       orders: "Замовлення"
+    forms:
+      create_button: "Створити"
+      all_services: "Всі сервіси"
+      update_button: "Зберегти"
+  activerecord:
+    attributes:
+      service:
+        icon: "Іконка"
+        service_name: "Назва"
+        description: "Опис"
+        placeholder_service_name: "Назва"
+        placeholder_service_description: "Опис"

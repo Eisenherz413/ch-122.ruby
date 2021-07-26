@@ -12,7 +12,7 @@
   <table class="tbl">
     <div class="icon_field">
     <tr>
-        <td><%= form.label :icon %></td>
+        <td><%= form.label t('activerecord.attributes.service.icon') %></td>
         <td>
           <select id="icons">
             <% target_folder_path = File.join(Rails.root, "/app/assets/images/Icons") %>
@@ -26,22 +26,24 @@
     </div>
     <div class="name_field">
 <tr>
-    <td><%= form.label :name %></td>
-  <td><%= form.text_field :name, placeholder: 'Service name'%></td>
+    <td><%= form.label t('activerecord.attributes.service.service_name') %></td>
+  <td><%= form.text_field :name, placeholder: t('activerecord.attributes.service.placeholder_service_name')%></td>
 </tr>
     </div>
     <div class="description-field">
     <tr>
-    <td><%= form.label :description %></td>
-    <td><%= form.text_area :description, placeholder: 'Description'%></td>
+    <td><%= form.label t('activerecord.attributes.service.description')%></td>
+    <td><%= form.text_area :description, placeholder: t('activerecord.attributes.service.placeholder_service_description')%></td>
     </tr>
     </div>
     <div class="button">
     <tr>
       <td></td>
-
-      <td><%= form.submit 'Create', class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to 'All services', services_path, class: 'btn btn-outline-secondary', role: 'button'%>
-     </td>
+      <% if @service.new_record? %>
+      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+        <% else %>
+        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+        <% end  %>
     </tr>
     </div>
     <%=  javascript_pack_tag 'dis_button', 'data-turbolinks-track': 'reload' %>
