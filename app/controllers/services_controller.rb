@@ -57,7 +57,7 @@ class ServicesController < ApplicationController
     else
       redirect_to services_url, notice: 'You cannot delete service with working orders'
     end
-  end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,4 +69,5 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:name, :description, :icon_url)
     end
-end
+
+  end

@@ -32,13 +32,13 @@ Category.create!([
 RoomService.create!([
   {room_id: 1, service_id: 1},
   {room_id: 2, service_id: 2},
-  {room_id: 1, service_id: 3},
-  {room_id: 1, service_id: 4},
-  {room_id: 3, service_id: 5},
+  {room_id: 3, service_id: 3},
+  {room_id: 4, service_id: 4},
+  {room_id: 5, service_id: 5},
   {room_id: 3, service_id: 6},
   {room_id: 2, service_id: 7},
-  {room_id: 3, service_id: 8},
-  {room_id: 1, service_id: 9},
+  {room_id: 4, service_id: 8},
+  {room_id: 5, service_id: 9},
   {room_id: 2, service_id: 10}
 ])
 User.create!([
@@ -74,6 +74,8 @@ Category.create(name: 3, description: '')
 
 Order.create!([{check_in: "2021-07-02 17:00", check_out: "2021-07-05 17:00", total_price: 100, room_id: 1, user_id: 1, status: 0},
                {check_in: "2021-07-01 12:00", check_out: "2021-07-04 12:00", total_price: 150, room_id: 2, user_id: 2, status: 1},
-               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 1, user_id: 1, status: 2},
-               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 3}
+               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 3, user_id: 1, status: 2},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 4, user_id: 2, status: 3},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 4},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 1, user_id: 2, status: 1}
               ])
