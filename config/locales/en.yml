@@ -5,6 +5,7 @@ en:
       show_rooms: "Rooms"
       edit: "Edit"
       destroy: "Destroy"
+      disabled_button_title: "You cannot delete service with working orders"
     show:
       icon_pic: "Icon"
       icon_url: "Icon url"

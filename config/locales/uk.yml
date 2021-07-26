@@ -5,6 +5,7 @@ uk:
       show_rooms: "Кімнати"
       edit: "Редагувати"
       destroy: "Видалити"
+      disabled_button_title: "Ви не можете видалити сервіси з активними замовленнями"
     show:
       icon_pic: "Іконка"
       icon_url: "Адреса"

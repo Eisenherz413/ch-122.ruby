@@ -1,12 +1,10 @@
-<header class="header">
+<section>
   <div class="top-container" >
     <div class="row" style="margin-top: 30px;">
       <div class="col-10"></div>
       <div class="col-2"><%= link_to t('.add_service'), new_service_path, class: 'btn btn-outline-primary', role: 'button' %></div>
-      </div>
+    </div>
   </div>
-</header>
-<section>
   <p id="notice"><%= notice %></p>
   <div class="top-container">
   <% @services.each do |service| %>
@@ -23,8 +21,7 @@
             <% if Service.can_destroy_service(service) %>
               <%= link_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-outline-danger'%>
               <% else %>
-          <%= button_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: "disabled_button_title"%>
-              <%= javascript_pack_tag 'disabled_button_title', 'data-turbolinks-track': 'reload' %>
+          <%= button_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, title: t('services.index.disabled_button_title')%>
               <% end  %>
           </div>
           </div>
