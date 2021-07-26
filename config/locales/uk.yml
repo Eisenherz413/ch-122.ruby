@@ -30,6 +30,7 @@ uk:
       create_button: "Створити"
       all_services: "Всі сервіси"
       update_button: "Зберегти"
+      new_service: "Новий сервіс"
   activerecord:
     attributes:
       service:

@@ -30,6 +30,7 @@ en:
       create_button: "Create"
       all_services: "All services"
       update_button: "Update"
+      new_service: "New service"
   activerecord:
     attributes:
       service:

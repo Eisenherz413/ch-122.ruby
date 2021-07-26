@@ -67,9 +67,6 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
 # awesome icons
 # gem "font-awesome-rails"
-# Connect jquery
-gem 'jquery-rails'
-
 #add active link
 gem 'active_link_to'
 
