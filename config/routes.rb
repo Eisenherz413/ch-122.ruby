@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'rooms#index', as: 'rooms_index'
+  devise_for :users
   resources :room_images
   resources :images
   resources :issues
