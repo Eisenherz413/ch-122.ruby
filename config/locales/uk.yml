@@ -34,8 +34,8 @@ uk:
   activerecord:
     attributes:
       service:
-        icon: "Іконка"
-        service_name: "Назва"
+        name: "Назва"
         description: "Опис"
+        icon_url: "Іконка"
         placeholder_service_name: "Назва"
         placeholder_service_description: "Опис"

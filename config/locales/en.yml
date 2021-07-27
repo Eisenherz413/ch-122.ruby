@@ -34,11 +34,11 @@ en:
   activerecord:
     attributes:
       service:
-       icon: "Icon"
-       service_name: "Name"
-       description: "Description"
-       placeholder_service_name: "Service name"
-       placeholder_service_description: "Description"
+        name: "Name"
+        description: "Description"
+        icon_url: "Icon"
+        placeholder_service_name: "Service name"
+        placeholder_service_description: "Description"
 
 
 

@@ -18,7 +18,7 @@
             <div class="buttons_alignment">
              <%= link_to t('.show_rooms'), service, class: 'btn btn-outline-secondary', role: 'button' %>
             <%= link_to t('.edit'), edit_service_path(service), class: 'btn btn-outline-warning', role: 'button' %>
-            <% if Service.can_destroy_service(service) %>
+            <% if service.destroyable? %>
               <%= link_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-outline-danger'%>
               <% else %>
           <%= button_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, title: t('services.index.disabled_button_title')%>
