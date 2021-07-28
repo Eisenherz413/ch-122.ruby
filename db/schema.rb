@@ -12,64 +12,64 @@
 
 ActiveRecord::Schema.define(version: 2021_07_18_160502) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "feedbacks", force: :cascade do |t|
+  create_table "feedbacks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "text"
-    t.integer "user_id"
-    t.decimal "stars"
+    t.bigint "user_id"
+    t.decimal "stars", precision: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "fk_rails_c57bb6cf28"
   end
 
-  create_table "images", force: :cascade do |t|
+  create_table "images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "issues", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "user_id"
+  create_table "issues", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "user_id"
     t.string "text"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "fk_rails_847dcee27e"
+    t.index ["user_id"], name: "fk_rails_f8f1052133"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "check_in"
     t.datetime "check_out"
     t.float "total_price"
-    t.integer "room_id"
-    t.integer "user_id"
+    t.bigint "room_id"
+    t.bigint "user_id"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "fk_rails_8d6e2128b7"
+    t.index ["user_id"], name: "fk_rails_f868b47f6a"
   end
 
-  create_table "room_images", force: :cascade do |t|
-    t.decimal "room_id"
-    t.decimal "image_id"
+  create_table "room_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "image_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "purpose"
+    t.index ["image_id"], name: "fk_rails_e91d39bb78"
+    t.index ["room_id"], name: "fk_rails_823e921e11"
   end
 
-  create_table "room_services", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "service_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "rooms", force: :cascade do |t|
+  create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "capacity"
     t.float "price"
     t.string "number"
@@ -78,15 +78,24 @@ ActiveRecord::Schema.define(version: 2021_07_18_160502) do
     t.string "title"
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+  create_table "rooms_services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "service_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "icon_url"
+    t.index ["room_id"], name: "fk_rails_2a21909fed"
+    t.index ["service_id"], name: "fk_rails_524d1ad693"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "icon_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -102,6 +111,6 @@ ActiveRecord::Schema.define(version: 2021_07_18_160502) do
   add_foreign_key "orders", "users"
   add_foreign_key "room_images", "images"
   add_foreign_key "room_images", "rooms"
-  add_foreign_key "room_services", "rooms"
-  add_foreign_key "room_services", "services"
+  add_foreign_key "rooms_services", "rooms"
+  add_foreign_key "rooms_services", "services"
 end

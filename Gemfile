@@ -5,8 +5,8 @@ ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use mysql2 as the database for Active Record
+gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -67,9 +67,9 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
 # awesome icons
 # gem "font-awesome-rails"
-#add active link
+# add active link
 gem 'active_link_to'
 
-#internalization
+# internationalization
 gem 'rails-i18n'
 

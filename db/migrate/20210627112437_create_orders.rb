@@ -4,8 +4,8 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.datetime :check_in
       t.datetime :check_out
       t.float :total_price
-      t.numeric :room_id
-      t.numeric :user_id
+      t.bigint :room_id
+      t.bigint :user_id
       t.string :status
 
       t.timestamps
