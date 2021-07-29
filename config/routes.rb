@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  root 'rooms#index', as: 'rooms_index'
-  devise_for :users
+  root to: 'rooms#index', as: 'rooms_index'
+
+  Rails.application.routes.draw do
+    devise_for :users, controllers: {
+      sessions: 'users/sessions', registrations: 'users/registrations'
+    }
+  end
+  post    '/signup',  to: 'users#create'
+  # devise_for :users
   resources :room_images
   resources :images
   resources :issues
