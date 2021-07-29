@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(version: 2021_07_18_160502) do
     t.index ["room_id"], name: "fk_rails_823e921e11"
   end
 
+  create_table "room_services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "service_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "fk_rails_2a21909fed"
+    t.index ["service_id"], name: "fk_rails_524d1ad693"
+  end
+
   create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "capacity"
     t.float "price"
@@ -76,15 +85,6 @@ ActiveRecord::Schema.define(version: 2021_07_18_160502) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
-  end
-
-  create_table "rooms_services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "room_id"
-    t.bigint "service_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "fk_rails_2a21909fed"
-    t.index ["service_id"], name: "fk_rails_524d1ad693"
   end
 
   create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -111,6 +111,6 @@ ActiveRecord::Schema.define(version: 2021_07_18_160502) do
   add_foreign_key "orders", "users"
   add_foreign_key "room_images", "images"
   add_foreign_key "room_images", "rooms"
-  add_foreign_key "rooms_services", "rooms"
-  add_foreign_key "rooms_services", "services"
+  add_foreign_key "room_services", "rooms"
+  add_foreign_key "room_services", "services"
 end
