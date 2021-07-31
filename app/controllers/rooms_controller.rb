@@ -4,10 +4,12 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @q = Room.ransack(params[:q])
-    @rooms = @q.result.includes(:orders)
-    if params[:orders_check_in_eq] && params[:orders_check_in_eq]!=''
+    per_page = 2
+    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
+    if params[:orders_check_in_eq] && params[:orders_check_in_eq] != ''
       @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
     end
+
   end
 
   # GET /rooms/1 or /rooms/1.json
@@ -61,6 +63,11 @@ class RoomsController < ApplicationController
     end
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -69,6 +76,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:capacity, :price, :number, :search)
+      params.require(:room).permit(:capacity, :price, :number)
     end
 end

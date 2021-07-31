@@ -69,6 +69,9 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 # gem "font-awesome-rails"
 
 gem 'ransack'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+
 # gem 'jquery-rails'
 # gem 'jquery-ui-rails'
 # gem 'multi-dates-picker-rails'
