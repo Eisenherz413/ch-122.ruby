@@ -6,6 +6,11 @@
   margin-bottom: 150px;
 }
 
+.rooms-top-container > div {
+  background-size: cover;
+  height: 250px;
+}
+
 .list-group-item span {
   font-size: 15px;
 }
@@ -39,8 +44,15 @@
   margin: 20px;
 }
 
+.clear-filters-button {
+  margin-top: 20px;
+  color: grey;
+  width: 150px;
+}
+
 .pagination {
   text-align: center;
   width: 275px;
   margin: 0 auto 20px;
 }
+

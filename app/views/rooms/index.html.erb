@@ -1,9 +1,7 @@
 <div class="rooms-top-container">
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
-    background-size: cover; height: 250px;
-  ">
+    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;">
     <div class="mask mask-custom">
       <h1 class="display-4 fst-italic">Rooms</h1>
       <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
@@ -15,11 +13,11 @@
   <div class= "advance-search-container">
     <div class="search-input">
       <p><%= f.label :orders_check_out, "CHECK IN/CHECK OUT" %></p>
-      <input id="input-datepicker" class="search-form-input" style="width: 200px">
+      <input id="input-datepicker" class="search-form-input">
     </div>
 
-      <%= f.text_field :orders_check_out_gt, class: 'search-form-input', id: 'check-out-input', style: 'display: none' %>
-      <%= f.date_field :orders_check_in_lt, class: 'search-form-input', id: 'check-in-input', style: 'display: none' %>
+      <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+      <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
       <div class="search-input">
         <p><%= f.label :capacity, "CAPACITY" %></p>
@@ -31,33 +29,33 @@
 
       <div class="search-input">
         <p><%= f.label :price, "PRICE FROM" %></p>
-        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input', style: 'width: 200px' %>
+        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
       </div>
 
       <div class="search-input">
         <p><%= f.label :price, "PRICE TO" %></p>
-        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input', style: 'width: 200px' %>
+        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
       </div>
-
-<!--      <div class="advance-search-button">-->
-       <%#= link_to "Clear Filters", rooms_path, class: 'btn' %>
-<!--      </div>-->
 
       <div class="advance-search-button">
         <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
       </div>
   </div>
-  <% unless @rooms.empty? %>
+
     <div class="sort-container">
-      <%= f.select :sorts,
+      <% unless @rooms.size < 2 %>
+        <%= f.select :sorts,
                  options_for_select(
                    [['Low to high', 'price asc'],
                     ['High to low', 'price desc']],
                    selected: params.fetch(:q, nil)&.fetch(:sorts, nil)),
                  {:include_blank => "Sort by" },
                  { :class => 'sort-input', :id => 'sort-input' } %>
+      <% end %>
+      <div class="clear-filters-button">
+        <%= link_to "Clear Filters", rooms_path %>
+      </div>
     </div>
-  <% end %>
 
   <div class="container">
     <% if @rooms.empty? %>
@@ -94,7 +92,6 @@
 </div>
 
 <script>
-
   $('#input-datepicker').daterangepicker({
       opens: 'left'
   }, function(start, end, label) {
