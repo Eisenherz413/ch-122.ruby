@@ -10,7 +10,6 @@
 .advance-search-container {
   display: flex;
   height: 150px;
-  background-color: white;
   padding: 20px 20px;
   justify-content: space-between;
   box-shadow: 0 15px 25px -4px #C7C7C7;
@@ -24,7 +23,9 @@
   border: 1px solid black;
 }
 
-.search-form-capacity {
+.search-form-capacity,
+.sort-input,
+.advance-search-container {
   background-color: white;
 }
 
@@ -57,7 +58,6 @@
 }
 
 .sort-input {
-  background-color: white;
   width: 200px;
   border: 1px solid #C3C3C3;
   height: 42px;
