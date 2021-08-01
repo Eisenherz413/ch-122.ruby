@@ -65,6 +65,13 @@ gem 'rubocop', '~> 1.18', '>= 1.18.1'
 gem 'bootstrap', '~> 5.0.1'
 gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
-
 # awesome icons
 # gem "font-awesome-rails"
+
+gem 'ransack'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+
+# gem 'jquery-rails'
+# gem 'jquery-ui-rails'
+# gem 'multi-dates-picker-rails'

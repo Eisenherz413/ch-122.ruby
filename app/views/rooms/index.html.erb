@@ -1,64 +1,101 @@
 <div class="rooms-top-container">
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
-    background-size: cover; height: 250px;
-  ">
-    <div class="mask mask-custom" style="">
+    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;">
+    <div class="mask mask-custom">
       <h1 class="display-4 fst-italic">Rooms</h1>
       <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
     </div>
   </div>
 </div>
 
-<div class="search-container">
-  <div class="check-container">
-    <p class="search-container-title">CHECK IN / CHECK OUT</p>
-    <div class="check-input">
-      <div class="check-input-subtitle">
-        <span class="subtitle">SELECT DATES</span>
+<%= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+  <div class= "advance-search-container">
+    <div class="search-input">
+      <p><%= f.label :orders_check_out, "CHECK IN/CHECK OUT" %></p>
+      <input id="input-datepicker" class="search-form-input">
+    </div>
+
+      <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+      <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
+
+      <div class="search-input">
+        <p><%= f.label :capacity, "CAPACITY" %></p>
+        <%= f.select :capacity_eq,
+                     options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
+                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {},
+                     { :class => 'search-form-capacity' } %>
       </div>
-      <button class="calendar-button">
-        <i class="arrow down"></i>
-      </button>
-    </div>
-  </div>
-  <div class="capacity-container">
-      <p class="search-container-title">CAPACITY</p>
-    <div class="capacity-info-buttons">
-      <button class="capacity-button minus" id="minus">-</button>
-      <span class="capacity-subtitle" id="capacity"></span>
-      <button class="capacity-button plus" id="plus">+</button>
-    </div>
-  </div>
-  <div class="search-button-container">
-    <button class="search-button">SEARCH ROOMS</button>
-  </div>
-</div>
 
-<div class="container">
-  <% @rooms.each do |room| %>
+      <div class="search-input">
+        <p><%= f.label :price, "PRICE FROM" %></p>
+        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+      </div>
 
-    <div class="card mb-8">
-      <% room.room_images.each do |room_images| %>
-        <% if room_images.purpose == 'cover' %>
-          <img class="card-img-top" alt="Card image cover" src=<%=asset_path(room_images.image.path)%> />
-        <% end %>
+      <div class="search-input">
+        <p><%= f.label :price, "PRICE TO" %></p>
+        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+      </div>
+
+      <div class="advance-search-button">
+        <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
+      </div>
+  </div>
+
+    <div class="sort-container">
+      <% unless @rooms.size < 2 %>
+        <%= f.select :sorts,
+                 options_for_select(
+                   [['Low to high', 'price asc'],
+                    ['High to low', 'price desc']],
+                   selected: params.fetch(:q, nil)&.fetch(:sorts, nil)),
+                 {:include_blank => "Sort by" },
+                 { :class => 'sort-input', :id => 'sort-input' } %>
       <% end %>
-      <div class="card-body ">
-        <h5 class="card-title"><%= room.title %></h5>
-        <p class="card-text">This is a room for <%= room.capacity %> people.</p>
-        <div class="card_footer">
-          <span class="d-block">
-            <span class="display-4 text-primary">$<%= room.price %></span> / per night
-          </span>
-          <div class="card-footer-button col-md-3">
-            <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
+      <div class="clear-filters-button">
+        <%= link_to "Clear Filters", rooms_path %>
+      </div>
+    </div>
+
+  <div class="container">
+    <% if @rooms.empty? %>
+      <p class="lead my-3 text-center">No such rooms found.</p>
+    <% else %>
+      <% @rooms.each do |room| %>
+        <div class="card mb-8">
+          <% room.room_images.each do |room_images| %>
+            <% if room_images.purpose == 'cover' %>
+              <img class="card-img-top" alt="Card image cover" src=<%=asset_path(room_images.image.path)%> />
+            <% end %>
+          <% end %>
+          <div class="card-body ">
+            <h5 class="card-title"><%= room.title %></h5>
+            <p class="card-text">This is a room for <%= room.capacity %> people.</p>
+            <div class="card_footer">
+              <span class="d-block">
+                <span class="display-4 text-primary">$<%= room.price %></span> / per night
+              </span>
+              <div class="card-footer-button col-md-3">
+                <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+    <% end %>
     </div>
   <% end %>
+<% end %>
+
+<div class="pagination" >
+  <%= will_paginate @rooms, previous_label: "Previous" , next_label: "Next",
+    list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
-<%= javascript_pack_tag 'search' %>
+<script>
+  $('#input-datepicker').daterangepicker({
+      opens: 'left'
+  }, function(start, end, label) {
+      $('#check-out-input').val(start.format('YYYY-MM-DD'));
+      $('#check-in-input').val(end.format('YYYY-MM-DD'));
+  });
+</script>
