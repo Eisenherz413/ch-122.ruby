@@ -21,7 +21,7 @@
   <div class="row">
     <% @room.room_images.each do |room_images| %>
       <div class="room-image col-lg-3 col-md-4 col-6">
-        <img class="img-fluid" alt="cover image" src=<%=asset_path(room_images.image.path)%>>
+        <img class="img-fluid" alt="cover image" src=<%= asset_path(room_images.image.path) %>>
       </div>
     <% end %>
   </div>
@@ -89,10 +89,13 @@
           <p class="card-text">Capacity: <%= @room.capacity %></p>
           <p class="card-text">Price: <%= @room.price %>$</p>
           <p class="card-text">A booking confirmation will be sent to your e-mail.</p>
+<!--          <p><%#= @room.orders.user_id %></p>-->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Submit</button>
+          <%#= link_to "Submit", :class => "btn btn-primary", :controller => "orders", :action => "send_order_mail", :id => @room.orders.id %>
+<!--          <button type="button" class="btn btn-primary">Submit</button>-->
+          <%= link_to "Submit", :class => "btn btn-primary", :controller => "rooms", :action => "send_order_mail", :id => @room.id %>
         </div>
       </div>
     </div>

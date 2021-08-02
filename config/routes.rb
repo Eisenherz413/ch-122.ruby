@@ -16,5 +16,8 @@ Rails.application.routes.draw do
       match 'search' => 'rooms#search', via: [:get, :post], as: :search
     end
   end
+
+  # get :send_order_mail, to: 'orders#send_order_mail', as: :send_order_mail
+  get :send_order_mail, to: 'rooms#send_order_mail', as: :send_order_mail
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

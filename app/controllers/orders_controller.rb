@@ -56,6 +56,16 @@ class OrdersController < ApplicationController
     end
   end
 
+  def send_order_mail
+    @order = Order.find(params[:id])
+    # @client = Customer.find(@order.client_id)
+
+    # OrderMailer.order_send(@order, @client).deliver
+    OrderMailer.order_send(@order).deliver
+    flash[:notice] = "Order has been sent."
+    redirect_to order_path(@order.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

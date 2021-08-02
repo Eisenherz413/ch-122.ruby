@@ -68,6 +68,13 @@ class RoomsController < ApplicationController
     render :index
   end
 
+  def send_order_mail
+    @room = Room.find(params[:id])
+    OrderMailer.room_send(@room).deliver
+    flash[:notice] = "Room has been sent."
+    # redirect_to order_path(@order.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
