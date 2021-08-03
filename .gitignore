@@ -91,3 +91,4 @@ fabric.properties
 # Gemfile.lock
 Gemfile.lock
 .idea/vcs.xml
+.idea
