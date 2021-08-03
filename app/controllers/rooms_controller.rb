@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
     @q = Room.ransack(params[:q])
     per_page = 2
     @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
-    if params[:orders_check_in_eq] && params[:orders_check_in_eq] != ''
+    if params[:orders_check_in_eq].present?
       @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
     end
 
