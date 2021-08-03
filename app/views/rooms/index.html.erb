@@ -23,7 +23,7 @@
         <p><%= f.label :capacity, "CAPACITY" %></p>
         <%= f.select :capacity_eq,
                      options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {},
+                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
                      { :class => 'search-form-capacity' } %>
       </div>
 
