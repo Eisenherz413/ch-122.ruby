@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_18_092521) do
+ActiveRecord::Schema.define(version: 2021_07_26_211240) do
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2021_07_18_092521) do
     t.decimal "stars"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -44,8 +55,8 @@ ActiveRecord::Schema.define(version: 2021_07_18_092521) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.date "check_in"
+    t.date "check_out"
     t.float "total_price"
     t.integer "room_id"
     t.integer "user_id"
@@ -76,7 +87,9 @@ ActiveRecord::Schema.define(version: 2021_07_18_092521) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
+    t.string "slug"
     t.index ["id"], name: "rooms_id_uindex", unique: true
+    t.index ["slug"], name: "index_rooms_on_slug", unique: true
   end
 
   create_table "services", force: :cascade do |t|
