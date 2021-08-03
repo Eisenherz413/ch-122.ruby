@@ -92,3 +92,5 @@ fabric.properties
 Gemfile.lock
 .idea/vcs.xml
 .idea
+
+package-lock.json
