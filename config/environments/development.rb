@@ -81,15 +81,15 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {address: 'localhost', port: '1025'}
+  config.action_mailer.smtp_settings = {address: 'localhost', port: 587}
 
   ActionMailer::Base.smtp_settings = {
     tls: true,
-    address: 'rubygem.hotel@gmail.com',
-    port: '1025',
+    address: 'smtp@gmail.com',
+    port: 587,
     domain: 'gmail.com',
-    authentication: :login,
-    user_name: 'Ruby Team',
+    authentication: 'plain',
+    user_name: 'rubygem.hotel',
     password: 'RubyTeamPass'
   }
 
