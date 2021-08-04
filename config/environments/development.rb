@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -76,4 +76,21 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Sending email confirmation in development environment
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {address: 'localhost', port: '1025'}
+
+  ActionMailer::Base.smtp_settings = {
+    tls: true,
+    address: 'rubygem.hotel@gmail.com',
+    port: '1025',
+    domain: 'gmail.com',
+    authentication: :login,
+    user_name: 'Ruby Team',
+    password: 'RubyTeamPass'
+  }
+
 end
