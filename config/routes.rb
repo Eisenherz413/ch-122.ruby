@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
     devise_for :users, controllers: {
-      sessions: 'users/sessions', registrations: 'users/registrations'
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations'
     }
   end
-  post    '/signup',  to: 'users#create'
   # devise_for :users
   resources :room_images
   resources :images
