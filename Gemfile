@@ -5,8 +5,8 @@ ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# Use mysql2 as the database for Active Record
+gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -32,7 +32,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
-# avoiding polling for changes Gem.win_platform
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -67,6 +66,12 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
 # awesome icons
 # gem "font-awesome-rails"
+# add active link
+gem 'active_link_to'
+
+# internationalization
+gem 'rails-i18n'
+
 
 gem 'ransack'
 gem 'will_paginate'

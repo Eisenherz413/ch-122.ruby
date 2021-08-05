@@ -1,0 +1,41 @@
+uk:
+  services:
+    index:
+      add_service: "Додати"
+      show_rooms: "Кімнати"
+      edit: "Редагувати"
+      destroy: "Видалити"
+      disabled_button_title: "Ви не можете видалити сервіси з активними замовленнями"
+    show:
+      icon_pic: "Іконка"
+      icon_url: "Адреса"
+      name: "Назва"
+      service_description: "Опис"
+      there_are_no_rooms_using_this_service: "Жодна кімната не використовує даний сервіс"
+      rooms_using_this_service: "Кімнати, які використовують даний сервіс"
+      table:
+        capacity: "Ємність"
+        price: "Ціна"
+        number: "Номер"
+    edit:
+      editing_service: "Редагування"
+  global:
+    menu:
+      services: "Сервіси"
+      rooms: "Кімнати"
+      categories: "Категорії"
+      room_services: "Сервіси кімнат"
+      orders: "Замовлення"
+    forms:
+      create_button: "Створити"
+      all_services: "Всі сервіси"
+      update_button: "Зберегти"
+      new_service: "Новий сервіс"
+  activerecord:
+    attributes:
+      service:
+        name: "Назва"
+        description: "Опис"
+        icon_url: "Іконка"
+        placeholder_service_name: "Назва"
+        placeholder_service_description: "Опис"

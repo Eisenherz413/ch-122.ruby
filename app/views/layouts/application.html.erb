@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Project</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,9 +9,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -37,25 +34,27 @@
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>-->
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.css"></script>-->
   </head>
-
-  <body>
+  <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="nav navbar-nav">
-
-           <%= link_to 'Services',services_path, class: "nav-link active"%>
-            <%= link_to 'Rooms', rooms_path, class: "nav-link"%>
-            <%= link_to 'Categories', categories_path, class: "nav-link"%>
-            <%= link_to 'Room services', room_services_path, class: "nav-link"%>
-            <%= link_to 'Orders', orders_path, class: "nav-link" %>
-
-
+            <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
+            <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
           </div>
         </div>
       </div>
     </nav>
-
+  </header>
+  <body>
+  <div class="container">
+    <div class="row" style="margin-top: 20px; float: right; display: inline-block;">
+      <div><%= active_link_to "EN", url_for(locale: :en), class: 'lang'%> <%= active_link_to 'UK', url_for(locale: :uk), class: 'lang'%></div>
+    </div>
+  </div>
     <%= yield %>
   </body>
 </html>

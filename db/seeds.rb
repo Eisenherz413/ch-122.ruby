@@ -40,18 +40,26 @@ RoomService.create!([
   {room_id: 6, service_id: 4},
   {room_id: 6, service_id: 4},
   {room_id: 7, service_id: 5},
-  {room_id: 7, service_id: 7}
+  {room_id: 7, service_id: 7},
+  {room_id: 3, service_id: 3},
+  {room_id: 1, service_id: 4},
+  {room_id: 1, service_id: 5},
+  {room_id: 3, service_id: 6},
+  {room_id: 2, service_id: 7},
+  {room_id: 2, service_id: 8},
+  {room_id: 3, service_id: 8},
+  {room_id: 1, service_id: 7}
 ])
 User.create!([
   {full_name: "test", email: "test", role: nil, status: nil},
   {full_name: "user1", email: "user@gmail.com", role: nil, status: nil}
 ])
-Order.create!([
-  {check_in: "2021-07-21", check_out: "2021-07-23", total_price: 23.0, room_id: 1, user_id: 1, status: nil},
-  {check_in: "2021-07-23", check_out: "2021-07-25", total_price: 23.0, room_id: 2, user_id: 1, status: nil},
-  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 3, user_id: 1, status: nil},
-  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 4, user_id: 1, status: nil}
-])
+Category.create!([
+                   {name: 0, description: 'You can leave a word of advice in this section, help us to become even better!'},
+                   {name: 1, description: 'In this section you can report any kind of breakdown in your room'},
+                   {name: 2, description: 'If you have something you want us to react quickly, please type it here'},
+                   {name: 3, description: ''}
+                 ])
 Issue.create!([
   {category_id: 1, user_id: 1, text: "example", status: "opened"}
 ])
@@ -97,6 +105,10 @@ RoomImage.create!([
 Feedback.create!([
   {text: "example", user_id: 1, stars: "4.0"}
 ])
-Category.create!([
-  {name: "Advice", description: "Description"}
-])
+Order.create!([{check_in: "2021-07-02 17:00", check_out: "2021-07-05 17:00", total_price: 100, room_id: 1, user_id: 1, status: 0},
+               {check_in: "2021-07-01 12:00", check_out: "2021-07-04 12:00", total_price: 150, room_id: 2, user_id: 2, status: 1},
+               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 3, user_id: 1, status: 2},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 3},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 4},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 1, user_id: 2, status: 1}
+              ])
