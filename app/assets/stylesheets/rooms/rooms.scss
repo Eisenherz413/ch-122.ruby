@@ -1,9 +1,10 @@
-// Place all the styles related to the Rooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 .rooms-top-container {
   margin-bottom: 150px;
+}
+
+.rooms-top-container > div {
+  background-size: cover;
+  height: 250px;
 }
 
 .list-group-item span {
@@ -17,7 +18,6 @@
 }
 
 .btn-group {
-  display: flex;
   flex-direction: column;
 }
 
@@ -31,10 +31,24 @@
   font-size: 16px;
 }
 
-.card_footer {
+.card_footer,
+.btn-group {
   display: flex;
 }
 
 .back {
   margin: 20px;
 }
+
+.clear-filters-button {
+  margin-top: 20px;
+  color: grey;
+  width: 150px;
+}
+
+.pagination {
+  text-align: center;
+  width: 275px;
+  margin: 0 auto 20px;
+}
+

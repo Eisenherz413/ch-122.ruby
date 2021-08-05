@@ -11,6 +11,10 @@ import "channels"
 import * as bootstrap from 'bootstrap'
 import "../stylesheets/application"
 
+// require("jquery-ui");
+// require("jquery-ui.multidatespicker");
+require("jquery")
+
 document.addEventListener("DOMContentLoaded", function(event) {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

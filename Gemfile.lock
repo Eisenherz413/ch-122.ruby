@@ -161,6 +161,10 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.6)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -230,6 +234,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.0)
+    will_paginate-bootstrap4 (0.2.2)
+      will_paginate (~> 3.0, >= 3.0.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
@@ -248,7 +255,11 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
+<<<<<<< HEAD
   rails-i18n
+=======
+  ransack
+>>>>>>> bee4300896c4684b80b03bb4447fd22a9f71a5fd
   rubocop (~> 1.18, >= 1.18.1)
   sass-rails (>= 6)
   seed_dump (~> 3.3, >= 3.3.1)
@@ -261,6 +272,8 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  will_paginate
+  will_paginate-bootstrap4
 
 RUBY VERSION
    ruby 2.7.2p137
