@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       confirmations: 'users/confirmations'
     }
   end
-  # devise_for :users
+  devise_scope :user do
+    get '/users/sign_out' => 'users/sessions#destroy'
+  end
   resources :room_images
   resources :images
   resources :issues

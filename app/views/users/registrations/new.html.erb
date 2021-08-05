@@ -3,7 +3,7 @@
     <div id="logbox"  >
         <h2>Create an Account</h2>
 
-        <%= form_for(resource, url: user_registration_path) do |f| %>
+        <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
           <%= render "users/shared/error_messages", resource: resource %>
 
           <div class="field">
