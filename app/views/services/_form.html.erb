@@ -39,9 +39,9 @@
     <tr>
       <td></td>
       <% if @service.new_record? %>
-      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-outline-success", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
         <% else %>
-        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-outline-primary", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-outline-success", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
         <% end  %>
     </tr>
     </div>

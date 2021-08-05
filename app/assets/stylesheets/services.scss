@@ -15,7 +15,7 @@ h1 {
 input[type="text"] {
   width: 600px;
   height: 50px;
-  border: 2px solid dodgerblue;
+  border: 2px solid grey;
   border-radius: 3px;
 }
 .tbl {
@@ -26,7 +26,7 @@ input[type="text"] {
 textarea {
   width: 600px;
   height: 100px;
-  border: 2px solid dodgerblue;
+  border: 2px solid grey;
   border-radius: 3px;
 
 }
@@ -61,7 +61,7 @@ ul {
 .tbl-3 td {
   border: 1px solid black;
 }
-.buttons_alignment form {
+.buttons_alignment div {
   display: inline-block;
 
 }
