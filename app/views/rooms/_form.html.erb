@@ -10,23 +10,90 @@
       </ul>
     </div>
   <% end %>
+<table class="tbl">
+  <tr>
+    <div class="field">
+      <td><label for="services">Services</label></td>
+      <td><input type="text" id="services" name="services"></td>
+    </div>
+  <dialog id="dialog_window">
+  <img src="/assets/exit_button.png" id="close">
+      <div class="checkboxes">
+    <% Service.all.each do |service| %>
+<!--       <div class="boxes">-->
+            <label for=<%= service.name %>><img src="/assets/<%= service.icon_url %>"><%= service.name %></label>
+            <input type="checkbox" id="<%= service.name %>" name="<%= service.name %>" class="boxes">
+<!--       </div>-->
+    <% end %>
+    </div>
+  </dialog>
+  </tr>
+<!--  <script>-->
+<!--    var service_input = document.querySelector('#services');-->
+<!--    var dialog_window = document.querySelector('#dialog_window');-->
+<!--    var close_icon = document.querySelector('#close');-->
+<!--    var services_checkboxes = document.querySelector('.checkboxes');-->
+<!--    var right, top, bottom, left;-->
+<!--    var boxes = document.querySelectorAll('.boxes');-->
+<!--    service_input.onclick = function(){-->
+<!--        dialog_window.show();-->
+<!--    }-->
+<!--    close_icon.onclick = function(){-->
+<!--        dialog_window.close();-->
+<!--    }-->
+<!--    function getInputCoordinates(input){-->
+<!--        var coordinates_of_input = input.getBoundingClientRect();-->
+<!--         top = coordinates_of_input.top;-->
+<!--         bottom = coordinates_of_input.bottom;-->
+<!--         left = coordinates_of_input.left;-->
+<!--         right = coordinates_of_input.right;-->
+<!--    }-->
+<!--    function setDialogCoordinates(left, right, bottom, top){-->
+<!--        dialog_window.style.left = left + "px";-->
+<!--        dialog_window.style.right = right + "px";-->
+<!--        dialog_window.style.top = top + "px";-->
+<!--        dialog_window.style.bottom = bottom + 287 + "px";-->
+<!--    }-->
+<!--    getInputCoordinates(service_input);-->
+<!--    setDialogCoordinates(left, right, bottom, top);-->
+<!--    services_checkboxes.onclick = function() {-->
+<!--        for (let i = 0; i < boxes.length; i++) {-->
+<!--            if (boxes[i].checked && service_input.value !== boxes[i].name) {-->
+<!--                service_input.value += ' '+ boxes[i].name;-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--  </script>-->
 
+  <tr>
   <div class="field">
-    <%= form.label :capacity %>
-    <%= form.text_field :capacity %>
+    <td><%= form.label :number %></td>
+    <td><%= form.text_field :number %></td>
   </div>
-
+  </tr>
+  <tr>
+ <div class="field">
+   <td><%= form.label :title %></td>
+   <td><%= form.text_field :title %></td>
+ </div>
+  </tr>
+  <tr>
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+    <td><%= form.label :capacity %></td>
+    <td><%= form.text_field :capacity %></td>
   </div>
-
+  </tr>
+  <tr>
   <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number %>
+    <td><%= form.label :price %></td>
+    <td><%= form.text_field :price %></td>
   </div>
-
+  </tr>
+  <tr>
   <div class="actions">
-    <%= form.submit %>
+    <td></td>
+    <td><%= form.submit 'Create', class: 'btn btn-outline-success'%><%= link_to 'All rooms' , rooms_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
   </div>
+  </tr>
+</table>
 <% end %>
