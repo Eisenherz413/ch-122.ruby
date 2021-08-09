@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum role: %i[user manager admin]
+  enum role: %i[user manager admin], _default: 'user'
   enum status: %i[active blocked deleted]
 
   validates :full_name, uniqueness: { case_sensitive: false }, length: { minimum: 2 }
