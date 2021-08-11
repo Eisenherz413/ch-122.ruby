@@ -42,19 +42,6 @@ RoomService.create!([
   {room_id: 7, service_id: 5},
   {room_id: 7, service_id: 7}
 ])
-User.create!([
-  {full_name: "test", email: "test", role: nil, status: nil},
-  {full_name: "user1", email: "user@gmail.com", role: nil, status: nil}
-])
-Order.create!([
-  {check_in: "2021-07-21", check_out: "2021-07-23", total_price: 23.0, room_id: 1, user_id: 1, status: nil},
-  {check_in: "2021-07-23", check_out: "2021-07-25", total_price: 23.0, room_id: 2, user_id: 1, status: nil},
-  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 3, user_id: 1, status: nil},
-  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 4, user_id: 1, status: nil}
-])
-Issue.create!([
-  {category_id: 1, user_id: 1, text: "example", status: "opened"}
-])
 Room.create!([
   {capacity: 2, price: 3.99, number: "34a", title: "Twin Guest Room", slug: nil},
   {capacity: 4, price: 5.0, number: "34t", title: "King Guest Room", slug: nil},
@@ -63,6 +50,21 @@ Room.create!([
   {capacity: 1, price: 5.0, number: "11", title: "King Guest Room", slug: nil},
   {capacity: 2, price: 2.5, number: "30b", title: "King Deluxe Room", slug: nil},
   {capacity: 3, price: 4.99, number: "56", title: "Twin Guest Room", slug: nil}
+])
+User.create!([
+  {full_name: "test", email: "test", role: nil, status: nil},
+  {full_name: "user1", email: "user@gmail.com", role: nil, status: nil}
+])
+Category.create!([
+  {name: "Advice", description: "Description"}])
+Order.create!([
+  {check_in: "2021-07-21", check_out: "2021-07-23", total_price: 23.0, room_id: 1, user_id: 1, status: nil},
+  {check_in: "2021-07-23", check_out: "2021-07-25", total_price: 23.0, room_id: 2, user_id: 1, status: nil},
+  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 3, user_id: 1, status: nil},
+  {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 4, user_id: 1, status: nil}
+])
+Issue.create!([
+  {category_id: 1, user_id: 1, text: "example", status: "opened"}
 ])
 RoomImage.create!([
   {room_id: "1.0", image_id: "1.0", purpose: "cover"},
@@ -96,7 +98,4 @@ RoomImage.create!([
 ])
 Feedback.create!([
   {text: "example", user_id: 1, stars: "4.0"}
-])
-Category.create!([
-  {name: "Advice", description: "Description"}
 ])

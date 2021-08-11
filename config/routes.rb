@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :room_services
   resources :feedbacks
   resources :orders
-  resources :rooms
   resources :services
   resources :users
   resources :samples
@@ -17,7 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # get :send_order_mail, to: 'orders#send_order_mail', as: :send_order_mail
+  resources :rooms
+
   get :send_order_mail, to: 'rooms#send_order_mail', as: :send_order_mail
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

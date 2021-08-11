@@ -79,25 +79,55 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title card-text" id="bookingModalLabel">Almost done!</h5>
+          <h5 class="modal-title card-text" id="bookingModalLabel">Almost done! Details of the booking:</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p class="card-text">Details of the booking:</p>
-<!--          <p class="card-text"> <%#= @room.orders.check_in %> - <%#= @room.orders.check_out %></p>-->
+          <p class="card-text">Check in: <span id="check-in"><%= params[:check_in] %></span> </p>
+          <p class="card-text">Check out: <span id="check-out"><%= params[:check_out] %></span> </p>
           <p class="card-text">Type of room: <%= @room.title %></p>
           <p class="card-text">Capacity: <%= @room.capacity %></p>
-          <p class="card-text">Price: <%= @room.price %>$</p>
+          <p class="card-text">Price per night: <span id="price-per-night"><%= @room.price %></span>$</p>
+          <p class="card-text">Total price: <span id="total-price"></span>$</p>
           <p class="card-text">A booking confirmation will be sent to your e-mail.</p>
-<!--          <p><%#= @room.orders.user_id %></p>-->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <%#= link_to "Submit", :class => "btn btn-primary", :controller => "orders", :action => "send_order_mail", :id => @room.orders.id %>
 <!--          <button type="button" class="btn btn-primary">Submit</button>-->
-          <%= link_to "Submit", :class => "btn btn-primary", :controller => "rooms", :action => "send_order_mail", :id => @room.id %>
+          <%= form_for @order do |f| %>
+            <%= f.hidden_field :check_in, :value => params[:check_in] %>
+            <%= f.hidden_field :check_out, :value => params[:check_out] %>
+            <%= f.hidden_field :total_price, :id => "total-price-input", :value => 22 %>
+            <%= f.hidden_field :room_id, :value => @room.id %>
+            <%= f.hidden_field :user_id, :value => 1 %>
+            <%= f.hidden_field :status, :value => 'new' %>
+            <%= f.submit "Submit", :class => "btn btn-primary", :id => "submit-booking-btn" %>
+          <% end %>
+          <%#= link_to "Submit", :class => "btn btn-primary", :controller => "rooms", :action => "send_order_mail", :id => @room.id %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  const totalPriceElem = document.getElementById("total-price");
+  const checkInElem = document.getElementById("check-in");
+  const checkOutElem = document.getElementById("check-out");
+  const pricePerNight = document.getElementById("price-per-night").innerText;
+  const totalPriceInputElem = document.getElementById("total-price-input");
+  const submitBookingBtn = document.getElementById("submit-booking-btn");
+
+  if (checkInElem && checkOutElem) {
+     const start = new Date(checkInElem.innerText);
+     const end = new Date(checkOutElem.innerText);
+     const timeDiff = Math.abs(end.getTime() - start.getTime());
+     const numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+     const totalPrice = Math.round(numberOfNights * pricePerNight * 100) / 100;
+     totalPriceElem.innerText = totalPrice;
+     totalPriceInputElem.value = totalPrice;
+  }
+
+  // submitBookingBtn.onclick()
+</script>

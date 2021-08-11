@@ -9,10 +9,11 @@
   </div>
 </div>
 
-<%= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+<%#= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+<%= search_form_for @q, id:'search-form' do |f|  %>
   <div class= "advance-search-container">
     <div class="search-input">
-      <p><%= f.label :orders_check_out, "CHECK IN/CHECK OUT" %></p>
+      <p>CHECK IN/CHECK OUT</p>
       <input id="input-datepicker" class="search-form-input">
     </div>
 
@@ -76,7 +77,8 @@
                 <span class="display-4 text-primary">$<%= room.price %></span> / per night
               </span>
               <div class="card-footer-button col-md-3">
-                <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
+<!--                params[:q][:orders_check_in_lt])-->
+                <%= link_to 'Show more', room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
               </div>
             </div>
           </div>
@@ -87,15 +89,25 @@
 <% end %>
 
 <div class="pagination" >
-  <%= will_paginate @rooms, previous_label: "Previous" , next_label: "Next",
-    list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
+  <%= will_paginate @rooms, previous_label: "Previous" , next_label: "Next", list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
 <script>
-  $('#input-datepicker').daterangepicker({
-      opens: 'left'
+    function getFormatedDate(paramDate) {
+      let convertedDate = Date.strptime(paramDate, "%m-%d-%Y");
+      return convertedDate.strftime("%-m/%-d/%Y");
+    }
+
+<!--    console.log('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>', '<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>')-->
+
+    $('#input-datepicker').daterangepicker({
+        opens: 'left',
+<!--        startDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>'),-->
+<!--        endDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>'),-->
+        // startDate: '03/05/2005', 2005-03-17
+        // endDate: '03/06/2005'
   }, function(start, end, label) {
-      $('#check-out-input').val(start.format('YYYY-MM-DD'));
-      $('#check-in-input').val(end.format('YYYY-MM-DD'));
-  });
+      $('#check-out-input').val(end.format('YYYY-MM-DD'));
+      $('#check-in-input').val(start.format('YYYY-MM-DD'));
+    });
 </script>

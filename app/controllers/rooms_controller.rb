@@ -3,18 +3,28 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @q = Room.ransack(params[:q])
     per_page = 2
-    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
-    if params[:orders_check_in_eq].present?
-      @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
-    end
-
+    #paginate(:page => params[:page], :per_page => per_page).
+    #params[:q] = {:orders_blank => true} # if params[:q]
+    # @q = Room.includes(:orders).ransack(params[:q])
+    #@q = Room.paginate(:page => params[:page], :per_page => per_page).ransack(:m => "or", params[:q])
+    @q = Room.paginate(:page => params[:page], :per_page => per_page).ransack(params[:q])
+    # @f = Room.paginate(:page => params[:page], :per_page => per_page).ransack(orders: [nil, ""])
+    # .search(:m => 'or', :param_name_eq => -1, :param_name_null => true)
+    # if params[:orders_check_in_eq].present?
+    #  @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq_null => true})
+    #  #   @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
+    #end
+    # @rooms = @q.result.includes(:orders) + @f.result
+    # @rooms = @f.result
+    @rooms = @q.result
+    # @rooms = @q.result
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
     @room = Room.find(params[:id])
+    @order = Order.new
   end
 
   # GET /rooms/new
@@ -63,17 +73,10 @@ class RoomsController < ApplicationController
     end
   end
 
-  def search
-    index
-    render :index
-  end
-
-  def send_order_mail
-    @room = Room.find(params[:id])
-    OrderMailer.room_send(@room).deliver
-    flash[:notice] = "Room has been sent."
-    # redirect_to order_path(@order.id)
-  end
+  # def search
+  #   index
+  #   render :index
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -25,7 +25,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: "Order was successfully created." }
+        # format.html { redirect_to @order, notice: "Order was successfully created." }
+        format.html { redirect_to request.referer, alert: "Order was successfully created."  }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,16 +55,6 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def send_order_mail
-    @order = Order.find(params[:id])
-    # @client = Customer.find(@order.client_id)
-
-    # OrderMailer.order_send(@order, @client).deliver
-    OrderMailer.order_send(@order).deliver
-    flash[:notice] = "Order has been sent."
-    redirect_to order_path(@order.id)
   end
 
   private
