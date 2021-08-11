@@ -3,8 +3,8 @@
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
     url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;">
     <div class="mask mask-custom">
-      <h1 class="display-4 fst-italic">Rooms</h1>
-      <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
+      <h1 class="display-4 fst-italic"><%= t('rooms.index.page-title') %></h1>
+      <p class="lead my-3"><%= t('rooms.index.page-description') %></p>
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
 <%= search_form_for @q, id:'search-form' do |f|  %>
   <div class= "advance-search-container">
     <div class="search-input">
-      <p>CHECK IN/CHECK OUT</p>
+      <p><%= t('rooms.index.search.check-in-out') %></p>
       <input id="input-datepicker" class="search-form-input">
     </div>
 
@@ -21,25 +21,25 @@
       <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
       <div class="search-input">
-        <p><%= f.label :capacity, "CAPACITY" %></p>
+        <p><%= f.label :capacity, t('rooms.index.search.capacity') %></p>
         <%= f.select :capacity_eq,
                      options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
+                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => t('rooms.index.search.choose') },
                      { :class => 'search-form-capacity' } %>
       </div>
 
       <div class="search-input">
-        <p><%= f.label :price, "PRICE FROM" %></p>
+        <p><%= f.label :price, t('rooms.index.search.price-from') %></p>
         <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
       </div>
 
       <div class="search-input">
-        <p><%= f.label :price, "PRICE TO" %></p>
+        <p><%= f.label :price, t('rooms.index.search.price-to') %></p>
         <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
       </div>
 
       <div class="advance-search-button">
-        <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
+        <%= f.submit t('rooms.index.search.submit'), class: 'btn btn-primary', id: 'search-button' %>
       </div>
   </div>
 
@@ -47,20 +47,20 @@
       <% unless @rooms.size < 2 %>
         <%= f.select :sorts,
                  options_for_select(
-                   [['Low to high', 'price asc'],
-                    ['High to low', 'price desc']],
+                   [[t('rooms.index.search.low-high'), 'price asc'],
+                    [t('rooms.index.search.high-low'), 'price desc']],
                    selected: params.fetch(:q, nil)&.fetch(:sorts, nil)),
-                 {:include_blank => "Sort by" },
+                 {:include_blank => t('rooms.index.search.sort-by')},
                  { :class => 'sort-input', :id => 'sort-input' } %>
       <% end %>
       <div class="clear-filters-button">
-        <%= link_to "Clear Filters", rooms_path %>
+        <%= link_to t('rooms.index.search.clear-filters'), rooms_path %>
       </div>
     </div>
 
   <div class="container">
     <% if @rooms.empty? %>
-      <p class="lead my-3 text-center">No such rooms found.</p>
+      <p class="lead my-3 text-center"><%= t('rooms.index.no-rooms') %></p>
     <% else %>
       <% @rooms.each do |room| %>
         <div class="card mb-8">
@@ -71,14 +71,14 @@
           <% end %>
           <div class="card-body ">
             <h5 class="card-title"><%= room.title %></h5>
-            <p class="card-text">This is a room for <%= room.capacity %> people.</p>
+            <p class="card-text"><%= t('rooms.index.label-before-capacity')%> <%= room.capacity %> <%= t('rooms.index.label-after-capacity')%></p>
             <div class="card_footer">
               <span class="d-block">
-                <span class="display-4 text-primary">$<%= room.price %></span> / per night
+                <span class="display-4 text-primary">$<%= room.price %></span> / <%= t('rooms.index.per-page')%>
               </span>
               <div class="card-footer-button col-md-3">
 <!--                params[:q][:orders_check_in_lt])-->
-                <%= link_to 'Show more', room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
+                <%= link_to t('rooms.index.show-more'), room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
 <% end %>
 
 <div class="pagination" >
-  <%= will_paginate @rooms, previous_label: "Previous" , next_label: "Next", list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
+  <%= will_paginate @rooms, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button'), list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
 <script>

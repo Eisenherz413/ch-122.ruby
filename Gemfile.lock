@@ -256,11 +256,8 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
-<<<<<<< HEAD
   rails-i18n
-=======
   ransack
->>>>>>> bee4300896c4684b80b03bb4447fd22a9f71a5fd
   rubocop (~> 1.18, >= 1.18.1)
   sass-rails (>= 6)
   seed_dump (~> 3.3, >= 3.3.1)

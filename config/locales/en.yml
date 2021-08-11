@@ -19,6 +19,46 @@ en:
        number: "Number"
     edit:
       editing_service: "Editing"
+  rooms:
+    index:
+      page-title: "Rooms"
+      page-description: "The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit."
+      search:
+        check-in-out: "CHECK IN/CHECK OUT"
+        capacity: "CAPACITY"
+        choose: "Choose"
+        price-from: "PRICE FROM"
+        price-to: "PRICE TO"
+        submit: "SEARCH"
+      low-high: "Low to high"
+      high-low: "High to low"
+      sort-by: "Sort by"
+      clear-filters: "Clear Filters"
+      no-rooms: "No such rooms found."
+      label-before-capacity: "This is a room for"
+      label-after-capacity: "people."
+      per-page: "per night"
+      show-more: "Show more"
+      previous-button: "Previous"
+      next-button: "Next"
+    show:
+      room: "Room"
+      description: "The hotel as a lot of modern rooms in European style. Exquisite warm colors make the room a quiet haven of coziness with beautiful views."
+      back-button: "Back to rooms"
+      capacity: "Capacity"
+      services: "Services"
+      per-page: "per night"
+      book-now:  "Book now"
+      modal:
+        title: "Almost done! Details of the booking"
+        check-in: "Check in"
+        check-out: "Check out"
+        room-type: "Type of room"
+        price-per-night: "Price per night"
+        total-price: "Total price"
+        confirmation-label: "A booking confirmation will be sent to your e-mail."
+        cancel: "Cancel"
+        submit: "Submit"
   global:
     menu:
       services: "Services"
@@ -31,6 +71,7 @@ en:
       all_services: "All services"
       update_button: "Update"
       new_service: "New service"
+
   activerecord:
     attributes:
       service:

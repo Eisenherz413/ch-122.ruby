@@ -19,6 +19,47 @@ uk:
         number: "Номер"
     edit:
       editing_service: "Редагування"
+  rooms:
+    index:
+      page-title: "Кімнати"
+      page-description: "Готельний комплекс пропонує своїм гостям комфортабельні номери, а також повний спектр послуг, необхідних як у відрядженні, так і під час туристичного візиту."
+      search:
+        check-in-out: "ЗАЇЗД / ВИЇЗД"
+        capacity: "МІСТКІСТЬ"
+        choose: "Обрати"
+        price-from: "ЦІНА З"
+        price-to: "ЦІНА ПО"
+        submit: "ШУКАТИ"
+        low-high: "Від низької до високої"
+        high-low: "Від високої до низької"
+        sort-by: "Сортувати по"
+        clear-filters: "Очистити фільтри"
+      no-rooms: "Таких кімнат не знайдено."
+      label-before-capacity: "Ця кімната для"
+      label-after-capacity: "людей."
+      per-page: "за ніч"
+      show-more: "Показати більше"
+      previous-button: "Попередня"
+      next-button: "Наступна"
+    show:
+      room: "Кімната"
+      description: "У готелі є багато сучасних номерів у європейському стилі. Вишукані теплі кольори роблять кімнату тихим притулком затишку з прекрасним краєвидом."
+      back-button: "Назад до кімнат"
+      capacity: "Місткість"
+      services: "Сервіси"
+      per-night: "за ніч"
+      book-now: "Забронювати"
+      modal:
+        title: "Майже готово! Деталі бронювання"
+        check-in: "Заїзд"
+        check-out: "Виїзд"
+        room-type: "Тип кімнати"
+        price-per-night: "Ціна за ніч"
+        total-price: "Загальна ціна"
+        confirmation-label: "На вашу електронну пошту буде надіслано підтвердження бронювання."
+        cancel: "Скасувати"
+        submit: "Підтвердити"
+
   global:
     menu:
       services: "Сервіси"
