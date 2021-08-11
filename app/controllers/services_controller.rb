@@ -46,15 +46,19 @@ class ServicesController < ApplicationController
       end
     end
   end
-
   # DELETE /services/1 or /services/1.json
   def destroy
+    # if Service.can_destroy_service(@service)
+    if @service.destroyable?
     @service.destroy
     respond_to do |format|
       format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
       format.json { head :no_content }
+      end
+    else
+      redirect_to services_url, notice: 'You cannot delete service with working orders'
     end
-  end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -66,4 +70,5 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:name, :description, :icon_url)
     end
-end
+
+  end

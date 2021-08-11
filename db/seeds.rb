@@ -40,7 +40,15 @@ RoomService.create!([
   {room_id: 6, service_id: 4},
   {room_id: 6, service_id: 4},
   {room_id: 7, service_id: 5},
-  {room_id: 7, service_id: 7}
+  {room_id: 7, service_id: 7},
+  {room_id: 3, service_id: 3},
+  {room_id: 1, service_id: 4},
+  {room_id: 1, service_id: 5},
+  {room_id: 3, service_id: 6},
+  {room_id: 2, service_id: 7},
+  {room_id: 2, service_id: 8},
+  {room_id: 3, service_id: 8},
+  {room_id: 1, service_id: 7}
 ])
 Room.create!([
   {capacity: 2, price: 3.99, number: "34a", title: "Twin Guest Room", slug: nil},
@@ -56,13 +64,18 @@ User.create!([
   {full_name: "user1", email: "user@gmail.com", role: nil, status: nil}
 ])
 Category.create!([
-  {name: "Advice", description: "Description"}])
+  {name: 0, description: 'You can leave a word of advice in this section, help us to become even better!'},
+  {name: 1, description: 'In this section you can report any kind of breakdown in your room'},
+  {name: 2, description: 'If you have something you want us to react quickly, please type it here'},
+  {name: 3, description: ''}
+])
+
 Order.create!([
   {check_in: "2021-07-21", check_out: "2021-07-23", total_price: 23.0, room_id: 1, user_id: 1, status: nil},
   {check_in: "2021-07-23", check_out: "2021-07-25", total_price: 23.0, room_id: 2, user_id: 1, status: nil},
   {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 3, user_id: 1, status: nil},
   {check_in: "2021-07-17", check_out: "2021-07-21", total_price: 23.0, room_id: 4, user_id: 1, status: nil}
-])
+
 Issue.create!([
   {category_id: 1, user_id: 1, text: "example", status: "opened"}
 ])
