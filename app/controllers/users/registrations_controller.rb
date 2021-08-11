@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery prepend: true
 
   # GET /resource/sign_up
   def new
@@ -39,6 +41,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :full_name])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
