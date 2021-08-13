@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -61,6 +61,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  #  default_url_options appropriate for a development environment
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -73,4 +76,21 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Sending email confirmation in development environment
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {address: 'localhost', port: 587}
+
+  ActionMailer::Base.smtp_settings = {
+    tls: true,
+    address: 'smtp@gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    authentication: 'plain',
+    user_name: 'rubygem.hotel',
+    password: 'RubyTeamPass'
+  }
+
 end
