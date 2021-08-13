@@ -32,7 +32,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
-# avoiding polling for changes Gem.win_platform
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -67,9 +66,22 @@ gem 'bootstrap', '~> 5.0.1'
 gem 'rubocop', '~> 1.18', '>= 1.18.1'
 gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
-
 # awesome icons
 # gem "font-awesome-rails"
+# add active link
+gem 'active_link_to'
+
+# internationalization
+gem 'rails-i18n'
+
+
+gem 'ransack'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+
+# gem 'jquery-rails'
+# gem 'jquery-ui-rails'
+# gem 'multi-dates-picker-rails'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'

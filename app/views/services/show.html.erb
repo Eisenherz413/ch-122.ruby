@@ -2,44 +2,42 @@
   <div class="row">
     <div class="col-10"></div>
     <div class="col-2">
-      <button type="button" class="btn btn-outline-secondary">
-        <%= link_to 'All services', services_path %>
-      </button>
+        <%= link_to t('global.forms.all_services'), services_path, class: 'btn btn-outline-secondary', role: 'button' %>
     </div>
   </div>
 </div>
 <table class="tbl-2">
   <tr>
-    <td><p class="h4">Icon:</p></td>
+    <td><p class="h4"><%= t('services.show.icon_pic') %></p></td>
     <td><p class="h5"><%= image_tag(@service.icon_url)%></p></td>
   </tr>
   <tr>
-    <td><p class="h4">Icon url:</p></td>
+    <td><p class="h4"><%= t('services.show.icon_url') %></p></td>
     <td><p class="h5"><%= @service.icon_url %></p></td>
   </tr>
 <tr>
-  <td><p class="h4">Name:</p></td>
+  <td><p class="h4"><%= t('services.show.name') %></p></td>
   <td><p class="h5"><%= @service.name %></p></td>
 </tr>
 <tr>
-  <td><p class="h4">Description:</p></td>
+  <td><p class="h4"><%= t('services.show.service_description') %></p></td>
   <td><p class="h5"><%= @service.description %></p></td>
 </tr>
 </table>
 
 <div class="row justify-content-center">
   <% if @service.rooms.empty? %>
-    <h1 class="display-5" style="margin-top: 30px; color: red;" >There are no rooms using this service</h1>
+    <h4 style="margin-top: 30px; color: red; text-align: center;"><%= t('services.show.there_are_no_rooms_using_this_service') %></h4>
     <% else %>
-    <h1 class="display-4" style="margin-top: 30px">Rooms using this service</h1>
+    <h4 style="margin-top: 30px; text-align: center;"><%= t('services.show.rooms_using_this_service') %></h4>
 <div class="col-4">
 <table class="table table-hover" style="margin-top: 40px">
   <thead>
   <tr>
     <td class="h4">#</td>
-    <td class="h4">Capacity</td>
-    <td class="h4">Price</td>
-    <td class="h4">Number</td>
+    <td class="h4"><%= t('services.show.table.capacity') %></td>
+    <td class="h4"><%= t('services.show.table.price') %></td>
+    <td class="h4"><%= t('services.show.table.number') %></td>
   </tr>
   </thead>
 <tbody>
@@ -49,7 +47,6 @@
         <td class="h5"><%= room.capacity %></td>
         <td class="h5"><%= room.price %></td>
         <td class="h5"><%= room.number %></td>
-
       </tr>
     <% end  %>
 </tbody>

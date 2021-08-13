@@ -6,4 +6,11 @@ class Service < ApplicationRecord
 
   has_many :room_services, :dependent => :destroy
   has_many :rooms, through: :room_services
+
+  def destroyable?
+    rooms.each do |room|
+      return false if room.non_destroyable?
+    end
+  end
+
 end

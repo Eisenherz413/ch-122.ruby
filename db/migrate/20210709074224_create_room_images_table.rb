@@ -1,8 +1,8 @@
 class CreateRoomImagesTable < ActiveRecord::Migration[6.1]
   def change
-    create_table :room_images do |t|
-      t.numeric :room_id
-      t.numeric :image_id
+    create_table :room_images,  id: :integer do |t|
+      t.integer :room_id
+      t.integer :image_id
 
       t.timestamps
     end
