@@ -32,7 +32,9 @@
             <div class="form-group row col-md-12">
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <%= link_to 'All Categories', categories_path, class: "btn btn-outline-secondary btn-sm align-left" %>
-                <%= form.submit "Update", class: "btn btn-outline-success btn-sm" %>
+                <% if can? :manage, Category %>
+                  <%= form.submit "Update", class: "btn btn-outline-success btn-sm" %>
+                <% end %>
               </div>
             </div>
           </form>
