@@ -68,7 +68,11 @@
             / per night
           </span>
       <div class="card-footer-button col-md-3">
-        <a href="#" class="btn btn-primary text-white bottom-0 end-0">Book now</a>
+        <% if user_signed_in? %>
+          <a href="#" class="btn btn-primary text-white bottom-0 end-0">Book now</a>
+        <% else %>
+          <%= link_to "Book now", new_user_registration_path, class: "btn btn-primary text-white bottom-0 end-0" %>
+        <% end %>
       </div>
     </div>
   </div>
