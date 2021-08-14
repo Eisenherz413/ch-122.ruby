@@ -85,3 +85,5 @@ gem 'will_paginate-bootstrap4'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'
+
+gem 'cancancan'
