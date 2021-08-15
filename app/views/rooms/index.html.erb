@@ -9,37 +9,38 @@
   </div>
 </div>
 
-<%= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+<%#= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+<%= search_form_for @q do |f| %>
   <div class= "advance-search-container">
     <div class="search-input">
       <p><%= f.label :orders_check_out, "CHECK IN/CHECK OUT" %></p>
       <input id="input-datepicker" class="search-form-input">
     </div>
 
-      <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
-      <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
+    <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+    <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
-      <div class="search-input">
-        <p><%= f.label :capacity, "CAPACITY" %></p>
-        <%= f.select :capacity_eq,
-                     options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
-                     { :class => 'search-form-capacity' } %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :capacity, "CAPACITY" %></p>
+      <%= f.select :capacity_eq,
+                   options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
+                                      selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
+                   { :class => 'search-form-capacity' } %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, "PRICE FROM" %></p>
-        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, "PRICE FROM" %></p>
+      <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, "PRICE TO" %></p>
-        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, "PRICE TO" %></p>
+      <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="advance-search-button">
-        <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
-      </div>
+    <div class="advance-search-button">
+      <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
+    </div>
   </div>
 
     <div class="sort-container">
@@ -91,9 +92,23 @@
     list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
+<!-- startDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>'),-->
+<!-- endDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>'),-->
+<!-- startDate: '03/05/2005', 2005-03-17-->
+
 <script>
+  const checkOutInput = document.getElementById('check-out-input');
+  const checkInInput = document.getElementById('check-in-input');
+
+  checkInInput.value = Date.now()
+  checkOutInput.value = Date.now()
+
   $('#input-datepicker').daterangepicker({
-      opens: 'left'
+      opens: 'left',
+      // startDate: checkInInput.value.format('DD/MM/YYYY'),
+      // endData: checkOutInput.value.format('DD/MM/YYYY'),
+      startDate:  Date.now(),
+      endData:  Date.now(),
   }, function(start, end, label) {
       $('#check-out-input').val(start.format('YYYY-MM-DD'));
       $('#check-in-input').val(end.format('YYYY-MM-DD'));
