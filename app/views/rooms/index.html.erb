@@ -17,7 +17,7 @@
       <input id="input-datepicker" class="search-form-input">
     </div>
 
-    <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+    <%= f.date_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
     <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
     <div class="search-input">
@@ -97,20 +97,12 @@
 <!-- startDate: '03/05/2005', 2005-03-17-->
 
 <script>
-  const checkOutInput = document.getElementById('check-out-input');
-  const checkInInput = document.getElementById('check-in-input');
-
-  checkInInput.value = Date.now()
-  checkOutInput.value = Date.now()
-
   $('#input-datepicker').daterangepicker({
       opens: 'left',
-      // startDate: checkInInput.value.format('DD/MM/YYYY'),
-      // endData: checkOutInput.value.format('DD/MM/YYYY'),
-      startDate:  Date.now(),
-      endData:  Date.now(),
   }, function(start, end, label) {
       $('#check-out-input').val(start.format('YYYY-MM-DD'));
       $('#check-in-input').val(end.format('YYYY-MM-DD'));
+
+      $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
   });
 </script>
