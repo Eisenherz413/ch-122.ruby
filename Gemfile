@@ -38,8 +38,8 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
@@ -55,13 +55,15 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-platforms :mswin do
-  gem "wdm", :group => [:development, :test]
-end
+# platforms :mswin do
+#   gem "wdm", :group => [:development, :test]
+# end
+
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 # Ruby code style checking and code formatting tool
-gem 'rubocop', '~> 1.18', '>= 1.18.1'
 gem 'bootstrap', '~> 5.0.1'
+gem 'rubocop', '~> 1.18', '>= 1.18.1'
 gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 
 # awesome icons
@@ -80,3 +82,8 @@ gem 'will_paginate-bootstrap4'
 # gem 'jquery-rails'
 # gem 'jquery-ui-rails'
 # gem 'multi-dates-picker-rails'
+
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.2'
+
+gem 'cancancan'

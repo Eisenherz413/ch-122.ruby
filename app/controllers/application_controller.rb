@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
       nil
   end
 
-
+  respond_to :html, :json
 
 end
