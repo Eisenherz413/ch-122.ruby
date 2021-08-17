@@ -3,30 +3,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    # @rooms = Room.search(params[:q])
     per_page = 2
-    # @rooms = Room.where(['capacity = ?', params[:capacity]]) if params[:capacity].present?
-    # @q = Room.ransack(
-    #   sorts: params.fetch(:q, nil)&.fetch(:sorts, nil),
-    #   m: 'or',
-    #   g: {
-    #     '0' => {
-    #       m: 'or',
-    #       g: {
-    #         '0' => {
-    #           orders_check_in_lt: params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil),
-    #         },
-    #         '1' => {
-    #           orders_check_out_gt: params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil),
-    #         }
-    #       },
-    #       capacity_eq: params.fetch(:q, nil)&.fetch(:capacity_eq, nil),
-    #       price_gteq: params.fetch(:q, nil)&.fetch(:price_gteq, nil),
-    #       price_lteq: params.fetch(:q, nil)&.fetch(:price_lteq, nil),
-    #     },
-    #     '1' => { orders: [nil, ""] }
-    #   })
-    #
     @q = Room.ransack(
       sorts: params.fetch(:q, nil)&.fetch(:sorts, nil),
       m: 'or',
