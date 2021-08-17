@@ -4,8 +4,8 @@ class Room < ApplicationRecord
   has_many :orders
   has_many :room_services
   has_many :services, through: :room_services
-
-  has_many :room_images
+  has_one_attached :cover
+  has_many_attached :images
 
   def destroyable?
     orders.each do |order|
