@@ -1,24 +1,22 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms or /rooms.json
   def index
     per_page = 2
-    #paginate(:page => params[:page], :per_page => per_page).
-    #params[:q] = {:orders_blank => true} # if params[:q]
-    # @q = Room.includes(:orders).ransack(params[:q])
-    #@q = Room.paginate(:page => params[:page], :per_page => per_page).ransack(:m => "or", params[:q])
-    @q = Room.paginate(:page => params[:page], :per_page => per_page).ransack(params[:q])
-    # @f = Room.paginate(:page => params[:page], :per_page => per_page).ransack(orders: [nil, ""])
-    # .search(:m => 'or', :param_name_eq => -1, :param_name_null => true)
-    # if params[:orders_check_in_eq].present?
-    #  @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq_null => true})
-    #  #   @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
-    #end
-    # @rooms = @q.result.includes(:orders) + @f.result
-    # @rooms = @f.result
-    @rooms = @q.result
-    # @rooms = @q.result
+    @q = Room.ransack(
+      sorts: params.fetch(:q, nil)&.fetch(:sorts, nil),
+      m: 'or',
+      g: {
+        '0' => {
+          capacity_eq: params.fetch(:q, nil)&.fetch(:capacity_eq, nil),
+          price_gteq: params.fetch(:q, nil)&.fetch(:price_gteq, nil),
+          price_lteq: params.fetch(:q, nil)&.fetch(:price_lteq, nil),
+        },
+        '1' => { orders: [nil, ""] }
+      })
+
+    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /rooms/1 or /rooms/1.json
@@ -42,7 +40,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: "Room was successfully created." }
+        format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -72,11 +70,6 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # def search
-  #   index
-  #   render :index
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

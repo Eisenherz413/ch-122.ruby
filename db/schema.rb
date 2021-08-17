@@ -47,46 +47,39 @@ ActiveRecord::Schema.define(version: 2021_08_09_095124) do
   end
 
   create_table "issues", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "user_id"
+    t.integer "category_id"
+    t.integer "user_id"
     t.string "text"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "fk_rails_847dcee27e"
-    t.index ["user_id"], name: "fk_rails_f8f1052133"
   end
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.date "check_in"
+    t.date "check_out"
     t.float "total_price"
-    t.bigint "room_id"
+    t.integer "room_id"
     t.bigint "user_id"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "fk_rails_8d6e2128b7"
     t.index ["user_id"], name: "fk_rails_f868b47f6a"
   end
 
   create_table "room_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "room_id"
-    t.bigint "image_id"
+    t.decimal "room_id", precision: 10
+    t.decimal "image_id", precision: 10
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "purpose"
-    t.index ["image_id"], name: "fk_rails_e91d39bb78"
-    t.index ["room_id"], name: "fk_rails_823e921e11"
   end
 
   create_table "room_services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "room_id"
-    t.bigint "service_id"
+    t.integer "room_id"
+    t.integer "service_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "fk_rails_2a21909fed"
-    t.index ["service_id"], name: "fk_rails_524d1ad693"
   end
 
   create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -115,12 +108,19 @@ ActiveRecord::Schema.define(version: 2021_08_09_095124) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
     t.integer "status"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "feedbacks", "users"
   add_foreign_key "orders", "users"
-  add_foreign_key "room_images", "images"
-  add_foreign_key "room_images", "rooms"
-  add_foreign_key "room_services", "rooms"
-  add_foreign_key "room_services", "services"
 end

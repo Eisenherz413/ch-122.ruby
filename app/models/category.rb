@@ -5,5 +5,5 @@ class Category < ActiveRecord::Base
                                                               message: 'should not start from a digit' },
                           allow_blank: true
   has_many :issues
-  enum name: [:Advice, :Breakage, :Urgent, :SOther]
+  enum name: [:Advice, :Breakage, :Urgent, :Other]
 end

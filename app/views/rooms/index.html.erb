@@ -9,38 +9,37 @@
   </div>
 </div>
 
-<%#= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
-<%= search_form_for @q, id:'search-form' do |f|  %>
+<%= search_form_for @q do |f| %>
   <div class= "advance-search-container">
     <div class="search-input">
       <p><%= t('rooms.index.search.check-in-out') %></p>
       <input id="input-datepicker" class="search-form-input">
     </div>
 
-      <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
-      <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
+    <%= f.date_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+    <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
-      <div class="search-input">
-        <p><%= f.label :capacity, t('rooms.index.search.capacity') %></p>
-        <%= f.select :capacity_eq,
-                     options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => t('rooms.index.search.choose') },
-                     { :class => 'search-form-capacity' } %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :capacity, "CAPACITY" %></p>
+      <%= f.select :capacity_eq,
+                   options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
+                                      selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
+                   { :class => 'search-form-capacity' } %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, t('rooms.index.search.price-from') %></p>
-        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, "PRICE FROM" %></p>
+      <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, t('rooms.index.search.price-to') %></p>
-        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, "PRICE TO" %></p>
+      <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="advance-search-button">
-        <%= f.submit t('rooms.index.search.submit'), class: 'btn btn-primary search-submit', id: 'search-button' %>
-      </div>
+    <div class="advance-search-button">
+      <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
+    </div>
   </div>
 
     <div class="sort-container">
@@ -93,21 +92,14 @@
 </div>
 
 <script>
-    function getFormatedDate(paramDate) {
-      let convertedDate = Date.strptime(paramDate, "%m-%d-%Y");
-      return convertedDate.strftime("%-m/%-d/%Y");
-    }
-
-<!--    console.log('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>', '<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>')-->
-
-    $('#input-datepicker').daterangepicker({
-        opens: 'left',
-<!--        startDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>'),-->
-<!--        endDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>'),-->
-        // startDate: '03/05/2005', 2005-03-17
-        // endDate: '03/06/2005'
+  $('#input-datepicker').daterangepicker({
+      opens: 'left',
+      startDate: '<%= check_in_date %>',
+      endDate: '<%= check_out_date %>',
   }, function(start, end, label) {
-      $('#check-out-input').val(end.format('YYYY-MM-DD'));
-      $('#check-in-input').val(start.format('YYYY-MM-DD'));
-    });
+      $('#check-out-input').val(start.format('YYYY-MM-DD'));
+      $('#check-in-input').val(end.format('YYYY-MM-DD'));
+
+      $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
+  });
 </script>
