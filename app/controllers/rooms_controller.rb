@@ -1,14 +1,19 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
+    @q = Room.ransack(params[:q])
+    per_page = 2
+    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
+    if params[:orders_check_in_eq].present?
+      @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
+    end
+
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
-    # services
     @room = Room.find(params[:id])
   end
 
@@ -33,7 +38,7 @@ class RoomsController < ApplicationController
             @room.services << service
           end
         end
-        format.html { redirect_to @room, notice: "Room was successfully created." }
+        format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,6 +73,11 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    index
+    render :index
   end
 
   private

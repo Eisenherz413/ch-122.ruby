@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
-
+  end
+ActiveRecord::Schema.define(version: 2021_07_27_074243) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "name"
     t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -55,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "fk_rails_c57bb6cf28"
   end
-
   create_table "issues", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "category_id"
     t.bigint "user_id"
@@ -96,6 +97,9 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
+    t.string "slug"
+    t.index ["id"], name: "rooms_id_uindex", unique: true
+    t.index ["slug"], name: "index_rooms_on_slug", unique: true
   end
 
   create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -113,6 +117,17 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
     t.integer "status"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
