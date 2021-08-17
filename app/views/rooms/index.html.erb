@@ -6,6 +6,7 @@
   ">
     <div class="mask mask-custom" style="">
       <h1 class="display-4 fst-italic">Rooms</h1>
+      <div><%= link_to 'Add room', new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
       <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
     </div>
   </div>
@@ -40,11 +41,7 @@
   <% @rooms.each do |room| %>
 
     <div class="card mb-8">
-      <% room.room_images.each do |room_images| %>
-        <% if room_images.purpose == 'cover' %>
-          <img class="card-img-top" alt="Card image cover" src=<%=asset_path(room_images.image.path)%> />
-        <% end %>
-      <% end %>
+      <%= image_tag room.cover, class: "card-img-top"  %>
       <div class="card-body ">
         <h5 class="card-title"><%= room.title %></h5>
         <p class="card-text">This is a room for <%= room.capacity %> people.</p>
@@ -54,6 +51,15 @@
           </span>
           <div class="card-footer-button col-md-3">
             <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
+            <%= link_to 'Edit', edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %>
+            <% if room.destroyable? %>
+              <%= link_to 'Destroy',room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%>
+            <% else %>
+              <div title="You cannot delete room with processing orders">
+                <%= button_to 'Destroy',room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
+              </div>
+            <% end  %>
+          </div>
           </div>
         </div>
       </div>

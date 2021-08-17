@@ -16,13 +16,13 @@
             <p class="card-text"><%= service.description %></p>
             <div class="buttons_alignment">
               <div>
-             <%= link_to t('.show_rooms'), service, class: 'btn btn-primary', role: 'button' %>
-            <%= link_to t('.edit'), edit_service_path(service), class: 'btn btn-primary', role: 'button' %>
+             <%= link_to t('.show_rooms'), service, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button' %>
+            <%= link_to t('.edit'), edit_service_path(service), class: 'btn btn-primary text-white bottom-0 end-0', role: 'button' %>
             <% if service.destroyable? %>
-              <%= link_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger'%>
+              <%= link_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%>
               <% else %>
                 <div title="<%= t('.disabled_button_title')%>">
-          <%= button_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger' %>
+          <%= button_to t('.destroy'),service, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
                 </div>
               <% end  %>
               </div>

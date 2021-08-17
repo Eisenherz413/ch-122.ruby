@@ -1,8 +1,5 @@
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -13,55 +10,31 @@
 <table class="tbl">
   <tr>
     <div class="field">
+      <td><%= form.label :cover %></td>
+      <td><%= form.file_field :cover, accept: 'image/png,image/jpg,image/jpeg' %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= form.label :images %></td>
+      <td><%= form.file_field :images, accept: 'image/png,image/jpg,image/jpeg', multiple: true%></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
       <td><label for="services">Services</label></td>
       <td><input type="text" id="services" name="services"></td>
     </div>
-  <dialog id="dialog_window">
-  <img src="/assets/exit_button.png" id="close">
+    <dialog id="dialog_window">
+      <img src="/assets/exit_button.png" id="close">
       <div class="checkboxes">
-    <% Service.all.each do |service| %>
-            <label for=<%= service.name %>><img src="/assets/<%= service.icon_url %>"><%= service.name %></label>
-            <input type="checkbox" id="<%= service.name %>" name="<%= service.name %>" class="boxes">
-    <% end %>
-    </div>
-  </dialog>
+        <% Service.all.each do |service| %>
+          <label for=<%= service.name %>><img src="/assets/<%= service.icon_url %>"><%= service.name %></label>
+          <input type="checkbox" id="<%= service.name %>" name="<%= service.name %>" class="boxes">
+        <% end %>
+      </div>
+    </dialog>
   </tr>
-  <script>
-    var service_input = document.querySelector('#services');
-    var dialog_window = document.querySelector('#dialog_window');
-    var close_icon = document.querySelector('#close');
-    var services_checkboxes = document.querySelector('.checkboxes');
-    var right, top, bottom, left;
-    var boxes = document.querySelectorAll('.boxes');
-    service_input.onclick = function(){
-        dialog_window.show();
-    }
-    close_icon.onclick = function(){
-        dialog_window.close();
-    }
-    function getInputCoordinates(input){
-        var coordinates_of_input = input.getBoundingClientRect();
-         top = coordinates_of_input.top;
-         bottom = coordinates_of_input.bottom;
-         left = coordinates_of_input.left;
-         right = coordinates_of_input.right;
-    }
-    function setDialogCoordinates(left, right, bottom, top){
-        dialog_window.style.left = left + "px";
-        dialog_window.style.right = right + "px";
-        // dialog_window.style.top = top + "px";
-        dialog_window.style.bottom = bottom + 287 + "px";
-    }
-    getInputCoordinates(service_input);
-    setDialogCoordinates(left, right, bottom, top);
-    // services_checkboxes.onclick = function() {
-    //     for (let i = 0; i < boxes.length; i++) {
-    //         if (boxes[i].checked && service_input.value !== boxes[i].name) {
-    //             service_input.value += ' '+ boxes[i].name;
-    //         }
-    //     }
-    }
-  </script>
 
   <tr>
   <div class="field">
@@ -90,7 +63,7 @@
   <tr>
   <div class="actions">
     <td></td>
-    <td><%= form.submit 'Create', class: 'btn btn-outline-success'%><%= link_to 'All rooms' , rooms_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+    <td><%= form.submit 'Create', class: 'btn btn-success text-white bottom-0 end-0'%><%= link_to 'All rooms' , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
   </div>
   </tr>
 </table>

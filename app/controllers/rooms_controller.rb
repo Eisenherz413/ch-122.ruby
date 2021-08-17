@@ -27,6 +27,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+
         format.html { redirect_to @room, notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
       else
@@ -66,6 +67,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:capacity, :price, :number)
+      params.require(:room).permit(:capacity, :price, :number, :title,  :cover, images: [] )
     end
 end
