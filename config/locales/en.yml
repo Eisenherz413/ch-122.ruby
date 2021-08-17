@@ -19,6 +19,11 @@ en:
        number: "Number"
     edit:
       editing_service: "Editing"
+  categories:
+    index:
+      category: "Categories"
+    edit:
+      editing_category_description: "Editing Category Description"
   global:
     menu:
       services: "Services"
@@ -28,17 +33,28 @@ en:
       orders: "Orders"
     forms:
       create_button: "Create"
+      all_categories: "All categories"
       all_services: "All services"
       update_button: "Update"
+      edit_button: "Edit"
+      back_button: "Back"
       new_service: "New service"
   activerecord:
     attributes:
+      category:
+        name: "Name"
+        description: "Description"
       service:
         name: "Name"
         description: "Description"
         icon_url: "Icon"
         placeholder_service_name: "Service name"
         placeholder_service_description: "Description"
+      user:
+        full_name: "Full name"
+        email: "Email"
+        role: "Role"
+        status: "Status"
 
 
 

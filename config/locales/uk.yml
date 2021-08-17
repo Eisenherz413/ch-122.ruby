@@ -19,6 +19,11 @@ uk:
         number: "Номер"
     edit:
       editing_service: "Редагування"
+  categories:
+    index:
+      category: "Категорії"
+    edit:
+      editing_category_description: "Редагування опису"
   global:
     menu:
       services: "Сервіси"
@@ -28,11 +33,22 @@ uk:
       orders: "Замовлення"
     forms:
       create_button: "Створити"
+      all_categories: "Всі категорії"
       all_services: "Всі сервіси"
       update_button: "Зберегти"
+      edit_button: "Редагувати"
+      back_button: "Назад"
       new_service: "Новий сервіс"
   activerecord:
     attributes:
+      category:
+        name: "Назва"
+        description: "Опис"
+      user:
+        full_name: "ПІБ"
+        email: "Email"
+        role: "Роль"
+        status: "Статус"
       service:
         name: "Назва"
         description: "Опис"
