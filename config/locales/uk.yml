@@ -33,7 +33,7 @@ uk:
         low-high: "Від низької до високої"
         high-low: "Від високої до низької"
         sort-by: "Сортувати по"
-        clear-filters: "Очистити фільтри"
+        clear-filters: "ОЧИСТИТИ"
       no-rooms: "Таких кімнат не знайдено."
       label-before-capacity: "Ця кімната для"
       label-after-capacity: "людей."
