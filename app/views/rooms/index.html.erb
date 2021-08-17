@@ -92,13 +92,11 @@
     list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
-<!-- startDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_in_lt] %>'),-->
-<!-- endDate: getFormatedDate('<%#= params[:q].to_unsafe_h[:orders_check_out_gt] %>'),-->
-<!-- startDate: '03/05/2005', 2005-03-17-->
-
 <script>
   $('#input-datepicker').daterangepicker({
       opens: 'left',
+      startDate: '<%= check_in_date %>',
+      endDate: '<%= check_out_date %>',
   }, function(start, end, label) {
       $('#check-out-input').val(start.format('YYYY-MM-DD'));
       $('#check-in-input').val(end.format('YYYY-MM-DD'));
