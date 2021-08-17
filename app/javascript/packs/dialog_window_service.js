@@ -1,33 +1,37 @@
-var service_input = document.querySelector('#services');
-var dialog_window = document.querySelector('#dialog_window');
-var close_icon = document.querySelector('#close');
-var services_checkboxes = document.querySelector('.checkboxes');
-var right, top, bottom, left;
-var boxes = document.querySelectorAll('.boxes');
+let service_input = document.querySelector('#services');
+let dialog_window = document.querySelector('#dialog_window');
+let close_icon = document.querySelector('#close');
+let services_checkboxes = document.querySelector('.checkboxes');
+let coordinates;
+let checkboxes = document.querySelectorAll('input[type=checkbox]');
+let labels = document.querySelectorAll('.labels');
 service_input.onclick = function(){
     dialog_window.show();
+    service_input.value = null;
 }
 close_icon.onclick = function(){
     dialog_window.close();
+    check_checked_boxes(checkboxes);
 }
 function getInputCoordinates(input){
-    var coordinates_of_input = input.getBoundingClientRect();
-     top = coordinates_of_input.top;
-     bottom = coordinates_of_input.bottom;
-     left = coordinates_of_input.left;
-     right = coordinates_of_input.right;
+  coordinates = input.getBoundingClientRect();
 }
-function setDialogCoordinates(left, right, bottom, top){
-    dialog_window.style.left = left + "px";
-    dialog_window.style.right = right + "px";
-    // dialog_window.style.top = top + "px";
-    dialog_window.style.bottom = bottom + 287 + "px";
+function setDialogCoordinates(window){
+    window.style.left = coordinates.left + "px";
+    window.style.right = coordinates.right + "px";
+    window.style.top = coordinates.top + 50 + "px";
+}
+window.onresize = function(){
+    getInputCoordinates(service_input);
+    setDialogCoordinates(dialog_window);
+}
+function check_checked_boxes(checkboxes){
+    for (let i = 0; i < checkboxes.length; i++){
+        if (checkboxes[i].checked) {
+            service_input.value += labels[i].innerHTML + ' ';
+        }
+    }
+
 }
 getInputCoordinates(service_input);
-setDialogCoordinates(left, right, bottom, top);
-// services_checkboxes.onclick = function() {
-//     for (let i = 0; i < boxes.length; i++) {
-//         if (boxes[i].checked && service_input.value !== boxes[i].name) {
-//             service_input.value += ' '+ boxes[i].name;
-//         }
-//     }
+setDialogCoordinates(dialog_window);

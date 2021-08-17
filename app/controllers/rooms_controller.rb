@@ -27,7 +27,12 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-
+        params[:room][:service_ids].each do |service_id|
+          unless service_id.empty?
+            service = Service.find(service_id)
+            @room.services << service
+          end
+        end
         format.html { redirect_to @room, notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
       else
@@ -41,6 +46,12 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
+        params[:room][:service_ids].each do |service_id|
+          unless service_id.empty?
+            service = Service.find(service_id)
+            @room.services << service
+          end
+        end
         format.html { redirect_to @room, notice: "Room was successfully updated." }
         format.json { render :show, status: :ok, location: @room }
       else
