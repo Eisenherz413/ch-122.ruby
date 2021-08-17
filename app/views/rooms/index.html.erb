@@ -20,25 +20,25 @@
     <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
     <div class="search-input">
-      <p><%= f.label :capacity, "CAPACITY" %></p>
+      <p><%= f.label :capacity, t('rooms.index.search.capacity') %></p>
       <%= f.select :capacity_eq,
                    options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                      selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
+                                      selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => t('rooms.index.search.choose')},
                    { :class => 'search-form-capacity' } %>
     </div>
 
     <div class="search-input">
-      <p><%= f.label :price, "PRICE FROM" %></p>
+      <p><%= f.label :price, t('rooms.index.search.price-from') %></p>
       <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
     </div>
 
     <div class="search-input">
-      <p><%= f.label :price, "PRICE TO" %></p>
+      <p><%= f.label :price, t('rooms.index.search.price-to') %></p>
       <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
     </div>
 
     <div class="advance-search-button">
-      <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
+      <%= f.submit t('rooms.index.search.submit'), class: 'btn btn-primary', id: 'search-button' %>
     </div>
   </div>
 
@@ -76,7 +76,6 @@
                 <span class="display-4 text-primary">$<%= room.price %></span> / <%= t('rooms.index.per-page')%>
               </span>
               <div class="card-footer-button col-md-3">
-<!--                params[:q][:orders_check_in_lt])-->
                 <%= link_to t('rooms.index.show-more'), room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
               </div>
             </div>

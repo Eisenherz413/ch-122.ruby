@@ -82,3 +82,8 @@ gem 'will_paginate-bootstrap4'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'
+
+# tests
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+end

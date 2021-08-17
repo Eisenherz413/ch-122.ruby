@@ -62,20 +62,31 @@
       </ul>
     <% end %>
 
+    <% unless params[:check_in].present? && params[:check_out].present? %>
+      <span class="card-text"><%= t('rooms.show.no-dates') %></span>
+    <% end %>
+
     <div class="card_footer">
           <span class="d-block">
             <span class="display-4 text-primary">$<%= @room.price %></span>
             / <%= t('rooms.show.per-night') %>
           </span>
       <div class="card-footer-button col-md-3">
-        <button type="button" class="btn btn-primary text-white bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
-          <%= t('rooms.show.book-now') %>
-        </button>
+        <% if params[:check_in].present? && params[:check_out].present? %>
+          <button type="button" class="btn btn-primary text-white bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
+            <%= t('rooms.show.book-now') %>
+          </button>
+        <% else %>
+          <button type="button" class="btn btn-primary text-white bottom-0 end-0 disabled">
+            <%= t('rooms.show.book-now') %>
+          </button>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -94,21 +105,19 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('rooms.show.modal.cancel') %></button>
           <%#= link_to "Submit", :class => "btn btn-primary", :controller => "orders", :action => "send_order_mail", :id => @room.orders.id %>
-<!--          <button type="button" class="btn btn-primary">Submit</button>-->
           <%= form_for @order do |f| %>
             <%= f.hidden_field :check_in, :value => params[:check_in] %>
             <%= f.hidden_field :check_out, :value => params[:check_out] %>
             <%= f.hidden_field :total_price, :id => "total-price-input", :value => 22 %>
             <%= f.hidden_field :room_id, :value => @room.id %>
             <%= f.hidden_field :user_id, :value => 1 %>
-            <%= f.hidden_field :status, :value => 'new' %>
+            <%= f.hidden_field :status, :value => 'processed' %>
             <%= f.submit t('rooms.show.modal.submit'), :class => "btn btn-primary", :id => "submit-booking-btn" %>
           <% end %>
           <%#= link_to "Submit", :class => "btn btn-primary", :controller => "rooms", :action => "send_order_mail", :id => @room.id %>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 <script>

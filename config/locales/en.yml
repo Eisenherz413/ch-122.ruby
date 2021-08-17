@@ -48,6 +48,7 @@ en:
       capacity: "Capacity"
       services: "Services"
       per-page: "per night"
+      no-dates: "You need to choose check-in and check-out dates to book the room."
       book-now:  "Book now"
       modal:
         title: "Almost done! Details of the booking"
