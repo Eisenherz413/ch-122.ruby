@@ -24,6 +24,10 @@ uk:
       category: "Категорії"
     edit:
       editing_category_description: "Редагування опису"
+  users:
+    registrations:
+      new:
+        create_an_account: "Створити Профіль"
   global:
     menu:
       services: "Сервіси"
@@ -38,6 +42,7 @@ uk:
       update_button: "Зберегти"
       edit_button: "Редагувати"
       back_button: "Назад"
+      sign_up_button: "Підтвердити"
       new_service: "Новий сервіс"
   activerecord:
     attributes:
@@ -49,6 +54,8 @@ uk:
         email: "Email"
         role: "Роль"
         status: "Статус"
+        password: "Пароль"
+        password_confirmation: "Підтвердження паролю"
       service:
         name: "Назва"
         description: "Опис"
