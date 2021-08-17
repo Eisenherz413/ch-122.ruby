@@ -87,3 +87,5 @@ gem 'will_paginate-bootstrap4'
 gem 'devise', '~> 4.2'
 
 gem 'cancancan'
+
+gem 'toastr-rails'

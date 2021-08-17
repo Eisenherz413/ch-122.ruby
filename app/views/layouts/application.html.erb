@@ -68,14 +68,23 @@
     </div>
   </div>
 
-    <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
+    <%# flash.each do |name, msg| %>
+    <%#= content_tag :div, msg, id: "flash_#{name}" %>
+  <%# end %>
 
+  <% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+  <% end %>
 
 <!--    <p class="notice"><%#= notice %></p>-->
 <!--    <p class="alert"><%#= alert %></p>-->
-
+<!--  <p class="flash"><%#= flash.notice %></p>-->
+<!--  <p class="flash"><%#= flash.alert %></p>-->
     <%= yield %>
   </body>
 </html>
