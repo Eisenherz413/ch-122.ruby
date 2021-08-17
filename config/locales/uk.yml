@@ -39,3 +39,24 @@ uk:
         icon_url: "Іконка"
         placeholder_service_name: "Назва"
         placeholder_service_description: "Опис"
+      room:
+        number: "Номер"
+        title: "Назва"
+        capacity: "Місця"
+        price: "Ціна"
+        services: "Сервіси"
+        cover: "Головне фото"
+        images: "Фото"
+  rooms:
+    index:
+      add_room: "Створити кімнату"
+      edit_room: "Редагувати"
+      destroy_room: "Видалити"
+      show_more: "Детальніше"
+      disabled_title: "Ви не можете видалити кімнату з активними замовленнями"
+    form:
+      create_room: "Створити"
+      all_rooms: "Всі кімнати"
+      update_room: "Зберегти"
+      new_room: "Нова кімната"
+      editing_room: "Редагування кімнати"

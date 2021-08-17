@@ -1,5 +1,6 @@
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
+    <div id="er" class="alert alert-danger" role="alert">
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -22,7 +23,7 @@
   </tr>
   <tr>
     <div class="field">
-      <td><label for="services">Services</label></td>
+      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
       <td><input type="text" id="services" name="services"></td>
     </div>
     <dialog id="dialog_window">
@@ -66,9 +67,9 @@
   <div class="actions">
     <td></td>
     <% if @room.new_record? %>
-      <td><%= form.submit 'Create', class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to "all rooms" , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+      <td><%= form.submit t('rooms.form.create_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
     <% else %>
-      <td><%= form.submit 'Update', class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to 'all rooms' , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+      <td><%= form.submit t('rooms.form.update_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
     <% end  %>
   </div>
   </tr>
