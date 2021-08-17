@@ -16,56 +16,64 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 
-<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery.min.css" media=”screen” />-->
-<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" media=”screen” />-->
-<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.css" media=”screen” />-->
-<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.min.css" media=”screen” />-->
-
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.js" integrity="sha512-mMP7O0G5Vv01th+kpYux7RbD89Mx/iQnIvxcKdctiPyADgJzacfQJ8k2AsB8695AAuR2uPuxk7dawb1eehjcuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.min.js" integrity="sha512-mMP7O0G5Vv01th+kpYux7RbD89Mx/iQnIvxcKdctiPyADgJzacfQJ8k2AsB8695AAuR2uPuxk7dawb1eehjcuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.css"></script>-->
   </head>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="nav navbar-nav">
-            <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
-            <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
-            <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
-            <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
-            <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
-          </div>
+        <div class="navbar-collapse collapse" id="collapseNavbar">
+          <ul class="navbar-nav h6">
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div id="user_nav">
-        <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit profile', edit_user_registration_path %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> |
-          <%= link_to "Login", new_user_session_path %>
-      <% end %>
+
+        <ul class="navbar-nav ms-auto h6">
+          <li class="nav-item">
+            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link" %>
+          </li>
+
+          <% if user_signed_in? %>
+            <li class="nav-item">
+            Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </nav>
   </header>
   <body>
-  <div class="container">
-    <div class="row" style="margin-top: 20px; float: right; display: inline-block;">
-      <div><%= active_link_to "EN", url_for(locale: :en), class: 'lang'%> <%= active_link_to 'UK', url_for(locale: :uk), class: 'lang'%></div>
-    </div>
-  </div>
-
 
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, id: "flash_#{name}" %>
