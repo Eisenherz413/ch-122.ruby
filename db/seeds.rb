@@ -1,43 +1,29 @@
-Image.create!([
-  {name: "1", path: "1.jpg"},
-  {name: "2", path: "2.jpg"},
-  {name: "3", path: "3.jpg"},
-  {name: "4", path: "4.jpg"},
-  {name: "5", path: "5.jpg"},
-  {name: "6", path: "6.jpg"},
-  {name: "7", path: "7.jpg"},
-  {name: "8", path: "8.jpg"},
-  {name: "9", path: "9.jpg"},
-  {name: "10", path: "10.jpg"},
-  {name: "main-page-image", path: "main-page-image.jpg"}
-])
-Room.create!([
-  {capacity: 2, price: 3, number: "34a", title: "Twin Guest Room"},
-  {capacity: 4, price: 5, number: "34t", title: "King Guest Room"},
-  {capacity: 4, price: 3, number: "3", title: "King Deluxe Room"}
-])
 Service.create!([
-  {name: "WIFI", description: "Example", icon_url: "Icons/wifi.png"},
-  {name: "TV", description: "", icon_url: "Icons/tv.png"},
-  {name: "Refrigerator", description: "Example",icon_url: "Icons/fridge.png"},
-  {name: "Hair dryer", description: "", icon_url: "Icons/hairdryer.png"},
-  {name: "Mini bar", description: "Example", icon_url: "Icons/bar.png"},
-  {name: "Safe", description: "", icon_url: "Icons/safe.png"},
-  {name: "Electric kettle", description: "", icon_url: "Icons/kettle.png"},
-  {name: "Air conditioner", description: "", icon_url: "Icons/conditioner.png"}
+                  {name: "WIFI", description: "Example", icon_url: "Icons/wifi.png"},
+                  {name: "TV", description: "", icon_url: "Icons/tv.png"},
+                  {name: "Refrigerator", description: "Example",icon_url: "Icons/fridge.png"},
+                  {name: "Hair dryer", description: "", icon_url: "Icons/hairdryer.png"},
+                  {name: "Mini bar", description: "Example", icon_url: "Icons/bar.png"},
+                  {name: "Safe", description: "", icon_url: "Icons/safe.png"},
+                  {name: "Electric kettle", description: "", icon_url: "Icons/kettle.png"},
+                  {name: "Air conditioner", description: "", icon_url: "Icons/conditioner.png"}
+                ])
+rooms = Room.create!([
+  {capacity: 2, price: 300, number: "34a", title: "Twin Guest Room"},
+  {capacity: 3, price: 500, number: "34t", title: "King Guest Room"},
+  {capacity: 3, price: 350, number: "A-9", title: "King Deluxe Room"}
 ])
-RoomService.create!([
-  {room_id: 1, service_id: 1},
-  {room_id: 2, service_id: 2},
-  {room_id: 3, service_id: 3},
-  {room_id: 1, service_id: 4},
-  {room_id: 1, service_id: 5},
-  {room_id: 3, service_id: 6},
-  {room_id: 2, service_id: 7},
-  {room_id: 2, service_id: 8},
-  {room_id: 3, service_id: 8},
-  {room_id: 1, service_id: 7}
-])
+rooms.each do |room|
+  room.cover.attach(io: File.open('app/assets/images/2.jpg'), filename: '2.jpg')
+  room.images.attach(io: File.open('app/assets/images/3.jpg'), filename: '3.jpg')
+  room.images.attach(io: File.open('app/assets/images/4.jpg'), filename: '4.jpg')
+  room.images.attach(io: File.open('app/assets/images/5.jpg'), filename: '5.jpg')
+  room.images.attach(io: File.open('app/assets/images/7.jpg'), filename: '7.jpg')
+  room.services << Service.find(1)
+  room.services << Service.find(2)
+  room.services << Service.find(3)
+end
+
 User.create!([
   {full_name: "test", email: "test", role: nil, status: nil},
   {full_name: "user1", email: "user@gmail.com", role: nil, status: nil}
@@ -52,20 +38,7 @@ Category.create!([
 Issue.create!([
   {category_id: 1, user_id: 1, text: "example", status: "opened"}
 ])
-RoomImage.create!([
-  {room_id: "1.0", image_id: "1.0", purpose: "cover"},
-  {room_id: "2.0", image_id: "2.0", purpose: "cover"},
-  {room_id: "3.0", image_id: "3.0", purpose: "cover"},
-  {room_id: "1.0", image_id: "3.0", purpose: nil},
-  {room_id: "1.0", image_id: "4.0", purpose: nil},
-  {room_id: "1.0", image_id: "5.0", purpose: nil},
-  {room_id: "2.0", image_id: "6.0", purpose: nil},
-  {room_id: "2.0", image_id: "7.0", purpose: nil},
-  {room_id: "3.0", image_id: "8.0", purpose: nil},
-  {room_id: "3.0", image_id: "9.0", purpose: nil},
-  {room_id: "2.0", image_id: "4.0", purpose: nil},
-  {room_id: "3.0", image_id: "10.0", purpose: nil}
-])
+
 Feedback.create!([
   {text: "example", user_id: 1, stars: "4.0"}
 ])

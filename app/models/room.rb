@@ -1,7 +1,7 @@
 class Room < ApplicationRecord
   validates :number, format: { with: /\A[\-а-яА-ЯёЁІіЇїЄєa-zA-Z0-9\s]+\z/ }, length: {maximum: 10, minimum: 2}, presence: true, uniqueness: true
   validates :title, length: {minimum: 2, maximum: 25}, presence: true
-  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }
+  validates :capacity, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 3 }, presence: true
   validates :price, format: {with: /\A[0-9]+.*[0-9]*\z/}, presence: true
   validate :acceptable_cover
   validate :acceptable_images
