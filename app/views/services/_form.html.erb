@@ -1,3 +1,5 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 <%= form_with(model: service, name: 'form' ) do |form| %>
   <% if service.errors.any? %>
     <div id="er" class="alert alert-danger" role="alert">
@@ -39,9 +41,9 @@
     <tr>
       <td></td>
       <% if @service.new_record? %>
-      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-outline-success", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
         <% else %>
-        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-outline-success", id: 'but', disabled: true%><%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-outline-secondary', role: 'button'%></td>
+        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
         <% end  %>
     </tr>
     </div>

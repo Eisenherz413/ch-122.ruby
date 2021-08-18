@@ -81,6 +81,31 @@ en:
         icon_url: "Icon"
         placeholder_service_name: "Service name"
         placeholder_service_description: "Description"
+      room:
+        number: "Number"
+        title: "Title"
+        capacity: "Capacity"
+        price: "Price"
+        services: "Services"
+        cover: "Main image"
+        images: "Photos"
+
+  rooms:
+    index:
+      add_room: "Add new room"
+      edit_room: "Edit"
+      destroy_room: "Destroy"
+      show_more: "Show more"
+      disabled_title: "You cannot delete room with processing orders"
+    form:
+      create_room: "Create"
+      all_rooms: "All rooms"
+      update_room: "Update"
+      new_room: "New room"
+      editing_room: "Editing room"
+
+
+
 
 
 

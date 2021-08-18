@@ -1,8 +1,6 @@
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
+    <div id="er" class="alert alert-danger" role="alert">
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,23 +8,70 @@
       </ul>
     </div>
   <% end %>
+<table class="tbl">
+  <tr>
+    <div class="field">
+      <td><%= form.label :cover %></td>
+      <td><%= form.file_field :cover, accept: 'image/png,image/jpg,image/jpeg' %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= form.label :images %></td>
+      <td><%= form.file_field :images, accept: 'image/png,image/jpg,image/jpeg', multiple: true%></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
+      <td><input type="text" id="services" name="services"></td>
+    </div>
+    <dialog id="dialog_window">
+      <img src="/assets/exit_button.png" id="close">
+     <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
+        <div class="checkbox">
+          <%= b.check_box %>
+          <%= image_tag(b.object.icon_url) %>
+          <%= b.label class:'labels' %>
+        </div>
+      <% end %>
+    </dialog>
+    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
+  </tr>
 
+  <tr>
   <div class="field">
-    <%= form.label :capacity %>
-    <%= form.text_field :capacity %>
+    <td><%= form.label :number %></td>
+    <td><%= form.text_field :number %></td>
   </div>
-
+  </tr>
+  <tr>
+ <div class="field">
+   <td><%= form.label :title %></td>
+   <td><%= form.text_field :title %></td>
+ </div>
+  </tr>
+  <tr>
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+    <td><%= form.label :capacity %></td>
+    <td><%= form.text_field :capacity %></td>
   </div>
-
+  </tr>
+  <tr>
   <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number %>
+    <td><%= form.label :price %></td>
+    <td><%= form.text_field :price %></td>
   </div>
-
+  </tr>
+  <tr>
   <div class="actions">
-    <%= form.submit %>
+    <td></td>
+    <% if @room.new_record? %>
+      <td><%= form.submit t('rooms.form.create_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+    <% else %>
+      <td><%= form.submit t('rooms.form.update_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+    <% end  %>
   </div>
+  </tr>
+</table>
 <% end %>
