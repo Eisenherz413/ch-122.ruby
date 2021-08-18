@@ -5,82 +5,83 @@
     background-size: cover; height: 250px;
   ">
     <div class="mask mask-custom">
-      <div style="float: right;"><%= link_to t('rooms.index.add_room'), new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
-      <h1 class="display-4 fst-italic">Rooms</h1>
-      <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
+      <h1 class="display-4 fst-italic"><%= t('rooms.index.page-title') %></h1>
+      <p class="lead my-3"><%= t('rooms.index.page-description') %></p>
     </div>
   </div>
 </div>
 
-<%= search_form_for @q, url: search_rooms_path, html: { method: :post } do |f| %>
+<%= search_form_for @q do |f| %>
   <div class= "advance-search-container">
     <div class="search-input">
-      <p><%= f.label :orders_check_out, "CHECK IN/CHECK OUT" %></p>
+      <p><%= t('rooms.index.search.check-in-out') %></p>
       <input id="input-datepicker" class="search-form-input">
     </div>
 
-      <%= f.text_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
-      <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
+    <%= f.date_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
+    <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
 
-      <div class="search-input">
-        <p><%= f.label :capacity, "CAPACITY" %></p>
-        <%= f.select :capacity_eq,
-                     options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
-                                        selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => "Choose" },
-                     { :class => 'search-form-capacity' } %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :capacity, t('rooms.index.search.capacity') %></p>
+      <%= f.select :capacity_eq,
+                   options_for_select(Room.all.order(:capacity => :asc).map {|p| [ p.capacity ]}.uniq,
+                                      selected: params.fetch(:q, nil)&.fetch(:capacity_eq, nil)), {:include_blank => t('rooms.index.search.choose')},
+                   { :class => 'search-form-capacity' } %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, "PRICE FROM" %></p>
-        <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, t('rooms.index.search.price-from') %></p>
+      <%= f.number_field :price_gteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="search-input">
-        <p><%= f.label :price, "PRICE TO" %></p>
-        <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
-      </div>
+    <div class="search-input">
+      <p><%= f.label :price, t('rooms.index.search.price-to') %></p>
+      <%= f.number_field :price_lteq, min: Room.minimum(:price), max: Room.maximum(:price), class: 'search-form-input' %>
+    </div>
 
-      <div class="advance-search-button">
-        <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
-      </div>
+    <div class="advance-search-button">
+      <%= f.submit t('rooms.index.search.submit'), class: 'btn btn-primary', id: 'search-button' %>
+    </div>
+
+    <div class="advance-search-button">
+      <%= button_to t('rooms.index.search.clear-filters'), rooms_path,
+                    :class => "btn btn-primary clear-filters", :method => :get %>
+    </div>
   </div>
     <div class="sort-container">
       <% unless @rooms.size < 2 %>
         <%= f.select :sorts,
                  options_for_select(
-                   [['Low to high', 'price asc'],
-                    ['High to low', 'price desc']],
+                   [[t('rooms.index.search.low-high'), 'price asc'],
+                    [t('rooms.index.search.high-low'), 'price desc']],
                    selected: params.fetch(:q, nil)&.fetch(:sorts, nil)),
-                 {:include_blank => "Sort by" },
+                 {:include_blank => t('rooms.index.search.sort-by')},
                  { :class => 'sort-input', :id => 'sort-input' } %>
       <% end %>
-      <div class="clear-filters-button">
-        <%= link_to "Clear Filters", rooms_path %>
-      </div>
     </div>
 
   <div class="container">
     <% if @rooms.empty? %>
-      <p class="lead my-3 text-center">No such rooms found.</p>
+      <p class="lead my-3 text-center"><%= t('rooms.index.no-rooms') %></p>
     <% else %>
       <% @rooms.each do |room| %>
         <div class="card mb-8">
           <%= image_tag room.cover, class: "card-img-top"  %>
           <div class="card-body ">
             <h5 class="card-title"><%= room.title %></h5>
-            <p class="card-text">This is a room for <%= room.capacity %> people.</p>
-            <div class="card_footer">
-          <span class="d-block">
-            <span class="display-4 text-primary">$<%= room.price %></span> / per night
-          </span>
+            <p class="card-text"><%= t('rooms.index.label-before-capacity')%> <%= room.capacity %> <%= t('rooms.index.label-after-capacity')%></p>
+            <div class="card_footer justify-content-between">
+              <span class="d-block">
+                <span class="display-4 text-primary">$<%= room.price %></span> / <%= t('rooms.index.per-night') %>
+              </span>
               <div class="buttons_alignment">
-                <div><%= link_to t('rooms.index.show_more'), room, :class => "btn btn-primary text-white bottom-0 end-0" %></div>
+                <%= link_to t('rooms.index.show-more'), room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
                 <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
                 <% if room.destroyable? %>
-                  <div><%= link_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
+                  <div><%= link_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
                 <% else %>
                   <div title="<%= t('rooms.index.disabled_title') %>">
-                    <%= button_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
+                    <%= button_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
                   </div>
                 <% end  %>
               </div>
@@ -93,15 +94,18 @@
 <% end %>
 
 <div class="pagination" >
-  <%= will_paginate @rooms, previous_label: "Previous" , next_label: "Next",
-    list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
+  <%= will_paginate @rooms, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button'), list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
 </div>
 
 <script>
   $('#input-datepicker').daterangepicker({
-      opens: 'left'
+      opens: 'left',
+      startDate: '<%= check_in_date %>',
+      endDate: '<%= check_out_date %>',
   }, function(start, end, label) {
       $('#check-out-input').val(start.format('YYYY-MM-DD'));
       $('#check-in-input').val(end.format('YYYY-MM-DD'));
+
+      $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
   });
 </script>

@@ -39,35 +39,42 @@
 .back {
   margin: 20px;
 }
+
 .tbl {
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
 }
+
 dialog {
   height: 100px;
   width: 600px;
   border: 1px solid;
   overflow: auto;
   position: absolute;
-  //left: 100px;
-  //top: 500px;
 }
+
 #close {
   margin-top: -10px;
   float: right;
 }
-.buttons_alignment div{
+
+.buttons_alignment {
+  padding-top: 30px;
+}
+
+.buttons_alignment div {
   display: inline-block;
 }
+
 #er {
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
   height: 70px;
   width: 500px;
-
 }
+
 .clear-filters-button {
   margin-top: 20px;
   color: grey;
