@@ -47,7 +47,46 @@ en:
         services: "Services"
         cover: "Main image"
         images: "Photos"
-
+    errors:
+      models:
+        service:
+          attributes:
+            name:
+              blank: "cannot be empty"
+              taken: "is already taken"
+              invalid: "only allows letters"
+              too_short: "is too short(minimum 2 symbols)"
+              too_long: "is too long(maximum 50 symbols)"
+            description:
+              too_long: "is too long(maximum 100 symbols)"
+            icon_url:
+              blank: "must be chosen"
+        room:
+          attributes:
+            number:
+              blank: "cannot be empty"
+              taken: "is already taken"
+              too_short: "is too short(minimum 2 symbols)"
+              too_long: "is too long(maximum 10 symbols)"
+              invalid: "only allows letters and numbers"
+            title:
+              blank: "cannot be empty"
+              too_short: "is too short(minimum 2 symbols)"
+              too_long: "is too long(maximum 25 symbols)"
+            capacity:
+              blank: "cannot be empty"
+              not_an_integer: "should be an integer number"
+              less_than_or_equal_to: "cannot be greater than 3"
+              greater_than_or_equal_to: "cannot be less than 1"
+            price:
+              blank: "cannot be empty"
+              invalid: "only allows numbers"
+            cover:
+              size: "more than 2 MB"
+              format: "can be only JPG, JPEG or PNG"
+            images:
+              size: "contains file with more than 2 MB"
+              format: "can be only JPG, JPEG or PNG"
   rooms:
     index:
       add_room: "Add new room"
@@ -61,6 +100,7 @@ en:
       update_room: "Update"
       new_room: "New room"
       editing_room: "Editing room"
+
 
 
 

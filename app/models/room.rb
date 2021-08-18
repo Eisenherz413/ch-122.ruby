@@ -26,11 +26,11 @@ class Room < ApplicationRecord
       return
     end
     if cover.byte_size  > 2.megabyte
-      errors.add(:cover, "is more than 2 MB")
+      errors.add(:cover, :size)
     end
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     if !acceptable_types.include?(cover.content_type)
-      errors.add(:cover, "must be a JPEG, JPG or PNG")
+      errors.add(:cover, :format)
     end
   end
   def acceptable_images
@@ -40,10 +40,10 @@ class Room < ApplicationRecord
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     images.each do |image|
     if image.byte_size  > 2.megabyte
-      errors.add(:images, "are more than 2 MB")
+      errors.add(:images, :size)
     end
     if !acceptable_types.include?(image.content_type)
-      errors.add(:images, "must be a JPEG, JPG or PNG")
+      errors.add(:images, :format)
     end
     end
 
