@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
   <div class="col-7">
     <div class="row justify-content-center">
-      <div class="col-8 row justify-content-center">
-        <h2 class="text-center">Log in</h2>
+      <div class="col-6 row justify-content-center">
+        <h2 class="text-center"><%= t("users.sessions.new.log_in") %></h2>
 
         <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
           <%= render "users/shared/error_messages", resource: resource %>
@@ -25,7 +25,7 @@
           <% end %>
 
           <div class="actions">
-            <%= f.submit "Log in", class: "btn btn-outline-success" %>
+            <%= f.submit t("global.forms.log_in_button"), class: "btn btn-success" %>
           </div>
         <% end %>
 

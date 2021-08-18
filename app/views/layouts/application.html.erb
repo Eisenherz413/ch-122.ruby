@@ -21,6 +21,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.css"></script>-->
   </head>
   <header>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -61,14 +63,14 @@
               <%#= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <%= link_to t("users.sessions.new.log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <%= link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>

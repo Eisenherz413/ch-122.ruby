@@ -1,11 +1,11 @@
 <%- if controller_name != 'sessions' %>
-  <a>Already have an account?</a>
-  <%= link_to "Log in", new_user_session_path %><br />
+  <a><%= t("users.shared._links.already_have_an_account") %></a>
+  <%= link_to t("users.sessions.new.log_in"), new_user_session_path %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <a>Don't have an account?</a>
-  <%= link_to "Sign up", new_user_registration_path %><br />
+  <a><%= t("users.shared._links.dont_have_an_account") %></a>
+  <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
