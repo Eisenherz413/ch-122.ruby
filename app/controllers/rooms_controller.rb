@@ -3,18 +3,26 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @q = Room.ransack(params[:q])
     per_page = 2
-    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
-    if params[:orders_check_in_eq].present?
-      @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
-    end
+    @q = Room.ransack(
+      sorts: params.fetch(:q, nil)&.fetch(:sorts, nil),
+      m: 'or',
+      g: {
+        '0' => {
+          capacity_eq: params.fetch(:q, nil)&.fetch(:capacity_eq, nil),
+          price_gteq: params.fetch(:q, nil)&.fetch(:price_gteq, nil),
+          price_lteq: params.fetch(:q, nil)&.fetch(:price_lteq, nil),
+        },
+        '1' => { orders: [nil, ""] }
+      })
 
+    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
     @room = Room.find(params[:id])
+    @order = Order.new
   end
 
   # GET /rooms/new
@@ -32,6 +40,12 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        params[:room][:service_ids].each do |service_id|
+          unless service_id.empty?
+            service = Service.find(service_id)
+            @room.services << service
+          end
+        end
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
@@ -45,6 +59,12 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
+        params[:room][:service_ids].each do |service_id|
+          unless service_id.empty?
+            service = Service.find(service_id)
+            @room.services << service
+          end
+        end
         format.html { redirect_to @room, notice: "Room was successfully updated." }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -63,11 +83,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  def search
-    index
-    render :index
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
@@ -76,6 +91,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:capacity, :price, :number)
+      params.require(:room).permit(:capacity, :price, :number, :title,  :cover, images: [] )
     end
 end

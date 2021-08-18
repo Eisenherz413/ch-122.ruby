@@ -1,27 +1,23 @@
 <div class="room-top-container">
-  <% @room.room_images.each do |room_images| %>
-    <% if room_images.purpose == 'cover' %>
-      <div class="bg-image p-5 text-center shadow-1-strong text-white" style="
+  <div class="bg-image p-5 text-center shadow-1-strong text-white" style="
       background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-        url(<%=asset_path(room_images.image.path)%>) no-repeat center 70%;
+        url(<%= url_for(@room.cover)%>) no-repeat center 70%;
         background-size: cover; height: 250px;
       ">
-    <% end %>
-  <% end %>
     <div class="mask mask-custom" style="">
-      <h1 class="display-4 fst-italic">Room  <%= @room.number %></h1>
-      <p class="lead my-3">The hotel as a lot of modern rooms in European style. Exquisite warm colors make the room a quiet haven of coziness with beautiful views.</p>
+      <h1 class="display-4 fst-italic"><%= t('rooms.show.room') %> <%= @room.number %></h1>
+      <p class="lead my-3"><%= t('rooms.show.description') %></p>
     </div>
   </div>
 </div>
 
-<%= link_to 'Back to rooms', rooms_path, :class => "btn btn-primary text-white back" %>
+<%= link_to t('rooms.show.back-button'), rooms_path, :class => "btn btn-primary text-white back" %>
 
 <div class="room-images">
   <div class="row">
-    <% @room.room_images.each do |room_images| %>
+    <% @room.images.each do |image| %>
       <div class="room-image col-lg-3 col-md-4 col-6">
-        <img class="img-fluid" alt="cover image" src=<%=asset_path(room_images.image.path)%>>
+        <%= image_tag image, class: "img-fluid" %>
       </div>
     <% end %>
   </div>
@@ -37,7 +33,7 @@
         <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
         <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
       </svg>
-      Capacity: <%= @room.capacity %>
+      <%= t('rooms.show.capacity') %>: <%= @room.capacity %>
     </p>
 
     <% if @room.services.empty? %>
@@ -48,7 +44,7 @@
           <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
           <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
         </svg>
-      Services:
+        <%= t('rooms.show.services') %>:
       </p>
       <ul class="list-group">
         <% @room.services.each do |service| %>
@@ -62,18 +58,81 @@
       </ul>
     <% end %>
 
+    <% unless params[:check_in].present? && params[:check_out].present? %>
+      <span class="card-text"><%= t('rooms.show.no-dates') %></span>
+    <% end %>
+
     <div class="card_footer">
           <span class="d-block">
             <span class="display-4 text-primary">$<%= @room.price %></span>
-            / per night
+            / <%= t('rooms.show.per-night') %>
           </span>
       <div class="card-footer-button col-md-3">
         <% if user_signed_in? %>
-          <a href="#" class="btn btn-primary text-white bottom-0 end-0">Book now</a>
+          <% if params[:check_in].present? && params[:check_out].present? %>
+            <button type="button" class="btn btn-primary text-white bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <%= t('rooms.show.book-now') %>
+            </button>
+          <% else %>
+            <button type="button" class="btn btn-primary text-white bottom-0 end-0 disabled">
+              <%= t('rooms.show.book-now') %>
+            </button>
+          <% end %>
         <% else %>
-          <%= link_to "Book now", new_user_registration_path, class: "btn btn-primary text-white bottom-0 end-0" %>
+          <%= link_to t('rooms.show.book-now'), new_user_registration_path, class: "btn btn-primary text-white bottom-0 end-0" %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title card-text" id="bookingModalLabel"><%= t('rooms.show.modal.title') %>:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="card-text"><%= t('rooms.show.modal.check-in') %>: <span id="check-in"><%= params[:check_in] %></span> </p>
+          <p class="card-text"><%= t('rooms.show.modal.check-out') %>: <span id="check-out"><%= params[:check_out] %></span> </p>
+          <p class="card-text"><%= t('rooms.show.modal.room-type') %>: <%= @room.title %></p>
+          <p class="card-text"><%= t('rooms.show.capacity') %>: <%= @room.capacity %></p>
+          <p class="card-text"><%= t('rooms.show.modal.price-per-night') %>: <span id="price-per-night"><%= @room.price %></span>$</p>
+          <p class="card-text"><%= t('rooms.show.modal.total-price') %>: <span id="total-price"></span>$</p>
+          <p class="card-text"><%= t('rooms.show.modal.confirmation-label') %></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('rooms.show.modal.cancel') %></button>
+          <%= form_for @order do |f| %>
+            <%= f.hidden_field :check_in, :value => params[:check_in] %>
+            <%= f.hidden_field :check_out, :value => params[:check_out] %>
+            <%= f.hidden_field :total_price, :id => "total-price-input", :value => 22 %>
+            <%= f.hidden_field :room_id, :value => @room.id %>
+            <%= f.hidden_field :user_id, :value => 1 %>
+            <%= f.hidden_field :status, :value => 'processed' %>
+            <%= f.submit t('rooms.show.modal.submit'), :class => "btn btn-primary", :id => "submit-booking-btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+  const totalPriceElem = document.getElementById("total-price");
+  const checkInElem = document.getElementById("check-in");
+  const checkOutElem = document.getElementById("check-out");
+  const pricePerNight = document.getElementById("price-per-night").innerText;
+  const totalPriceInputElem = document.getElementById("total-price-input");
+  const submitBookingBtn = document.getElementById("submit-booking-btn");
+
+  if (checkInElem && checkOutElem) {
+     const start = new Date(checkInElem.innerText);
+     const end = new Date(checkOutElem.innerText);
+     const timeDiff = Math.abs(end.getTime() - start.getTime());
+     const numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+     const totalPrice = Math.round(numberOfNights * pricePerNight * 100) / 100;
+     totalPriceElem.innerText = totalPrice;
+     totalPriceInputElem.value = totalPrice;
+  }
+</script>
