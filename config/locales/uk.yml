@@ -41,6 +41,17 @@ uk:
       show-more: "Показати більше"
       previous-button: "Попередня"
       next-button: "Наступна"
+      add_room: "Створити кімнату"
+      edit_room: "Редагувати"
+      destroy_room: "Видалити"
+      show_more: "Детальніше"
+      disabled_title: "Ви не можете видалити кімнату з активними замовленнями"
+    form:
+      create_room: "Створити"
+      all_rooms: "Всі кімнати"
+      update_room: "Зберегти"
+      new_room: "Нова кімната"
+      editing_room: "Редагування кімнати"
     show:
       room: "Кімната"
       description: "У готелі є багато сучасних номерів у європейському стилі. Вишукані теплі кольори роблять кімнату тихим притулком затишку з прекрасним краєвидом."
@@ -89,16 +100,3 @@ uk:
         services: "Сервіси"
         cover: "Головне фото"
         images: "Фото"
-  rooms:
-    index:
-      add_room: "Створити кімнату"
-      edit_room: "Редагувати"
-      destroy_room: "Видалити"
-      show_more: "Детальніше"
-      disabled_title: "Ви не можете видалити кімнату з активними замовленнями"
-    form:
-      create_room: "Створити"
-      all_rooms: "Всі кімнати"
-      update_room: "Зберегти"
-      new_room: "Нова кімната"
-      editing_room: "Редагування кімнати"

@@ -1,13 +1,9 @@
 <div class="room-top-container">
-  <%# @room.room_images.each do |room_images| %>
-    <%# if room_images.purpose == 'cover' %>
-      <div class="bg-image p-5 text-center shadow-1-strong text-white" style="
+  <div class="bg-image p-5 text-center shadow-1-strong text-white" style="
       background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
         url(<%= url_for(@room.cover)%>) no-repeat center 70%;
         background-size: cover; height: 250px;
       ">
-    <%# end %>
-  <%# end %>
     <div class="mask mask-custom" style="">
       <h1 class="display-4 fst-italic"><%= t('rooms.show.room') %> <%= @room.number %></h1>
       <p class="lead my-3"><%= t('rooms.show.description') %></p>
@@ -104,7 +100,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('rooms.show.modal.cancel') %></button>
-          <%#= link_to "Submit", :class => "btn btn-primary", :controller => "orders", :action => "send_order_mail", :id => @room.orders.id %>
           <%= form_for @order do |f| %>
             <%= f.hidden_field :check_in, :value => params[:check_in] %>
             <%= f.hidden_field :check_out, :value => params[:check_out] %>
@@ -114,7 +109,6 @@
             <%= f.hidden_field :status, :value => 'processed' %>
             <%= f.submit t('rooms.show.modal.submit'), :class => "btn btn-primary", :id => "submit-booking-btn" %>
           <% end %>
-          <%#= link_to "Submit", :class => "btn btn-primary", :controller => "rooms", :action => "send_order_mail", :id => @room.id %>
         </div>
       </div>
     </div>
@@ -137,6 +131,4 @@
      totalPriceElem.innerText = totalPrice;
      totalPriceInputElem.value = totalPrice;
   }
-
-  // submitBookingBtn.onclick()
 </script>

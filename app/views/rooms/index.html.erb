@@ -70,23 +70,20 @@
           <div class="card-body ">
             <h5 class="card-title"><%= room.title %></h5>
             <p class="card-text"><%= t('rooms.index.label-before-capacity')%> <%= room.capacity %> <%= t('rooms.index.label-after-capacity')%></p>
-            <div class="card_footer">
-          <span class="d-block">
-            <span class="display-4 text-primary">$<%= room.price %></span> / per night
-          </span>
-            <div class="buttons_alignment">
-              <div><%= link_to t('rooms.index.show_more'), room, :class => "btn btn-primary text-white bottom-0 end-0" %></div>
-              <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
-              <% if room.destroyable? %>
-                <div><%= link_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
-              <% else %>
-                <div title="<%= t('rooms.index.disabled_title') %>">
-                  <%= button_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
-                </div>
-              <% end  %>
-              <div class="card-footer-button col-md-3">
+            <div class="card_footer justify-content-between">
+              <span class="d-block">
+                <span class="display-4 text-primary">$<%= room.price %></span> / <%= t('rooms.index.per-night') %>
+              </span>
+              <div class="buttons_alignment">
                 <%= link_to t('rooms.index.show-more'), room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
-              </div>
+                <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
+                <% if room.destroyable? %>
+                  <div><%= link_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
+                <% else %>
+                  <div title="<%= t('rooms.index.disabled_title') %>">
+                    <%= button_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
+                  </div>
+                <% end  %>
               </div>
             </div>
           </div>
