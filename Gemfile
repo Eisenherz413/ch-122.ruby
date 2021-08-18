@@ -87,3 +87,7 @@ gem 'will_paginate-bootstrap4'
 gem 'devise', '~> 4.2'
 
 gem 'cancancan'
+
+group :development, :test do
+  gem "rspec-rails", "~> 5.0"
+end
