@@ -1,13 +1,13 @@
 <div class="room-top-container">
-  <% @room.room_images.each do |room_images| %>
-    <% if room_images.purpose == 'cover' %>
+  <%# @room.room_images.each do |room_images| %>
+    <%# if room_images.purpose == 'cover' %>
       <div class="bg-image p-5 text-center shadow-1-strong text-white" style="
       background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-        url(<%=asset_path(room_images.image.path)%>) no-repeat center 70%;
+        url(<%= url_for(@room.cover)%>) no-repeat center 70%;
         background-size: cover; height: 250px;
       ">
-    <% end %>
-  <% end %>
+    <%# end %>
+  <%# end %>
     <div class="mask mask-custom" style="">
       <h1 class="display-4 fst-italic">Room  <%= @room.number %></h1>
       <p class="lead my-3">The hotel as a lot of modern rooms in European style. Exquisite warm colors make the room a quiet haven of coziness with beautiful views.</p>
@@ -19,9 +19,10 @@
 
 <div class="room-images">
   <div class="row">
-    <% @room.room_images.each do |room_images| %>
+    <% @room.images.each do |image| %>
       <div class="room-image col-lg-3 col-md-4 col-6">
-        <img class="img-fluid" alt="cover image" src=<%=asset_path(room_images.image.path)%>>
+        <%= image_tag image, class: "img-fluid" %>
+<!--        <img class="img-fluid" alt="cover image" src=<%#=asset_path(room_images.image.path)%>>-->
       </div>
     <% end %>
   </div>

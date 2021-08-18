@@ -1,8 +1,11 @@
 <div class="rooms-top-container">
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;">
+    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
+    background-size: cover; height: 250px;
+  ">
     <div class="mask mask-custom">
+      <div style="float: right;"><%= link_to t('rooms.index.add_room'), new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
       <h1 class="display-4 fst-italic">Rooms</h1>
       <p class="lead my-3">The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit.</p>
     </div>
@@ -41,7 +44,6 @@
         <%= f.submit "SEARCH", class: 'btn btn-primary', id: 'search-button' %>
       </div>
   </div>
-
     <div class="sort-container">
       <% unless @rooms.size < 2 %>
         <%= f.select :sorts,
@@ -63,20 +65,24 @@
     <% else %>
       <% @rooms.each do |room| %>
         <div class="card mb-8">
-          <% room.room_images.each do |room_images| %>
-            <% if room_images.purpose == 'cover' %>
-              <img class="card-img-top" alt="Card image cover" src=<%=asset_path(room_images.image.path)%> />
-            <% end %>
-          <% end %>
+          <%= image_tag room.cover, class: "card-img-top"  %>
           <div class="card-body ">
             <h5 class="card-title"><%= room.title %></h5>
             <p class="card-text">This is a room for <%= room.capacity %> people.</p>
             <div class="card_footer">
-              <span class="d-block">
-                <span class="display-4 text-primary">$<%= room.price %></span> / per night
-              </span>
-              <div class="card-footer-button col-md-3">
-                <%= link_to 'Show more', room, :class => "btn btn-primary text-white bottom-0 end-0" %>
+          <span class="d-block">
+            <span class="display-4 text-primary">$<%= room.price %></span> / per night
+          </span>
+              <div class="buttons_alignment">
+                <div><%= link_to t('rooms.index.show_more'), room, :class => "btn btn-primary text-white bottom-0 end-0" %></div>
+                <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
+                <% if room.destroyable? %>
+                  <div><%= link_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
+                <% else %>
+                  <div title="<%= t('rooms.index.disabled_title') %>">
+                    <%= button_to t('rooms.index.destroy_room'),room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
+                  </div>
+                <% end  %>
               </div>
             </div>
           </div>
