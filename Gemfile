@@ -90,4 +90,8 @@ gem 'cancancan'
 
 group :development, :test do
   gem "rspec-rails", "~> 5.0"
+  gem 'rspec'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', require: false
 end
+# gem 'rails-ajax', '~> 1.0', '>= 1.0.0.20140320'
