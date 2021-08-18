@@ -65,7 +65,7 @@
     <% else %>
       <% @rooms.each do |room| %>
         <div class="card mb-8">
-          <%= image_tag room.cover, class: "card-img-top"  %>
+          <%= image_tag room.cover, class: "card-img-top" if room.cover.attached?   %>
           <div class="card-body ">
             <h5 class="card-title"><%= room.title %></h5>
             <p class="card-text">This is a room for <%= room.capacity %> people.</p>
