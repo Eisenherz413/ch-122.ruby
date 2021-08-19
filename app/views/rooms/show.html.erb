@@ -68,14 +68,18 @@
             / <%= t('rooms.show.per-night') %>
           </span>
       <div class="card-footer-button col-md-3">
-        <% if params[:check_in].present? && params[:check_out].present? %>
-          <button type="button" class="btn btn-primary text-white bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
-            <%= t('rooms.show.book-now') %>
-          </button>
+        <% if user_signed_in? %>
+          <% if params[:check_in].present? && params[:check_out].present? %>
+            <button type="button" class="btn btn-primary text-white bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <%= t('rooms.show.book-now') %>
+            </button>
+          <% else %>
+            <button type="button" class="btn btn-primary text-white bottom-0 end-0 disabled">
+              <%= t('rooms.show.book-now') %>
+            </button>
+          <% end %>
         <% else %>
-          <button type="button" class="btn btn-primary text-white bottom-0 end-0 disabled">
-            <%= t('rooms.show.book-now') %>
-          </button>
+          <%= link_to t('rooms.show.book-now'), new_user_registration_path, class: "btn btn-primary text-white bottom-0 end-0" %>
         <% end %>
       </div>
     </div>
