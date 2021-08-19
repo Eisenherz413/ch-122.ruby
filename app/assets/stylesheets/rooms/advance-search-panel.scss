@@ -1,7 +1,7 @@
 .advance-search-container,
 .sort-container {
   position: absolute;
-  width: 1400px;
+  width: 1410px;
   top: 0;
   left: 0;
   right: 0;
@@ -18,7 +18,7 @@
 
 .search-form-input,
 .search-form-capacity {
-  width: 200px;
+  width: 175px;
   height: 42px;
   border: 1px solid black;
 }
@@ -39,13 +39,22 @@
 }
 
 .advance-search-button {
-  margin-top: 50px;
+  margin-top: 52px;
 }
 
 .advance-search-button .btn {
   width: 150px;
   background-color: black;
-  border: black;
+  border: 0;
+  height: 42px;
+}
+
+.advance-search-button .clear-filters {
+  background-color: dimgrey;
+}
+
+.search-input {
+  font-size: 15px;
 }
 
 .search-input p,

@@ -71,27 +71,25 @@ gem 'seed_dump', '~> 3.3', '>= 3.3.1'
 # add active link
 gem 'active_link_to'
 
+# search
+gem 'ransack'
+
 # internationalization
 gem 'rails-i18n'
 
-
-gem 'ransack'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
-
-# gem 'jquery-rails'
-# gem 'jquery-ui-rails'
-# gem 'multi-dates-picker-rails'
 
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'
 
-gem 'cancancan'
-
+# tests
 group :development, :test do
-  gem "rspec-rails", "~> 5.0"
+  gem 'rspec-rails', '~> 5.0.0'
   gem 'rspec'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers', require: false
 end
-# gem 'rails-ajax', '~> 1.0', '>= 1.0.0.20140320'
+
+gem 'cancancan'
+gem 'toastr-rails'

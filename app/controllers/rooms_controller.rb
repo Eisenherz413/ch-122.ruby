@@ -3,18 +3,26 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @q = Room.ransack(params[:q])
     per_page = 2
-    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page).includes(:orders)
-    if params[:orders_check_in_eq].present?
-      @q.build_grouping({:m => 'or', :orders_check_in_eq => params[:orders_check_in_eq], :orders_check_in_eq => true})
-    end
+    @q = Room.ransack(
+      sorts: params.fetch(:q, nil)&.fetch(:sorts, nil),
+      m: 'or',
+      g: {
+        '0' => {
+          capacity_eq: params.fetch(:q, nil)&.fetch(:capacity_eq, nil),
+          price_gteq: params.fetch(:q, nil)&.fetch(:price_gteq, nil),
+          price_lteq: params.fetch(:q, nil)&.fetch(:price_lteq, nil),
+        },
+        '1' => { orders: [nil, ""] }
+      })
 
+    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
     @room = Room.find(params[:id])
+    @order = Order.new
   end
 
   # GET /rooms/new
@@ -73,11 +81,6 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url }
       format.json { head :no_content }
     end
-  end
-
-  def search
-    index
-    render :index
   end
 
   private

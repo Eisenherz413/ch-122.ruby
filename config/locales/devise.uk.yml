@@ -1,0 +1,8 @@
+devise.uk:
+  users:
+    shared:
+      _links:
+        already_have_an_account: "Аккаунт вже існує?"
+    registrations:
+      new:
+        create_an_account: "Створити Профіль"
