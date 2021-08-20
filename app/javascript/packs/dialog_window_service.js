@@ -40,7 +40,6 @@ function check_checked_boxes(checkboxes){
             service_input.value += labels[i].innerHTML + ' ';
         }
     }
-
 }
 getInputCoordinates(service_input);
 setDialogCoordinates(dialog_window);

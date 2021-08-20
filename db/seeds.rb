@@ -36,15 +36,15 @@ Category.create!([
                    {name: 3, description: ''}
                  ])
 Issue.create!([
-  {category_id: 1, user_id: 1, text: "example", status: "opened"}
+  {category_id: 1, user_id: 3, text: "example", status: "opened"}
 ])
 Feedback.create!([
-  {text: "example", user_id: 1, stars: "4.0"}
+  {text: "example", user_id: 4, stars: "4.0"}
                  ])
 
-Order.create!([{check_in: "2021-07-02 17:00", check_out: "2021-07-05 17:00", total_price: 100, room_id: 1, user_id: 1, status: 0},
-               {check_in: "2021-07-01 12:00", check_out: "2021-07-04 12:00", total_price: 150, room_id: 2, user_id: 2, status: 1},
-               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 1, user_id: 1, status: 2},
-               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 3},
-               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 2, user_id: 2, status: 4}
+Order.create!([{check_in: "2021-07-02 17:00", check_out: "2021-07-05 17:00", total_price: 100, room_id: 129, user_id: 3, status: 1},
+               {check_in: "2021-07-01 12:00", check_out: "2021-07-04 12:00", total_price: 150, room_id: 130, user_id: 4, status: 1},
+               {check_in: "2021-07-15 16:00", check_out: "2021-07-20 16:00", total_price: 200, room_id: 131, user_id: 3, status: 2},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 132, user_id: 4, status: 3},
+               {check_in: "2021-07-20 17:00", check_out: "2021-07-25 17:00", total_price: 100, room_id: 136, user_id: 3, status: 4}
               ])

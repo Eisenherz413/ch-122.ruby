@@ -1,4 +1,7 @@
 <div class="rooms-top-container">
+  <% if can? :manage, Room %>
+  <div style="float: right; margin-top: 20px;"><%= link_to t('rooms.index.add_room'), new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
+  <% end %>
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
     url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
@@ -7,6 +10,7 @@
     <div class="mask mask-custom">
       <h1 class="display-4 fst-italic"><%= t('rooms.index.page-title') %></h1>
       <p class="lead my-3"><%= t('rooms.index.page-description') %></p>
+
     </div>
   </div>
 </div>
@@ -76,6 +80,7 @@
               </span>
               <div class="buttons_alignment">
                 <%= link_to t('rooms.index.show-more'), room_path(room, :check_in => params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil), :check_out => params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil)), :class => "btn btn-primary text-white bottom-0 end-0" %>
+                <% if can? :manage, Room %>
                 <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
                 <% if room.destroyable? %>
                   <div><%= link_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
@@ -83,6 +88,7 @@
                   <div title="<%= t('rooms.index.disabled_title') %>">
                     <%= button_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
                   </div>
+                    <% end %>
                 <% end  %>
               </div>
             </div>

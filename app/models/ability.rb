@@ -8,6 +8,7 @@ class Ability
       user ||= User.new # guest user (not logged in)
       if user.role == 'manager'
         can :manage, Category
+        can :manage, Room
         can :manage, User
       end
       if user.role == 'admin'
