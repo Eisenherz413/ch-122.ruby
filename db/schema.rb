@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_074243) do
 ActiveRecord::Schema.define(version: 2021_08_17_084125) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "categories", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -68,13 +67,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "path"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "issues", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "category_id"
     t.bigint "user_id"
@@ -87,8 +79,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
   end
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "check_in"
-    t.datetime "check_out"
+    t.date "check_in"
+    t.date "check_out"
     t.float "total_price"
     t.bigint "room_id"
     t.bigint "user_id"
@@ -97,16 +89,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "fk_rails_8d6e2128b7"
     t.index ["user_id"], name: "fk_rails_f868b47f6a"
-  end
-
-  create_table "room_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "room_id"
-    t.bigint "image_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "purpose"
-    t.index ["image_id"], name: "fk_rails_e91d39bb78"
-    t.index ["room_id"], name: "fk_rails_823e921e11"
   end
 
   create_table "room_services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -126,7 +108,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.string "slug"
-    t.index ["id"], name: "rooms_id_uindex", unique: true
     t.index ["slug"], name: "index_rooms_on_slug", unique: true
   end
 
@@ -165,9 +146,6 @@ ActiveRecord::Schema.define(version: 2021_08_17_084125) do
   add_foreign_key "issues", "users"
   add_foreign_key "orders", "rooms"
   add_foreign_key "orders", "users"
-  add_foreign_key "room_images", "images"
-  add_foreign_key "room_images", "rooms"
   add_foreign_key "room_services", "rooms"
   add_foreign_key "room_services", "services"
-end
 end

@@ -1,6 +1,6 @@
 <%= form_with(model: room) do |form| %>
   <% if room.errors.any? %>
-    <div id="er" class="alert alert-danger" role="alert">
+    <div id="er" class="alert alert-danger" role="alert" style="height: 200px;">
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -8,7 +8,7 @@
       </ul>
     </div>
   <% end %>
-<table class="tbl">
+<table class="tbl" style="margin-top: 30px;">
   <tr>
     <div class="field">
       <td><%= form.label :cover %></td>
@@ -24,7 +24,7 @@
   <tr>
     <div class="field">
       <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
-      <td><input type="text" id="services" name="services"></td>
+      <td><input type="text" id="services" name="services" autocomplete="off"></td>
     </div>
     <dialog id="dialog_window">
       <img src="/assets/exit_button.png" id="close">

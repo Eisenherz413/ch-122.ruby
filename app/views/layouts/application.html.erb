@@ -29,37 +29,30 @@
       <div class="container-fluid">
         <div class="navbar-collapse collapse" id="collapseNavbar">
           <% if can? :manage, Category %>
-              <ul class="navbar-nav h6">
-                <li class="nav-item">
-                  <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
-                </li>
-                <li class="nav-item">
-                  <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
-                </li>
-                <li class="nav-item">
-                  <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
-                </li>
-                <li class="nav-item">
-                  <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
-                </li>
-                <li class="nav-item">
-                  <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
-                </li>
-              </ul>
+            <ul class="navbar-nav h6">
+              <li class="nav-item">
+                <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
+              </li>
+              <li class="nav-item">
+                <%= active_link_to t('global.menu.rooms'),root_path, class: "nav-link", active: :exclusive%>
+              </li>
+              <li class="nav-item">
+                <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
+              </li>
+            </ul>
           <% end %>
         </div>
 
         <ul class="navbar-nav ms-auto h6">
           <li class="nav-item">
-            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link" %>
+            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link", active: :exact%>
           </li>
           <li class="nav-item">
-            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link" %>
+            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link", active: :exact%>
           </li>
-
           <% if user_signed_in? %>
             <li class="nav-item">
-            Logged in as <strong><%= current_user.email %></strong>.
+              <strong><%= current_user.email %></strong>.
               <%#= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
@@ -67,7 +60,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-            <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
+              <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
@@ -78,7 +71,7 @@
     </nav>
   </header>
   <body>
-
+<!--<div  style="display: inline-block; float: right; margin-top: 30px; margin-right: 30px; margin-left: 10px;"><%#= active_link_to "EN", url_for(locale: :en), class: 'lang'%> <%#= active_link_to 'UK', url_for(locale: :uk), class: 'lang'%></div>-->
   <% unless flash.empty? %>
     <script type="text/javascript">
         <% flash.each do |f| %>

@@ -92,5 +92,4 @@ group :development, :test do
 end
 
 gem 'cancancan'
-
 gem 'toastr-rails'
