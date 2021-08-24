@@ -4,7 +4,7 @@ class Service < ApplicationRecord
   validates :description, presence: false, length: {maximum: 100}
   validates :icon_url, presence: true
 
-  has_many :room_services, :dependent => :destroy
+  has_many :room_services, dependent: :restrict_with_exception
   has_many :rooms, through: :room_services
 
   def destroyable?

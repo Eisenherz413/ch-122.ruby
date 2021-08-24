@@ -76,10 +76,14 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
+    if @room.destroyable?
     @room.destroy
     respond_to do |format|
       format.html { redirect_to rooms_url }
       format.json { head :no_content }
+    end
+    else
+      redirect_to rooms_url, notice: 'You cannot delete room with working orders'
     end
   end
 

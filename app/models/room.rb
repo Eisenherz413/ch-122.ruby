@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   validate :acceptable_cover
   validate :acceptable_images
   has_many :orders
-  has_many :room_services
+  has_many :room_services, dependent: :restrict_with_exception
   has_many :services, through: :room_services
   has_one_attached :cover
   has_many_attached :images
