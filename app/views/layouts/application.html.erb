@@ -34,7 +34,7 @@
                 <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
+                <%= active_link_to t('global.menu.rooms'),root_path, class: "nav-link", active: :exclusive%>
               </li>
               <li class="nav-item">
                 <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
@@ -44,6 +44,12 @@
         </div>
 
         <ul class="navbar-nav ms-auto h6">
+          <li class="nav-item">
+            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link", active: :exact%>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link", active: :exact%>
+          </li>
           <% if user_signed_in? %>
             <li class="nav-item">
               <strong><%= current_user.email %></strong>.
@@ -65,11 +71,7 @@
     </nav>
   </header>
   <body>
-<!--  <div class="container">-->
-<!--    <div style="display: inline-block; float: left;">-->
-<div  style="display: inline-block; float: right; margin-top: 30px; margin-right: 30px; margin-left: 10px;"><%= active_link_to "EN", url_for(locale: :en), class: 'lang'%> <%= active_link_to 'UK', url_for(locale: :uk), class: 'lang'%></div>
-<!--    </div>-->
-<!--  </div>-->
+<!--<div  style="display: inline-block; float: right; margin-top: 30px; margin-right: 30px; margin-left: 10px;"><%#= active_link_to "EN", url_for(locale: :en), class: 'lang'%> <%#= active_link_to 'UK', url_for(locale: :uk), class: 'lang'%></div>-->
   <% unless flash.empty? %>
     <script type="text/javascript">
         <% flash.each do |f| %>

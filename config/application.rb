@@ -10,7 +10,6 @@ module Project
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,7 +19,10 @@ module Project
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.available_locales = [:en, :uk]
     config.i18n.default_locale = :en
-
+    def switch_locale(&action)
+      locale = params[:locale] || I18n.default_locale
+      I18n.with_locale(locale, &action)
+    end
     config.generators do |g|
       g.test_framework  :rspec, :fixture => true
       g.fixture_replacement :factory_girl, :dir=>"spec/factories"
