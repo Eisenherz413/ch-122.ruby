@@ -6,6 +6,9 @@ class Ability
   def initialize(user)
 
       user ||= User.new # guest user (not logged in)
+      if user.role == 'user'
+        can :create, Issue
+      end
       if user.role == 'manager'
         can :manage, Category
         can :manage, User
