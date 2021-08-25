@@ -12,11 +12,20 @@ class RoomsController < ApplicationController
           capacity_eq: params.fetch(:q, nil)&.fetch(:capacity_eq, nil),
           price_gteq: params.fetch(:q, nil)&.fetch(:price_gteq, nil),
           price_lteq: params.fetch(:q, nil)&.fetch(:price_lteq, nil),
+          m: 'and',
+          g: {
+            '0' => {
+              orders_check_out_not_eq: params.fetch(:q, nil)&.fetch(:orders_check_out_gt, nil),
+            },
+            '1' => {
+              orders_check_in_not_eq: params.fetch(:q, nil)&.fetch(:orders_check_in_lt, nil)
+            }
+          }
         },
         '1' => { orders: [nil, ""] }
       })
 
-    @rooms = @q.result.paginate(:page => params[:page], :per_page => per_page)
+    @rooms = @q.result(:distinct=>true).paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /rooms/1 or /rooms/1.json

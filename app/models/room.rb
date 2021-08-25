@@ -21,6 +21,7 @@ class Room < ApplicationRecord
   def non_destroyable?
     !destroyable?
   end
+
   def acceptable_cover
     if !cover.attached?
       return
@@ -33,19 +34,19 @@ class Room < ApplicationRecord
       errors.add(:cover, :format)
     end
   end
+
   def acceptable_images
     if !images.attached?
       return
     end
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     images.each do |image|
-    if image.byte_size  > 2.megabyte
-      errors.add(:images, :size)
+      if image.byte_size  > 2.megabyte
+        errors.add(:images, "are more than 2 MB")
+      end
+      if !acceptable_types.include?(image.content_type)
+        errors.add(:images, "must be a JPEG, JPG or PNG")
+      end
     end
-    if !acceptable_types.include?(image.content_type)
-      errors.add(:images, :format)
-    end
-    end
-
   end
 end
