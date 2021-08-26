@@ -133,6 +133,46 @@ uk:
         services: "Сервіси"
         cover: "Головне фото"
         images: "Фото"
+    errors:
+      models:
+        service:
+          attributes:
+            name:
+             blank: "не може бути порожньою"
+             taken: "вже існує"
+             invalid: "може містити тільки літери"
+             too_short: "занадто коротка(мінімум 2 символи)"
+             too_long: "занадто довга(максимум 50 символів)"
+            description:
+              too_long: "занадто довгий(максимум 100 сиволів)"
+            icon_url:
+              blank: "не може бути порожньою"
+        room:
+          attributes:
+            number:
+              blank: "не може бути порожнім"
+              taken: "вже існує"
+              too_short: "занадто короткий(мінімум 2 символи)"
+              too_long: "занадто довгий(максимум 10 символів)"
+              invalid: "може містити тільки літери і цифри"
+            title:
+              blank: "не може бути порожньою"
+              too_short: "занадто коротка(мінімум 2 символи)"
+              too_long: "занадто довга(максимум 25 символів)"
+            capacity:
+              blank: "не можуть бути порожніми"
+              not_an_integer: "мають бути цілим числом"
+              less_than_or_equal_to: "не можуть бути більше за 3"
+              greater_than_or_equal_to: "не можуть бути менше за 1"
+            price:
+              blank: "не може бути порожньою"
+              invalid: "може містити тільки цифри"
+            cover:
+              size: "більше за 2 MB"
+              format: "може бути JPEG, JPG чи PNG формату"
+            images:
+              size: "містять файл з розмфром більше 2 MB"
+              images: "можуть бути лише JPG, JPEG чи PNG формату"
   devise:
     confirmations:
       confirmed: "Email успішно підтверджений."
@@ -192,3 +232,4 @@ uk:
         not_saved:
           one: "1 error prohibited this %{resource} from being saved:"
           other: "%{count} errors prohibited this %{resource} from being saved:"
+

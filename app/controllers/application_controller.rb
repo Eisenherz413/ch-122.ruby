@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   before_action :set_locale
+  around_action :switch_locale
   after_action :store_action
 
   def store_action
@@ -16,21 +17,25 @@ class ApplicationController < ActionController::Base
     end
   end
   private
+  def set_locale
+    locale = params[:locale].to_s.strip.to_sym
+    I18n.locale = I18n.available_locales.include?(locale) ?
+                    locale :
+                    I18n.default_locale
+  end
 
   def default_url_options
     {locale: I18n.locale}
   end
-  def set_locale
-    I18n.locale = extract_locale || I18n.default_locale
-  end
-
   def extract_locale
     parsed_locale = params[:locale]
-    I18n.available_locales.map(&:to_s).include?(parsed_locale) ?
-      parsed_locale.to_sym :
-      nil
+    I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
+      # parsed_locale.to_sym :
   end
-
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
   respond_to :html, :json
 
 end
