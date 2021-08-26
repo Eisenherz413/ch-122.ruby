@@ -48,7 +48,6 @@ class ServicesController < ApplicationController
   end
   # DELETE /services/1 or /services/1.json
   def destroy
-    # if Service.can_destroy_service(@service)
     if @service.destroyable?
     @service.destroy
     respond_to do |format|

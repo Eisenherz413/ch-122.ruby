@@ -11,6 +11,7 @@ class Ability
       end
       if user.role == 'manager'
         can :manage, Category
+        can :manage, Room
         can :manage, User
       end
       if user.role == 'admin'

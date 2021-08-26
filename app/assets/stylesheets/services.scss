@@ -23,7 +23,7 @@ input[type="text"] {
   margin-top: 100px;
 }
 textarea {
-  width: 600px;
+  width: 550px;
   height: 100px;
   border-radius: 3px;
 
@@ -75,16 +75,6 @@ ul {
 ::placeholder {
  padding-left: 10px;
   padding-top: 10px;
-}
-.lang.active {
-  color: blue;
-}
-.lang:link {
-  text-decoration: none;
-  color: black;
-}
-.lang:hover {
-  background-color: inherit;
 }
 a:hover {
   background-color: inherit;
