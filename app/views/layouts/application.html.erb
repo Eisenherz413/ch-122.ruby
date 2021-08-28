@@ -34,34 +34,17 @@
                 <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
               </li>
               <li class="nav-item">
-                <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link"%>
+                <%= active_link_to t('global.menu.rooms'),root_path, class: "nav-link", active: :exclusive%>
               </li>
               <li class="nav-item">
                 <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.room_services'), room_services_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.orders'), orders_path, class: "nav-link" %>
               </li>
             </ul>
           <% elsif (can? :create, Issue) && user_signed_in? %>
             <ul class="navbar-nav h6">
 
               <li class="nav-item">
-                <%= active_link_to t('global.menu.issues'), new_issue_path, class: "nav-link"%>
-              </li>
-            </ul>
-            <ul class="navbar-nav h6">
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.rooms'),root_path, class: "nav-link", active: :exclusive%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
+                <%= active_link_to t('global.menu.issues'), issues_path, class: "nav-link"%>
               </li>
             </ul>
           <% end %>
