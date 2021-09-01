@@ -93,3 +93,5 @@ end
 
 gem 'cancancan'
 gem 'toastr-rails'
+
+gem 'stimulus-rails'

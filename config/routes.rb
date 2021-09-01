@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root  'rooms#index'
+  root to: redirect('rooms')
   Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'users/sessions',
