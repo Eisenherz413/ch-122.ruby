@@ -1,4 +1,8 @@
 en:
+  time:
+    datetime:
+      formats:
+        my_format: "%m/%d/%Y %I:%M %p"
   services:
     index:
       add_service: "Add service"

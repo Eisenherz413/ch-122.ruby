@@ -23,8 +23,8 @@
               <td><%= Category.find(issue.category_id).name %></td>
               <td><%= issue.text %></td>
               <td><%= issue.status %></td>
-              <td><%= issue.created_at %></td>
-              <td><%= issue.updated_at %></td>
+              <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
+              <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
             <% end %>
             <!--        <td><%#= link_to 'Show', issue %></td>-->
             <!--        <td><%#= link_to 'Edit', edit_issue_path(issue) %></td>-->
