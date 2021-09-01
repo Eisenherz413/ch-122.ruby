@@ -2,7 +2,7 @@ uk:
   time:
     datetime:
       formats:
-        my_format: "%H:%M %m.%d.%Y"
+        my_format: "%H:%M %d.%m.%Y"
   services:
     index:
       add_service: "Додати"
