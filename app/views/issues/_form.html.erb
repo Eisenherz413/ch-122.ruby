@@ -3,10 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-6 row justify-content-center">
 
-      <%= form_with(model: issue) do |form| %>
+        <%= form_with(model: issue) do |form| %>
           <% if issue.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+            <div id="error_explanation", class="alert alert-danger" role="alert">
 
               <ul>
                 <% issue.errors.each do |error| %>
@@ -16,36 +15,56 @@
             </div>
           <% end %>
 
-          <div class="field">
-            <%= form.label :category_name %>
-            <%= form.select :category_name,
-                                    options_for_select(Category.all.names)%>
+          <br>
+
+          <div class="btn-group">
+            <%#= form.select :category_name, options_for_select(Category.all.names)%>
+            <%= form.collection_select :category_id, Category.all, :id, :name, :class => "category-select" %>
           </div>
 
           <div class="field">
-            <%= form.label :category_description %>
-            <%= form.text_field :category_description %>
+            <%= form.text_area :category_description, :id => "description-field", :class => "alert alert-light",
+                               :disabled => true %>
           </div>
 
           <div class="field">
-            <%= form.hidden_field :user_id, :value=> current_user.id %>
+            <%= form.hidden_field :user_id, :value => current_user.id %>
           </div>
 
           <div class="field">
-            <%= form.label :text %>
-            <%= form.text_field :text %>
+            <%= form.text_area :text, :class => "issue-text" %>
           </div>
 
           <div class="field">
-            <%= form.label :status %>
-            <%= form.text_field :status %>
+            <%= form.hidden_field :status %>
           </div>
 
           <div class="actions">
-            <%= form.submit %>
+            <%= form.submit "Send", class: "btn btn-success text-white bottom-0 end-0" %>
+            <%= link_to 'All Issues', issues_path, class: "btn btn-primary text-white bottom-0 end-0" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+          <script>
+              $(function () {
+                  category_names = [
+                      <% Category.all.each do |category| %>
+                      '<%= category.description %>',
+                      <% end %>
+                  ]
+                  description_field = $('#description-field')
+                  name_field = $('#issue_category_id')
+                  name_field.on('change', function () {
+                      category_selected = parseInt(name_field[0].value)
+                      description_field[0].value = category_names[category_selected-1]
+
+                  })
+                  name_field.val('1')
+                  name_field.trigger('change')
+              });
+
+          </script>

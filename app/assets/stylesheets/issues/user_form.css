@@ -1,0 +1,17 @@
+.alert-light {
+    color: #636464;
+    background-color: #fefefe;
+    border-color: #3c3c8f;
+    font-size: 18px;
+    text-align: center;
+    height: 67px;
+    overflow: hidden;
+    resize: none;
+}
+.issue-text {
+    overflow: hidden;
+    resize: none;
+}
+select .category-select {
+
+}
