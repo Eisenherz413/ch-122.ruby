@@ -49,22 +49,22 @@
   </div>
 </div>
 
-          <script>
-              $(function () {
-                  category_names = [
-                      <% Category.all.each do |category| %>
-                      '<%= category.description %>',
-                      <% end %>
-                  ]
-                  description_field = $('#description-field')
-                  name_field = $('#issue_category_id')
-                  name_field.on('change', function () {
-                      category_selected = parseInt(name_field[0].value)
-                      description_field[0].value = category_names[category_selected-1]
+<script>
+    $(function () {
+        category_names = [
+            <% Category.all.each do |category| %>
+            '<%= category.description %>',
+            <% end %>
+        ]
+        description_field = $('#description-field')
+        name_field = $('#issue_category_id')
+        name_field.on('change', function () {
+            category_selected = parseInt(name_field[0].value)
+            description_field[0].value = category_names[category_selected-1]
 
-                  })
-                  name_field.val('1')
-                  name_field.trigger('change')
-              });
+        })
+        name_field.val('1')
+        name_field.trigger('change')
+    });
 
-          </script>
+</script>

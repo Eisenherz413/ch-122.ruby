@@ -8,10 +8,13 @@
     overflow: hidden;
     resize: none;
 }
+
 .issue-text {
     overflow: hidden;
     resize: none;
 }
-select .category-select {
 
+.button_new_issue {
+    padding-top: 20px;
+    text-align: right;
 }

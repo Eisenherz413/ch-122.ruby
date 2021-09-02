@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-7">
     <% if notice.present? %>
-<!--      <p id="notice" class="alert alert-success"><%#= notice %></p>-->
+      <!--      <p id="notice" class="alert alert-success"><%#= notice %></p>-->
     <% end %>
     <%= form_with(model: category) do |form| %>
       <% if category.errors.any? %>
@@ -12,7 +12,7 @@
             <% end %>
           </ul>
         </div>
-  <% end %>
+      <% end %>
       <div class="row justify-content-center">
         <div class="col-12 row justify-content-center">
           <form class="form-group">
