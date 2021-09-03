@@ -22,7 +22,15 @@
             <% if issue.user == current_user %>
               <td><%= Category.find(issue.category_id).name %></td>
               <td><%= issue.text %></td>
-              <td><%= issue.status %></td>
+              <td>
+                <% case issue.status
+                   when 'opened' %>
+                  <%= fa_icon "battery-empty" %>
+                <% when 'in_progress' %>
+                  <%= fa_icon "battery-half" %>
+                <% when 'done' %>
+                  <%= fa_icon "battery-full" %>
+                <% end %>
               <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
               <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
               <td>
