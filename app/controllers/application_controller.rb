@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   before_action :set_locale
-  after_action :store_action
   around_action :switch_locale
+  after_action :store_action
+
+  private
 
   def store_action
     return unless request.get?
@@ -16,7 +18,7 @@ class ApplicationController < ActionController::Base
       store_location_for(:user, request.fullpath)
     end
   end
-  private
+
   def set_locale
     locale = params[:locale].to_s.strip.to_sym
     I18n.locale = I18n.available_locales.include?(locale) ?
