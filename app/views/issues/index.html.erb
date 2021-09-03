@@ -25,6 +25,15 @@
               <td><%= issue.status %></td>
               <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
               <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
+              <td>
+                <% unless issue.status == 'done' %>
+                  <%= link_to issues_mark_closed_path(:id => issue.id),
+                              data: { confirm: 'Issue will be marked as closed. Continue?' },
+                              :title => 'mark closed' do %>
+                    <%= fa_icon "check-square" %>
+                  <% end %>
+                <% end %>
+              </td>
             <% end %>
             </tr>
           <% end %>

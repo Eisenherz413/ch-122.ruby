@@ -34,9 +34,16 @@ class IssuesController < ApplicationController
     end
   end
 
-  # def mark_closed
-  #   @issue.status == 'done'
-  # end
+  def mark_closed
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_url, notice: "Issue was successfully closed" }
+      format.json { head :no_content }
+    end
+
+    issue.update_attribute('status', 2)
+
+  end
 
   # PATCH/PUT /issues/1 or /issues/1.json
   def update
