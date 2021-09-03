@@ -2,7 +2,19 @@ uk:
   time:
     datetime:
       formats:
-        my_format: "%H:%M %d.%m.%Y"
+        my_format: "%m.%d.%Y %H:%M"
+  issues:
+    index:
+      no_issues: "Немає створених скарг та пропозицій :("
+      text: "Текст"
+      status: "Статус"
+      created_at: "Дата створення"
+      last_update: "Дата оновлення"
+      new_issue: "Cтворити"
+    controller:
+      issue_successfully_created: "Запис успішно створено!"
+
+
   services:
     index:
       add_service: "Додати"
@@ -102,6 +114,9 @@ uk:
       room_services: "Сервіси кімнат"
       orders: "Замовлення"
       issues: "Cкарги та Пропозиції"
+      home: "Головна"
+      my_issues: "Мої запити"
+      my_orders: "Мої бронювання"
     forms:
       create_button: "Створити"
       all_categories: "Всі категорії"
@@ -117,6 +132,11 @@ uk:
       category:
         name: "Назва"
         description: "Опис"
+        names:
+          advice: "Порада"
+          breakage: "Поломка"
+          urgent: "Терміново"
+          otner: "Інше"
       user:
         full_name: "ПІБ"
         email: "Email"

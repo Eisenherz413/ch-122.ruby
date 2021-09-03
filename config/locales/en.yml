@@ -2,7 +2,19 @@ en:
   time:
     datetime:
       formats:
-        my_format: "%Y-%m-%d %I:%M %p"
+        my_format: "%m/%d/%Y %I:%M %p"
+  issues:
+    index:
+      no_issues: "You haven't created any issues yet :("
+      text: "Text"
+      status: "Status"
+      created_at: "Created at"
+      last_update: "Last Update"
+      new_issue: "New Issue"
+    controller:
+      issue_successfully_created: "Issue was successfully created!"
+
+
   services:
     index:
       add_service: "Add service"
@@ -102,6 +114,9 @@ en:
       room_services: "Room services"
       orders: "Orders"
       issues: "Issues"
+      home: "Home"
+      my_issues: "My Issues"
+      my_orders: "My Orders"
     forms:
       create_button: "Create"
       all_categories: "All categories"
@@ -118,6 +133,11 @@ en:
       category:
         name: "Name"
         description: "Description"
+        names:
+          advice: "Advice"
+          breakage: "Breakage"
+          urgent: "Urgent"
+          otner: "Other"
       service:
         name: "Name"
         description: "Description"

@@ -25,7 +25,7 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to issues_url, notice: "Issue was successfully created." }
+        format.html { redirect_to issues_url, notice: t('.controller.issue_successfully_created') }
         format.json { render :index, status: :created, location: @issue }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -33,6 +33,10 @@ class IssuesController < ApplicationController
       end
     end
   end
+
+  # def mark_closed
+  #   @issue.status == 'done'
+  # end
 
   # PATCH/PUT /issues/1 or /issues/1.json
   def update
@@ -57,13 +61,14 @@ class IssuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def issue_params
-      params.require(:issue).permit(:category_id, :user_id, :text, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def issue_params
+    params.require(:issue).permit(:category_id, :user_id, :text, :status)
+  end
 end

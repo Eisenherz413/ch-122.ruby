@@ -40,7 +40,7 @@
             </li>
           <% elsif user_signed_in? %>
             <li class="nav-item">
-              <%= active_link_to t('global.menu.rooms'), root_path, class: "nav-link", active: :exclusive %>
+              <%= active_link_to t('global.menu.home'), root_path, class: "nav-link", active: :exclusive %>
             </li>
           <% end %>
         </ul>
@@ -60,9 +60,9 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <% if (can? :create, Issue) && user_signed_in? %>
-                <li><a><%= link_to t('global.menu.issues'), issues_path, class: "dropdown-item" %></a></li>
+                <li><a><%= link_to t('global.menu.my_issues'), issues_path, class: "dropdown-item" %></a></li>
               <% end %>
-              <li><a><%= link_to 'My orders', issues_path, class: "dropdown-item" %></a></li>
+              <li><a><%= link_to t('global.menu.my_orders'), issues_path, class: "dropdown-item" %></a></li>
               <li>
                 <div role="separator" class="dropdown-divider"></div>
               </li>
