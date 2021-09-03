@@ -1,6 +1,8 @@
-<%= form_with(model: room) do |form| %>
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<%= form_with(model: room, multipart: true) do |form| %>
   <% if room.errors.any? %>
-    <div id="er" class="alert alert-danger" role="alert" style="height: 200px;">
+    <div id="er" class="alert alert-danger" role="alert" style="height: 250px; width: 500px;">
       <ul>
         <% room.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -9,36 +11,6 @@
     </div>
   <% end %>
 <table class="tbl" style="margin-top: 30px;">
-  <tr>
-    <div class="field">
-      <td><%= form.label :cover %></td>
-      <td><%= form.file_field :cover, accept: 'image/png,image/jpg,image/jpeg' %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= form.label :images %></td>
-      <td><%= form.file_field :images, accept: 'image/png,image/jpg,image/jpeg', multiple: true%></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
-      <td><input type="text" id="services" name="services" autocomplete="off"></td>
-    </div>
-    <dialog id="dialog_window">
-      <img src="/assets/exit_button.png" id="close">
-     <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
-        <div class="checkbox">
-          <%= b.check_box %>
-          <%= image_tag(b.object.icon_url) %>
-          <%= b.label class:'labels' %>
-        </div>
-      <% end %>
-    </dialog>
-    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
-  </tr>
-
   <tr>
   <div class="field">
     <td><%= form.label :number %></td>
@@ -62,6 +34,47 @@
     <td><%= form.label :price %></td>
     <td><%= form.text_field :price %></td>
   </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
+      <td><input type="text" id="services" name="services" autocomplete="off"></td>
+    </div>
+    <dialog id="dialog_window">
+      <img src="/assets/exit_button.png" id="close">
+      <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
+        <div class="checkbox" style="display: block;">
+          <%= b.check_box %>
+          <%= image_tag(b.object.icon_url) %>
+          <%= b.label class:'labels' %>
+        </div>
+      <% end %>
+    </dialog>
+    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= form.label :cover %></td>
+      <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1" >
+        <%= form.file_field :cover, direct_upload: true, data: { target: 'dropzone.input' } %>
+        <div class="dropzone-msg dz-message needsclick" >
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;">Drag here to upload or click here to browse</h3>
+          <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+        </div>
+      </div></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= form.label :images %></td>
+      <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
+        <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true %>
+        <div class="dropzone-msg dz-message needsclick" >
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;">Drag here to upload or click here to browse</h3>
+          <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+        </div>
+      </div></td>
+    </div>
   </tr>
   <tr>
   <div class="actions">

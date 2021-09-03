@@ -46,8 +46,7 @@
 }
 
 dialog {
-  height: 100px;
-  width: 550px;
+  height: 150px;
   border: 1px solid;
   overflow: auto;
   position: absolute;
@@ -65,15 +64,6 @@ dialog {
 .buttons_alignment div {
   display: inline-block;
 }
-
-#er {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-  height: 70px;
-  width: 500px;
-}
-
 .clear-filters-button {
   margin-top: 20px;
   color: grey;
@@ -85,4 +75,28 @@ dialog {
   width: 275px;
   margin: 0 auto 20px;
 }
+.dropzone.dropzone-default.dz-clickable {
+  border: 2px dotted;
+  width: 700px;
+  height: 170px;
+  border-radius: 15px;
+  border-color: grey;
 
+}
+
+div.dz-preview.dz-image-preview.dz-processing.dz-success.dz-complete {
+ margin-top: -5px;
+  position: center;
+
+}
+div.dz-preview.dz-image-preview{
+  margin-top: -5px;
+ position: center;
+}
+td input[type="text"] {
+  width: 700px;
+}
+label,img,input{
+  display: inline-block;
+  vertical-align: middle;
+}

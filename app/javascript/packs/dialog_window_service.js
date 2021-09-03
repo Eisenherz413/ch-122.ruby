@@ -8,6 +8,8 @@ let labels = document.querySelectorAll('.labels');
 service_input.onclick = function(){
     dialog_window.show();
     service_input.value = null;
+    getInputCoordinates(service_input);
+    setDialogCoordinates(dialog_window);
 }
 service_input.oninput = function(){
    for(let i = 0; i < checkboxes.length; i++){
@@ -29,6 +31,7 @@ function setDialogCoordinates(window){
     window.style.left = coordinates.left + "px";
     window.style.right = coordinates.right + "px";
     window.style.top = coordinates.top + 50 + "px";
+    window.style.width = coordinates.width + "px";
 }
 window.onresize = function(){
     getInputCoordinates(service_input);
@@ -41,5 +44,3 @@ function check_checked_boxes(checkboxes){
         }
     }
 }
-getInputCoordinates(service_input);
-setDialogCoordinates(dialog_window);

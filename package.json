@@ -10,6 +10,7 @@
     "bootstrap": "^5.0.0-beta3",
     "bootstrap-input-spinner": "^3.0.2",
     "channels": "^0.0.4",
+    "dropzone": "^5.9.2",
     "jquery": "^3.6.0",
     "jquery-ui-multidatespicker": "^1.6.6",
     "popper.js": "^1.16.1",
