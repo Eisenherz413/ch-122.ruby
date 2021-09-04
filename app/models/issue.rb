@@ -3,4 +3,6 @@ class Issue < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
+
+  validates :text, presence: true
 end
