@@ -6,7 +6,6 @@
         <%= form_with(model: issue) do |form| %>
           <% if issue.errors.any? %>
             <div id="error_explanation", class="alert alert-danger" role="alert">
-
               <ul>
                 <% issue.errors.each do |error| %>
                   <li><%= error.full_message %></li>
@@ -19,7 +18,7 @@
 
           <div class="btn-group">
             <%#= form.select :category_name, options_for_select(Category.all.names)%>
-            <%= form.collection_select :category_id, Category.all, :id, :name, :class => "category-select" %>
+            <%= form.collection_select :category_id, Category.all, :id, :name, :class => "select_name" %>
           </div>
 
           <div class="field">
@@ -39,9 +38,9 @@
             <%= form.hidden_field :status %>
           </div>
 
-          <div class="actions">
-            <%= form.submit "Send", class: "btn btn-success text-white bottom-0 end-0" %>
-            <%= link_to 'All Issues', issues_path, class: "btn btn-primary text-white bottom-0 end-0" %>
+          <div class="buttons_new_issue">
+            <%= form.submit t('issues._form.send'), class: "btn btn-success text-white bottom-0 end-0" %>
+            <%= link_to t('issues._form.all_issues'), issues_path, class: "btn btn-primary text-white bottom-0 end-0" %>
           </div>
         <% end %>
       </div>

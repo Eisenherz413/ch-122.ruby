@@ -11,6 +11,13 @@ en:
       created_at: "Created at"
       last_update: "Last Update"
       new_issue: "New Issue"
+      page_description: "In this section you are able to leave some valuable information
+      Our manager will react as soon as possible and you can follow your issue progress"
+    _form:
+      new_issue: "New Issue"
+      send: "Send"
+      all_issues: "All Issues"
+
     controller:
       issue_successfully_created: "Issue was successfully created!"
 
@@ -134,10 +141,10 @@ en:
         name: "Name"
         description: "Description"
         names:
-          advice: "Advice"
-          breakage: "Breakage"
-          urgent: "Urgent"
-          otner: "Other"
+          Advice: "Advice"
+          Breakage: "Breakage"
+          Urgent: "Urgent"
+          Otner: "Other"
       service:
         name: "Name"
         description: "Description"

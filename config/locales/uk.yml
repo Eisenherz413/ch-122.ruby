@@ -11,6 +11,12 @@ uk:
       created_at: "Дата створення"
       last_update: "Дата оновлення"
       new_issue: "Cтворити"
+      page_description: "Ви можете залишити повідомлення,
+      наш менеджер зреагує на нього якнайшвидше і Ви побачите оновлення статусу Вашого повідомлення"
+    _form:
+      new_issue: "Нове повідомлення"
+      send: "Надіслати"
+      all_issues: "Всі повідомлення"
     controller:
       issue_successfully_created: "Запис успішно створено!"
 
@@ -115,7 +121,7 @@ uk:
       orders: "Замовлення"
       issues: "Cкарги та Пропозиції"
       home: "Головна"
-      my_issues: "Мої запити"
+      my_issues: "Мої повідомлення"
       my_orders: "Мої бронювання"
     forms:
       create_button: "Створити"
@@ -133,10 +139,10 @@ uk:
         name: "Назва"
         description: "Опис"
         names:
-          advice: "Порада"
-          breakage: "Поломка"
-          urgent: "Терміново"
-          otner: "Інше"
+          Advice: "Порада"
+          Breakage: "Несправність"
+          Urgent: "Терміново"
+          Otner: "Інше"
       user:
         full_name: "ПІБ"
         email: "Email"
