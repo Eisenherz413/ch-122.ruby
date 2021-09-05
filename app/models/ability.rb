@@ -7,7 +7,7 @@ class Ability
 
       user ||= User.new # guest user (not logged in)
       if user.role == 'user'
-        can :create, Issue
+        can :read, Issue
       end
       if user.role == 'manager'
         can :manage, Category
@@ -16,6 +16,12 @@ class Ability
       end
       if user.role == 'admin'
         can :manage, :all
+      end
+
+      if (Order.find_by_user_id(user.id).present?) &&
+        ((Order.order('created_at DESC').find_by_user_id(user.id).check_out <= Date.today) &&
+          (Order.order('created_at DESC').find_by_user_id(user.id).check_in >= Date.today))
+        can :create, Issue
       end
     #
     # The first argument to `can` is the action you are giving the user

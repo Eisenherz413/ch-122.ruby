@@ -48,9 +48,11 @@
       <% end %>
       </tbody>
     </table>
+    <% if can? :create, Issue %>
     <div class="button_new_issue">
       <%= link_to t('.new_issue'), new_issue_path, class: "btn btn-primary text-white bottom-0 end-0 col-2" %>
     </div>
+    <% end %>
 
   </div>
 </div>
