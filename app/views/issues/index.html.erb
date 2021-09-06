@@ -35,11 +35,11 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
               <td>
                 <% case issue.status
                    when 'opened' %>
-                  <%= fa_icon "battery-empty" %>
+                  <%= fa_icon "battery-empty", :title => 'just opened'%>
                 <% when 'in_progress' %>
-                  <%= fa_icon "battery-half" %>
+                  <%= fa_icon "battery-half", :title => 'in progress' %>
                 <% when 'done' %>
-                  <%= fa_icon "battery-full" %>
+                  <%= fa_icon "battery-full", :title => 'closed'%>
                 <% end %>
               <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
               <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
