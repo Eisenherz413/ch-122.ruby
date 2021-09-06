@@ -18,7 +18,7 @@
 
           <div class="btn-group">
             <%#= form.select :category_name, options_for_select(Category.all.names)%>
-            <%= form.collection_select :category_id, Category.all, :id, :name, :class => "select_name" %>
+            <%= form.collection_select :category_id, Category.all, :id, :translated_name, :class => "select_name" %>
           </div>
 
           <div class="field">
@@ -52,7 +52,8 @@
     $(function () {
         category_names = [
             <% Category.all.each do |category| %>
-            '<%= category.description %>',
+            '<%= t("activerecord.attributes.category.descriptions.#{category.name}_description",
+             :category_description => category.description) %>',
             <% end %>
         ]
         description_field = $('#description-field')

@@ -144,7 +144,12 @@ en:
           Advice: "Advice"
           Breakage: "Breakage"
           Urgent: "Urgent"
-          Otner: "Other"
+          Other: "Other"
+        descriptions:
+          Advice_description: "%{category_description}"
+          Breakage_description: "%{category_description}"
+          Urgent_description: "%{category_description}"
+          Other_description: "%{category_description}"
       service:
         name: "Name"
         description: "Description"
