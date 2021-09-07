@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :room_images
   resources :images
   resources :issues
+  resources :issues_manager
   match 'issues/:id/mark_closed' => 'issues#mark_closed', as: :issues_mark_closed, via: [:post, :get]
   resources :categories
   resources :room_services
