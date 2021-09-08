@@ -18,11 +18,11 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
         <thead>
         <tr>
           <th scope="col">Room</th>
-          <th scope="col"><%= t('global.menu.categories') %></th>
+          <th scope="col"><%= link_to t('global.menu.categories'), :sort => "category_id" %></th>
           <th scope="col"><%= t('.text') %></th>
-          <th scope="col"><%= t('.status') %></th>
-          <th scope="col"><%= t('.created_at') %></th>
-          <th scope="col"><%= t('.last_update') %></th>
+          <th scope="col"><%= link_to t('.status'), :sort => "status" %></th>
+          <th scope="col"><%= link_to t('.created_at'), :sort => "created_at" %></th>
+          <th scope="col"><%= link_to t('.last_update'), :sort => "updated_at" %></th>
           <th colspan="7"></th>
         </tr>
         </thead>
