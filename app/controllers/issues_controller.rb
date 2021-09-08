@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   def close
     issue = Issue.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to issues_manager_index_url, notice: "You have changed issues status" }
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
       format.json { head :no_content }
     end
 
@@ -59,7 +59,7 @@ class IssuesController < ApplicationController
   def proceed
     issue = Issue.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to issues_manager_index_url, notice: "You have changed issues status" }
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
       format.json { head :no_content }
     end
     issue.update_attribute('status', 1)
