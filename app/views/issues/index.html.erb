@@ -35,11 +35,11 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
               <td>
                 <% case issue.status
                    when 'opened' %>
-                  <%= fa_icon "battery-empty", :title => 'just opened'%>
+                  <%= fa_icon "battery-empty lg", :title => 'just opened'%>
                 <% when 'in_progress' %>
-                  <%= fa_icon "battery-half", :title => 'in progress' %>
+                  <%= fa_icon "battery-half lg", :title => 'in progress' %>
                 <% when 'done' %>
-                  <%= fa_icon "battery-full", :title => 'closed'%>
+                  <%= fa_icon "battery-full lg", :title => 'closed'%>
                 <% end %>
               <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
               <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
@@ -48,7 +48,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
                   <%= link_to issues_mark_closed_path(:id => issue.id),
                               data: { confirm: 'Issue will be marked as closed. Continue?' },
                               :title => 'mark closed' do %>
-                    <%= fa_icon "check-square" %>
+                    <%= fa_icon "check-square lg" %>
                   <% end %>
                 <% end %>
               </td>
