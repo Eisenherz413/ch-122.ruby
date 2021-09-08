@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :issues_managers
+  resources :issues_manager_controllers
   root  'rooms#index'
   Rails.application.routes.draw do
+  resources :issues_managers
     devise_for :users, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',

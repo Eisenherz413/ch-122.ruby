@@ -29,8 +29,9 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
 
         <tbody>
         <tr>
-          <% Issue.all.each do |issue| %>
-            <td><%= Room.find(Order.order('created_at DESC').find_by_user_id(issue.user_id).room_id).number %></td>
+          <% @issues.each do |issue| %>
+            <td><%= Room.find(Order.where("user_id = ? AND check_out <= ? AND check_in >= ?",
+                                          issue.user_id, issue.created_at.to_date, issue.created_at.to_date).first.room_id).number %></td>
             <td><%= t("activerecord.attributes.category.names.#{Category.find(issue.category_id).name}") %></td>
             <td><%= issue.text %></td>
             <td>
@@ -52,7 +53,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
               <% end %>
             </td>
             <td>
-              <%= link_to_if issue.status == 'in_progress', (fa_icon 'stop lg'), issues_close_path(:id => issue.id),
+              <%= link_to_if issue.status != 'done', (fa_icon 'stop lg'), issues_close_path(:id => issue.id),
                           data: { confirm: 'Issue will be marked as closed. Continue?' },
                           :title => 'Close', disabled: true do %>
                 <%= fa_icon "stop lg" %>
@@ -63,11 +64,8 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       <% end %>
       </tbody>
     </table>
-    <% if can? :create, Issue %>
-      <div class="button_new_issue">
-        <%= link_to t('.new_issue'), new_issue_path, class: "btn btn-primary text-white bottom-0 end-0 col-2" %>
-      </div>
-    <% end %>
+
+    <%= will_paginate @issues %>
 
   </div>
 </div>
