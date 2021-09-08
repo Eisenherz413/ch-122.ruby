@@ -16,7 +16,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
         <h1 class="display-4 fst-italic"> There are no issues yet </h1>
       <% else %>
         <thead>
-        <tr>
+        <tr class="issues">
           <th scope="col">Room</th>
           <th scope="col"><%= sortable "category_id", t('global.menu.categories') %></th>
           <th scope="col"><%= t('issues.index.text') %></th>
@@ -65,7 +65,9 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       </tbody>
     </table>
 
-    <%= will_paginate @issues %>
+    <div class="pagination-issues" >
+      <%= will_paginate @issues %>
+    </div>
 
   </div>
 </div>
