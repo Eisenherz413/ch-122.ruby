@@ -12,8 +12,9 @@ class Room < ApplicationRecord
   has_many_attached :images
 
   def destroyable?
-    orders.each do |order|
-      status = Order.statuses.key(Order.statuses[order.status])
+    Order.all.each do |order|
+      # status = Order.statuses.key(Order.statuses[order.status])
+      status = order.status
       return false if status != 'cancelled' && status != 'completed'
     end
   end
@@ -36,6 +37,9 @@ class Room < ApplicationRecord
   def acceptable_images
     if !images.attached?
       return
+    end
+    if images.count > 4
+      errors.add(:images, :count)
     end
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     images.each do |image|

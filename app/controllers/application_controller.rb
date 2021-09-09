@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
-  around_action :switch_locale
+  # around_action :switch_locale
 
   private
   def set_locale
@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = I18n.available_locales.include?(locale) ?
                     locale :
                     I18n.default_locale
+
   end
 
   def default_url_options

@@ -38,7 +38,7 @@ uk:
       label-before-capacity: "Ця кімната для"
       label-after-capacity: "людей."
       per-page: "за ніч"
-      show-more: "Показати більше"
+      show-more: "Детальніше"
       previous-button: "Попередня"
       next-button: "Наступна"
       add_room: "Створити кімнату"
@@ -173,6 +173,7 @@ uk:
             images:
               size: "містять файл з розмфром більше 2 MB"
               images: "можуть бути лише JPG, JPEG чи PNG формату"
+              count: "не можу бути більше ніж 4"
   devise:
     confirmations:
       confirmed: "Email успішно підтверджений."

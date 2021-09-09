@@ -1,10 +1,10 @@
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-<%= form_with(model: room, multipart: true) do |form| %>
-  <% if room.errors.any? %>
+<%=  form_with model: @room do |form| %>
+  <% if @room.errors.any? %>
     <div id="er" class="alert alert-danger" role="alert" style="height: 250px; width: 500px;">
       <ul>
-        <% room.errors.each do |error| %>
+        <% @room.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -68,7 +68,7 @@
     <div class="field">
       <td><%= form.label :images %></td>
       <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
-        <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true %>
+        <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true%>
         <div class="dropzone-msg dz-message needsclick" >
           <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;">Drag here to upload or click here to browse</h3>
           <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
@@ -83,8 +83,47 @@
       <td><%= form.submit t('rooms.form.create_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
     <% else %>
       <td><%= form.submit t('rooms.form.update_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
-    <% end  %>
+    <% end %>
   </div>
   </tr>
 </table>
 <% end %>
+<% if @room.cover.attached? %>
+<div class="uploaded-cover" style="float: right; margin-top: -650px; margin-right: 180px;">
+  <h4>Main image:</h4>
+  <div style="display: inline-block;">
+  <div><%= image_tag @room.cover, size: "200x100" %></div>
+    <% if !@room.new_record? %>
+  <div><%= link_to "Remove", delete_image_attachment_room_url(@room.cover.id), method: :delete %></div>
+    <%#else %>
+<!--      <div><%#= link_to "Remove", ActiveStorage::Blob.last.purge %></div>-->
+      <% end %>
+  </div>
+</div>
+  <% else %>
+  <div class="uploaded-cover" style="float: right; margin-top: -600px; margin-right: 160px;">
+    <h4>No main image attached.</h4>
+  </div>
+
+<% end %>
+<% if @room.images.attached? %>
+<div class="uploaded-images" style="float: right; margin-top: -450px; margin-right: 20px;">
+  <h4>Photos:</h4>
+  <% @room.images.each do |image| %>
+    <div style="display: inline-block;">
+    <div><%= image_tag image, size: "120x120" %></div>
+      <% if !@room.new_record? %>
+    <div><%= link_to "Remove", delete_image_attachment_room_url(image.id), method: :delete %></div>
+        <%#else %>
+<!--        <div><%#= link_to "Remove", ActiveStorage::Blob.find_signed(image.signed_id) %></div>-->
+        <% end  %>
+    </div>
+    <% end  %>
+</div>
+  <% else %>
+  <div class="uploaded-images" style="float: right; margin-top: -450px; margin-right: 180px;">
+    <h4>No photos attached.</h4>
+  </div>
+
+<% end %>
+

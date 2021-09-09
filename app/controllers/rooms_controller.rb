@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[show edit update destroy]
-
   # GET /rooms or /rooms.json
   def index
     per_page = 2
@@ -46,10 +45,12 @@ class RoomsController < ApplicationController
             @room.services << service
           end
         end
-        format.html { redirect_to @room}
+        format.html { redirect_to @room, notice: "Room was successfully created"}
         format.json { render :show, status: :created, location: @room }
+
       else
-        format.html { render :new, status: :unprocessable_entity }
+
+        format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
@@ -59,12 +60,6 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        params[:room][:service_ids].each do |service_id|
-          unless service_id.empty?
-            service = Service.find(service_id)
-            @room.services << service
-          end
-        end
         format.html { redirect_to @room }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -86,8 +81,18 @@ class RoomsController < ApplicationController
       redirect_to rooms_url, notice: 'You cannot delete room with working orders'
     end
   end
+  def delete_image_attachment
+    attachment = ActiveStorage::Attachment.find(params[:id])
+    attachment.purge
 
+    redirect_back(fallback_location: rooms_path)
+  end
+  def delete_blob
+    blob = ActiveStorage::Blob.find_signed(params[:id])
+    blob.purge
+  end
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
@@ -95,6 +100,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:capacity, :price, :number, :title,  :cover, images: [] )
+      params.require(:room).permit(:capacity, :price, :number, :title,  :cover, images: [], service_ids: [] )
     end
 end

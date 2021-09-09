@@ -11,15 +11,6 @@ service_input.onclick = function(){
     getInputCoordinates(service_input);
     setDialogCoordinates(dialog_window);
 }
-service_input.oninput = function(){
-   for(let i = 0; i < checkboxes.length; i++){
-       if(labels[i].innerHTML.toLowerCase().includes(service_input.value.toLowerCase())){
-            services_checkboxes[i].style.display = 'block';
-       } else {
-           services_checkboxes[i].style.display = 'none';
-       }
-   }
-}
 close_icon.onclick = function(){
     dialog_window.close();
     check_checked_boxes(checkboxes);
@@ -30,7 +21,7 @@ function getInputCoordinates(input){
 function setDialogCoordinates(window){
     window.style.left = coordinates.left + "px";
     window.style.right = coordinates.right + "px";
-    window.style.top = coordinates.top + 50 + "px";
+    window.style.top= coordinates.bottom + "px";
     window.style.width = coordinates.width + "px";
 }
 window.onresize = function(){
@@ -44,3 +35,4 @@ function check_checked_boxes(checkboxes){
         }
     }
 }
+check_checked_boxes(checkboxes);

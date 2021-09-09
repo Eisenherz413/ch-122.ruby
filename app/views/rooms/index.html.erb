@@ -63,7 +63,6 @@
                  { :class => 'sort-input', :id => 'sort-input' } %>
       <% end %>
     </div>
-
   <div class="container">
     <% if @rooms.empty? %>
       <p class="lead my-3 text-center"><%= t('rooms.index.no-rooms') %></p>
@@ -97,6 +96,7 @@
     <% end %>
     </div>
   <% end %>
+    </ul>
 <% end %>
 
 <div class="pagination" >
@@ -111,7 +111,6 @@
   }, function(start, end, label) {
       $('#check-out-input').val(start.format('YYYY-MM-DD'));
       $('#check-in-input').val(end.format('YYYY-MM-DD'));
-
       $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
   });
 </script>

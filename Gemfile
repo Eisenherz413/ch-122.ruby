@@ -99,6 +99,6 @@ gem 'importmap-rails'
 gem 'stimulus-rails'
 gem 'dropzonejs-rails'
 
-
-
 gem "tailwindcss-rails", "~> 0.4.3"
+#
+gem "rails-ujs"
