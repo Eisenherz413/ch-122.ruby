@@ -66,7 +66,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
     </table>
 
     <div class="pagination-issues" >
-      <%= will_paginate @issues %>
+      <%= will_paginate @issues, :inner_window => 1, :outer_window => 1, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button') %>
     </div>
 
   </div>
