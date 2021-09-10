@@ -109,8 +109,8 @@
       startDate: '<%= check_in_date %>',
       endDate: '<%= check_out_date %>',
   }, function(start, end, label) {
-      $('#check-out-input').val(start.format('YYYY-MM-DD'));
-      $('#check-in-input').val(end.format('YYYY-MM-DD'));
+      $('#check-in-input').val(start.format('YYYY-MM-DD'));
+      $('#check-out-input').val(end.format('YYYY-MM-DD'));
 
       $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
   });
