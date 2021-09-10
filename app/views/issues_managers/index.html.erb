@@ -13,11 +13,11 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
   <div class="col-7">
     <table class="table table-striped">
       <% if Issue.all.empty? %>
-        <h1 class="display-4 fst-italic"> There are no issues yet </h1>
+        <h1 class="display-4 fst-italic"> <%= t('issues.index.no_manager_issues') %> </h1>
       <% else %>
         <thead>
         <tr class="issues">
-          <th scope="col">Room</th>
+          <th scope="col"><%= t('issues.index.room_num') %></th>
           <th scope="col"><%= sortable "category_id", t('global.menu.categories') %></th>
           <th scope="col"><%= t('issues.index.text') %></th>
           <th scope="col"><%= sortable "status", t('issues.index.status')%></th>
@@ -33,7 +33,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
             <td><%= Room.find(Order.where("user_id = ? AND check_out <= ? AND check_in >= ?",
                                           issue.user_id, issue.created_at.to_date, issue.created_at.to_date).first.room_id).number %></td>
             <td><%= t("activerecord.attributes.category.names.#{Category.find(issue.category_id).name}") %></td>
-            <td><%= issue.text %></td>
+            <td class="text-left"><%= issue.text %></td>
             <td>
               <% case issue.status
                  when 'opened' %>
