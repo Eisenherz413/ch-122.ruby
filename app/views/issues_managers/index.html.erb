@@ -30,7 +30,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
         <tbody>
         <tr>
           <% @issues.each do |issue| %>
-            <td><%= Room.find(Order.where("user_id = ? AND check_out <= ? AND check_in >= ?",
+            <td><%= Room.find(Order.where("user_id = ? AND check_in <= ? AND check_out >= ?",
                                           issue.user_id, issue.created_at.to_date, issue.created_at.to_date).first.room_id).number %></td>
             <td><%= t("activerecord.attributes.category.names.#{Category.find(issue.category_id).name}") %></td>
             <td class="text-left"><%= issue.text %></td>
