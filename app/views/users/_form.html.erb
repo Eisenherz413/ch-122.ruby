@@ -1,27 +1,47 @@
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+    <div id="er" class="alert alert-danger" role="alert" style="height: 250px; width: 500px;">
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
+
   <% end %>
+  <table class="tbl" style="margin-top: 100px;">
+    <tr>
+      <div class="field">
+        <td><%= form.label :full_name %></td>
+        <td><%= form.text_field :full_name, readonly: true  %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :email %></td>
+        <td><%= form.text_field :email, readonly: true  %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :role %></td>
+        <td><%= form.text_field :role %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :status %></td>
+        <td><%= form.text_field :status %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="actions">
+        <td></td>
+        <% if !@user.new_record? %>
+          <td><%= form.submit "Update", class: "btn btn-success text-white bottom-0 end-0"%>&nbsp;<%= link_to "Users" , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+        <% end %>
+      </div>
+    </tr>
 
-  <div class="field">
-    <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </table>
 <% end %>
