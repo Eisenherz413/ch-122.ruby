@@ -46,10 +46,10 @@
 
         <ul class="navbar-nav ms-auto h6">
           <li class="nav-item">
-            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link", active: :exact%>
+            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link", active: :exact%>
+            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link"%>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item">

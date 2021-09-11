@@ -88,42 +88,38 @@
   </tr>
 </table>
 <% end %>
+<% if !@room.new_record? %>
 <% if @room.cover.attached? %>
-<div class="uploaded-cover" style="float: right; margin-top: -650px; margin-right: 180px;">
-  <h4>Main image:</h4>
+    <h4 id="main-image-edit">Main image:</h4>
+<div class="uploaded-cover">
   <div style="display: inline-block;">
   <div><%= image_tag @room.cover, size: "200x100" %></div>
-    <% if !@room.new_record? %>
-  <div><%= link_to "Remove", delete_image_attachment_room_url(@room.cover.id), method: :delete %></div>
-    <%#else %>
-<!--      <div><%#= link_to "Remove", ActiveStorage::Blob.last.purge %></div>-->
-      <% end %>
+  <div style="align-items: center;">
+    <%= link_to "Remove", delete_image_attachment_room_url(@room.cover.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }, role: 'button'%>
+  </div>
   </div>
 </div>
   <% else %>
-  <div class="uploaded-cover" style="float: right; margin-top: -600px; margin-right: 160px;">
+  <div class="no-uploaded-cover">
     <h4>No main image attached.</h4>
   </div>
-
 <% end %>
 <% if @room.images.attached? %>
-<div class="uploaded-images" style="float: right; margin-top: -450px; margin-right: 20px;">
-  <h4>Photos:</h4>
+    <h4 id="images-edit">Photos:</h4>
+<div class="uploaded-images" style="float: right; margin-top: -400px; margin-right: 30px;">
   <% @room.images.each do |image| %>
+    <% unless image.id.nil? %>
     <div style="display: inline-block;">
-    <div><%= image_tag image, size: "120x120" %></div>
-      <% if !@room.new_record? %>
-    <div><%= link_to "Remove", delete_image_attachment_room_url(image.id), method: :delete %></div>
-        <%#else %>
-<!--        <div><%#= link_to "Remove", ActiveStorage::Blob.find_signed(image.signed_id) %></div>-->
-        <% end  %>
+    <div><%= image_tag image, class: "room_images_in_edit" %></div>
+    <div><%= link_to "Remove", delete_image_attachment_room_url(image.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }%></div>
     </div>
+      <% end %>
     <% end  %>
 </div>
   <% else %>
-  <div class="uploaded-images" style="float: right; margin-top: -450px; margin-right: 180px;">
+  <div class="no-uploaded-images">
     <h4>No photos attached.</h4>
   </div>
-
+<% end %>
 <% end %>
 

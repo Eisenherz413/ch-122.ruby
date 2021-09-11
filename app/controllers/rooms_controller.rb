@@ -84,12 +84,7 @@ class RoomsController < ApplicationController
   def delete_image_attachment
     attachment = ActiveStorage::Attachment.find(params[:id])
     attachment.purge
-
-    redirect_back(fallback_location: rooms_path)
-  end
-  def delete_blob
-    blob = ActiveStorage::Blob.find_signed(params[:id])
-    blob.purge
+    redirect_back(fallback_location: rooms_path, notice: "Photo was successfully deleted")
   end
   private
 

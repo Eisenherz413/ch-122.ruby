@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'users/sessions#destroy'
   end
   resources :room_images
-  resources :images
   resources :issues
   resources :room_services
   resources :feedbacks
@@ -25,11 +24,16 @@ Rails.application.routes.draw do
     resources :rooms
     resources :services
     resources :categories
+    resources :issues
+    resources :users
+    resources :room_services
+    resources :feedbacks
+    resources :orders
   end
+
   resources :rooms do
     member do
       delete :delete_image_attachment
-      delete :delete_blob
     end
 
   end

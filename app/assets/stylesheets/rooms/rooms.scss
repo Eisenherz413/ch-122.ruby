@@ -100,3 +100,33 @@ label,img,input{
   display: inline-block;
   vertical-align: middle;
 }
+.room_images_in_edit {
+   width: 120px;
+  height: 100px;
+}
+.uploaded-cover {
+  float: right;
+  margin-top: -650px;
+  margin-right: 180px;
+}
+#main-image-edit {
+  float: right;
+  margin-top: -700px;
+  margin-right: 230px;
+}
+#images-edit {
+  float: right;
+  margin-top: -450px;
+  margin-right: 230px;
+}
+.no-uploaded-images {
+  float: right;
+  margin-top: -450px;
+  margin-right: 180px;
+}
+.no-uploaded-cover {
+  float: right;
+  margin-top: -600px;
+  margin-right: 160px;
+
+}

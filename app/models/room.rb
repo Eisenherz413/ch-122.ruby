@@ -13,7 +13,6 @@ class Room < ApplicationRecord
 
   def destroyable?
     Order.all.each do |order|
-      # status = Order.statuses.key(Order.statuses[order.status])
       status = order.status
       return false if status != 'cancelled' && status != 'completed'
     end
@@ -38,9 +37,8 @@ class Room < ApplicationRecord
     if !images.attached?
       return
     end
-    if images.count > 4
-      errors.add(:images, :count)
-    end
+
+    errors.add(:images, :count) if images.count > 4
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     images.each do |image|
     if image.byte_size  > 2.megabyte
