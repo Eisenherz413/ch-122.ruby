@@ -97,6 +97,7 @@ en:
       categories: "Categories"
       room_services: "Room services"
       orders: "Orders"
+      users: "Users"
     forms:
       create_button: "Create"
       all_categories: "All categories"

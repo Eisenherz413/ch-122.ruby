@@ -97,6 +97,7 @@ uk:
       categories: "Категорії"
       room_services: "Сервіси кімнат"
       orders: "Замовлення"
+      users: "Користувачі"
     forms:
       create_button: "Створити"
       all_categories: "Всі категорії"

@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   resources :room_services
   resources :feedbacks
   resources :orders
-  resources :users
   resources :samples
   get :send_order_mail, to: 'rooms#send_order_mail', as: :send_order_mail
 
@@ -26,9 +25,9 @@ Rails.application.routes.draw do
     resources :categories
     resources :issues
     resources :users
-    resources :room_services
-    resources :feedbacks
-    resources :orders
+    # resources :room_services
+    # resources :feedbacks
+    # resources :orders
   end
 
   resources :rooms do
