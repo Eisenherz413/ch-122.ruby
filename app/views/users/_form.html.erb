@@ -38,7 +38,7 @@
       <div class="actions">
         <td></td>
         <% if !@user.new_record? %>
-          <td><%= form.submit "Update", class: "btn btn-success text-white bottom-0 end-0"%>&nbsp;<%= link_to "Users" , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+          <td><%= form.submit t('activerecord.attributes.user.update_user_button'), class: "btn btn-success text-white bottom-0 end-0"%>&nbsp;<%= link_to t('activerecord.attributes.user.all_users_button') , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
         <% end %>
       </div>
     </tr>

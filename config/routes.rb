@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
   root to: redirect('/en/rooms')
-    # Rails.application.routes.draw do
-    # devise_for :users, controllers: {
-    #   sessions: 'users/sessions',
-    #   registrations: 'users/registrations',
-    #   confirmations: 'users/confirmations'
-    # }
-    # end
-
   devise_scope :user do
     get '/users/sign_out' => 'users/sessions#destroy'
   end

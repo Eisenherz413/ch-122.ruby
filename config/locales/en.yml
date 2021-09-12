@@ -89,6 +89,20 @@ en:
       _links:
         already_have_an_account: "Already have an account?"
         dont_have_an_account: "Don't have an account?"
+    index:
+      table_name: "Name"
+      table_date_created_at: "Date created"
+      table_role: "Role"
+      table_status: "Status"
+      table_action: "Action"
+      user_managment: "User managment"
+      pagination:
+        previous: "Previous"
+        next: "Next"
+    edit:
+      editing_user: "User editing"
+
+
 
   global:
     menu:
@@ -127,6 +141,8 @@ en:
         status: "Status"
         password: "Password"
         password_confirmation: "Password Confirmation"
+        update_user_button: "Update"
+        all_users_button: "All users"
       room:
         number: "Number"
         title: "Title"
