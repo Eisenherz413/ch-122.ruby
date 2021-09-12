@@ -61,14 +61,14 @@
               <%#= link_to 'Edit profile', edit_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to t("users.sessions.new.log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
+              <%= active_link_to t("users.sessions.new.log_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
+              <%= active_link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
+              <%= active_link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>

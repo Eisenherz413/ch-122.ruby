@@ -3,7 +3,7 @@ class User < ApplicationRecord
   enum status: %i[active blocked], _default: 'active'
 
   validates :full_name, uniqueness: { case_sensitive: false }, length: { minimum: 2 }, presence: true
-  validates :email, format: {with: /\A[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\z/}, presence: true
+  validates :email, format: {with: /\A[a-z0-9+_.-]+@[a-z0-9.-]+\z/}, presence: true
   validate_enum_attributes :role, message: "Role is not a valid"
   validate_enum_attributes :status, message: "Status is not a valid"
 
