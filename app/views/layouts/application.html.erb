@@ -65,7 +65,7 @@
               <% if (can? :read, Issue) && user_signed_in? %>
                 <li><a><%= link_to t('global.menu.my_issues'), issues_path, class: "dropdown-item" %></a></li>
               <% end %>
-              <li><a><%= link_to t('global.menu.my_orders'), issues_path, class: "dropdown-item" %></a></li>
+              <li><a><%= link_to t('global.menu.my_orders'), orders_path, class: "dropdown-item" %></a></li>
               <li>
                 <div role="separator" class="dropdown-divider"></div>
               </li>
