@@ -99,6 +99,9 @@ GEM
     diff-lcs (1.4.4)
     dropzonejs-rails (0.8.5)
       rails (> 3.1)
+    enum_attributes_validation (0.1.7)
+      activerecord
+      activesupport
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -316,6 +319,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise (~> 4.2)
   dropzonejs-rails
+  enum_attributes_validation
   factory_bot_rails
   importmap-rails
   jbuilder (~> 2.7)

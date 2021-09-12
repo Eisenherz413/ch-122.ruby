@@ -102,3 +102,4 @@ gem 'dropzonejs-rails'
 gem "tailwindcss-rails", "~> 0.4.3"
 #
 gem "rails-ujs"
+gem 'enum_attributes_validation'
