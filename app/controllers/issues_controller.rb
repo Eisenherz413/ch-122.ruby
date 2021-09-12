@@ -1,6 +1,5 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
-
   # GET /issues or /issues.json
   def index
     @issues = Issue.all.order(:status).paginate(:page => params[:page], :per_page => 7)
@@ -48,7 +47,7 @@ class IssuesController < ApplicationController
   def close
     issue = Issue.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
+      format.html { redirect_to issues_managers_url, notice: "You have changed issue status" }
       format.json { head :no_content }
     end
 
