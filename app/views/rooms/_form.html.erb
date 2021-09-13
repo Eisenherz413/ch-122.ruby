@@ -58,8 +58,8 @@
       <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1" >
         <%= form.file_field :cover, direct_upload: true, data: { target: 'dropzone.input' } %>
         <div class="dropzone-msg dz-message needsclick" >
-          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;">Drag here to upload or click here to browse</h3>
-          <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
+          <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
         </div>
       </div></td>
     </div>
@@ -70,8 +70,8 @@
       <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
         <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true%>
         <div class="dropzone-msg dz-message needsclick" >
-          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;">Drag here to upload or click here to browse</h3>
-          <span class="dropzone-msg-desc text-sm">2 MB file size maximum. Allowed file types png, jpg.</span>
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
+          <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
         </div>
       </div></td>
     </div>
@@ -95,13 +95,13 @@
   <div style="display: inline-block;">
   <div><%= image_tag @room.cover, size: "200x100" %></div>
   <div style="align-items: center;">
-    <%= link_to "Remove", delete_image_attachment_room_url(@room.cover.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }, role: 'button'%>
+    <%= link_to t('activerecord.attributes.room.remove'), delete_image_attachment_room_url(@room.cover.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }, role: 'button'%>
   </div>
   </div>
 </div>
   <% else %>
   <div class="no-uploaded-cover">
-    <h4>No main image attached.</h4>
+    <h4><%= t('activerecord.attributes.room.no_cover_attached') %></h4>
   </div>
 <% end %>
 <% if @room.images.attached? %>
@@ -111,14 +111,14 @@
     <% unless image.id.nil? %>
     <div style="display: inline-block;">
     <div><%= image_tag image, class: "room_images_in_edit" %></div>
-    <div><%= link_to "Remove", delete_image_attachment_room_url(image.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }%></div>
+    <div><%= link_to t('activerecord.attributes.room.remove'), delete_image_attachment_room_url(image.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }%></div>
     </div>
       <% end %>
     <% end  %>
 </div>
   <% else %>
   <div class="no-uploaded-images">
-    <h4>No photos attached.</h4>
+    <h4><%= t('activerecord.attributes.room.no_photos_attached') %></h4>
   </div>
 <% end %>
 <% end %>

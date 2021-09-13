@@ -151,6 +151,11 @@ en:
         services: "Services"
         cover: "Main image"
         images: "Photos"
+        remove: "Remove"
+        no_photos_attached: "No photos attached."
+        no_cover_attached: "No main image attached."
+        drag_here_or_click: "Drag here to upload or click here to browse. "
+        allowed_types: "2 MB file size maximum. Allowed file types png, jpg."
     errors:
       models:
         service:
@@ -191,7 +196,22 @@ en:
             images:
               size: "contains file with more than 2 MB"
               format: "can be only JPG, JPEG or PNG"
-              count: "are more than 4"
+              count: "cannot be more than 4"
+        user:
+          attributes:
+            full_name:
+              blank: "cannot be empty"
+              too_short: "is too short(minimum 2 symbols)"
+            email:
+              blank: "cannot be empty"
+              format: "is not right format"
+            role:
+              invalid_enum: "doesnt exist."
+            status:
+              invalid_enum: "doesnt exist."
+
+
+
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

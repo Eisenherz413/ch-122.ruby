@@ -148,6 +148,11 @@ uk:
         services: "Сервіси"
         cover: "Головне фото"
         images: "Фото"
+        remove: "Видалити"
+        no_photos_attached: "Нема завантажених фото."
+        no_cover_attached: "Головне фото не завантажене."
+        drag_here_or_click: "Перетягніть сюди або клікніть для завантаження."
+        allowed_types: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg."
     errors:
       models:
         service:
@@ -186,9 +191,21 @@ uk:
               size: "більше за 2 MB"
               format: "може бути JPEG, JPG чи PNG формату"
             images:
-              size: "містять файл з розмфром більше 2 MB"
+              size: "містять файл з розміром більше 2 MB"
               images: "можуть бути лише JPG, JPEG чи PNG формату"
-              count: "не можу бути більше ніж 4"
+              count: "не може бути більше ніж 4"
+        user:
+          attributes:
+            full_name:
+              blank: "не може бути порожнім"
+              too_short: "занадто коротке(мінімум 2 символи)."
+            email:
+              blank: "не може бути порожнім"
+              format: "неправильного формату"
+            role:
+              invalid_enum: "не існуюча"
+            status:
+              invalid_enum: "не існуючий"
   devise:
     confirmations:
       confirmed: "Email успішно підтверджений."

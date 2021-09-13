@@ -38,8 +38,6 @@
           <td><span class="status text-success">&bull;</span> <%= user.status %></td>
             <% elsif user.status === 'blocked' %>
             <td><span class="status text-warning">&bull;</span> <%= user.status %></td>
-            <% else %>
-            <td><span class="status text-danger">&bull;</span> No status</td>
             <% end %>
           <td>
             <%= link_to edit_user_path(user), class: "settings", title: "Settings" do  %>
@@ -48,7 +46,7 @@
             <%= link_to user, method: :delete,  data: { confirm: 'You cannot restore deleted user, continue?'}, class: "delete", title: "delete" do %>
              <i class="material-icons">&#xE5C9;</i>
               <% end %>
-          </td>
+          </td>W
         </tr>
           <% end %>
         </tbody>
