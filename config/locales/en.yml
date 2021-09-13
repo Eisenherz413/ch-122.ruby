@@ -1,4 +1,27 @@
 en:
+  time:
+    datetime:
+      formats:
+        my_format: "%m/%d/%Y %I:%M %p"
+  issues:
+    index:
+      no_issues: "You haven't created any issues yet :("
+      text: "Text"
+      status: "Status"
+      created_at: "Created at"
+      last_update: "Last Update"
+      new_issue: "New Issue"
+      page_description: "In this section you are able to leave some valuable information
+      Our manager will react as soon as possible and you can follow your issue progress"
+    _form:
+      new_issue: "New Issue"
+      send: "Send"
+      all_issues: "All Issues"
+
+    controller:
+      issue_successfully_created: "Issue was successfully created!"
+
+
   services:
     index:
       add_service: "Add service"
@@ -112,6 +135,10 @@ en:
       room_services: "Room services"
       orders: "Orders"
       users: "Users"
+      issues: "Issues"
+      home: "Home"
+      my_issues: "My Issues"
+      my_orders: "My Orders"
     forms:
       create_button: "Create"
       all_categories: "All categories"
@@ -128,6 +155,16 @@ en:
       category:
         name: "Name"
         description: "Description"
+        names:
+          Advice: "Advice"
+          Breakage: "Breakage"
+          Urgent: "Urgent"
+          Other: "Other"
+        descriptions:
+          Advice_description: "%{category_description}"
+          Breakage_description: "%{category_description}"
+          Urgent_description: "%{category_description}"
+          Other_description: "%{category_description}"
       service:
         name: "Name"
         description: "Description"

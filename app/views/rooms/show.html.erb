@@ -105,14 +105,16 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('rooms.show.modal.cancel') %></button>
-          <%= form_for @order do |f| %>
-            <%= f.hidden_field :check_in, :value => params[:check_in] %>
-            <%= f.hidden_field :check_out, :value => params[:check_out] %>
-            <%= f.hidden_field :total_price, :id => "total-price-input", :value => 22 %>
-            <%= f.hidden_field :room_id, :value => @room.id %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.hidden_field :status, :value => 'processed' %>
-            <%= f.submit t('rooms.show.modal.submit'), :class => "btn btn-primary", :id => "submit-booking-btn" %>
+          <% if user_signed_in? %>
+            <%= form_for @order do |f| %>
+              <%= f.hidden_field :check_in, :value => params[:check_in] %>
+              <%= f.hidden_field :check_out, :value => params[:check_out] %>
+              <%= f.hidden_field :total_price, :id => "total-price-input", :value => 22 %>
+              <%= f.hidden_field :room_id, :value => @room.id %>
+              <%= f.hidden_field :user_id, :value => current_user.id%>
+              <%= f.hidden_field :status, :value => 'processed' %>
+              <%= f.submit t('rooms.show.modal.submit'), :class => "btn btn-primary", :id => "submit-booking-btn" %>
+            <% end %>
           <% end %>
         </div>
       </div>

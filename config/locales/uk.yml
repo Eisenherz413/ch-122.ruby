@@ -1,4 +1,26 @@
 uk:
+  time:
+    datetime:
+      formats:
+        my_format: "%m.%d.%Y %H:%M"
+  issues:
+    index:
+      no_issues: "Немає створених скарг та пропозицій :("
+      text: "Текст"
+      status: "Статус"
+      created_at: "Дата створення"
+      last_update: "Дата оновлення"
+      new_issue: "Cтворити"
+      page_description: "Ви можете залишити повідомлення,
+      наш менеджер зреагує на нього якнайшвидше і Ви побачите оновлення статусу Вашого повідомлення"
+    _form:
+      new_issue: "Нове повідомлення"
+      send: "Надіслати"
+      all_issues: "Всі повідомлення"
+    controller:
+      issue_successfully_created: "Запис успішно створено!"
+
+
   services:
     index:
       add_service: "Додати"
@@ -110,6 +132,10 @@ uk:
       room_services: "Сервіси кімнат"
       orders: "Замовлення"
       users: "Користувачі"
+      issues: "Cкарги та Пропозиції"
+      home: "Головна"
+      my_issues: "Мої повідомлення"
+      my_orders: "Мої бронювання"
     forms:
       create_button: "Створити"
       all_categories: "Всі категорії"
@@ -125,6 +151,16 @@ uk:
       category:
         name: "Назва"
         description: "Опис"
+        names:
+          Advice: "Порада"
+          Breakage: "Несправність"
+          Urgent: "Терміново"
+          Other: "Інше"
+        descriptions:
+          Advice_description: "Ви можете вказати, що підлягає покращенню, в Ваших силах зробити нас кращими!"
+          Breakage_description: "Якщо Ви виявили деяку несправність в Вашому номері, вкажіть про це, ми обіцяємо відреагувати!"
+          Urgent_description: "Якщо Вам знадобилась наша невідкладна допомога, коротко опишіть стан речей, наш менеджер відгукнеться якнайскорше"
+          Other_description: "У випадку, якщо жодна з категорій не пасує Вашому повідомленню, залиште його тут :)"
       user:
         full_name: "ПІБ"
         email: "Email"
