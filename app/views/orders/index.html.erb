@@ -5,7 +5,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
 ">
   <div class="mask mask-custom">
     <h1 class="display-4 fst-italic"><%= t("global.menu.orders") %></h1>
-    <p class="lead my-3"><%= t('issues.index.page_description') %></p>
+    <p class="lead my-3"><%= t('orders.page_description') %></p>
 
   </div>
 </div>
@@ -17,10 +17,10 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       <% else %>
         <thead>
         <tr>
-          <th scope="col">Room</th>
-          <th scope="col">Check in</th>
-          <th scope="col">Check out</th>
-          <th scope="col">Total price</th>
+          <th scope="col"><%= t(".room_num") %></th>
+          <th scope="col"><%= t(".check_in") %></th>
+          <th scope="col"><%= t(".check_out") %></th>
+          <th scope="col"><%= t(".price") %></th>
           <th colspan="4"></th>
         </tr>
         </thead>
@@ -31,11 +31,16 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
             <td><%= Room.find(order.room_id).number %></td>
             <td><%= order.check_in %></td>
             <td><%= order.check_out %></td>
-            <td><%= order.total_price %></td>
+            <td><%= t('orders.price_show', price: order.total_price) %></td>
           </tr>
         <% end %>
         </tbody>
       <% end %>
     </table>
+    <% unless Order.find_by_user_id(current_user.id).nil? %>
+      <div class="pagination-issues">
+        <%= will_paginate @issues, :inner_window => 1, :outer_window => 1, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button') %>
+      </div>
+    <% end %>
   </div>
 </div>
