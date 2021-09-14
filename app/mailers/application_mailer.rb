@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
-  layout 'order_mailer'
+  default from: 'rubygem.hotel@gmail.com'
+  layout 'user_mailer'
 end
