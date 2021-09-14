@@ -25,12 +25,16 @@ uk:
 
   services:
     index:
+      services_title: "Сервіси"
+      services_description: "Сторінка для керування сервісами."
       add_service: "Додати"
       show_rooms: "Кімнати"
       edit: "Редагувати"
       destroy: "Видалити"
       disabled_button_title: "Ви не можете видалити сервіси з активними замовленнями"
     show:
+      show_service_title: "Опис сервісу"
+      description_show_service: "Опис сервісу з кімнатами, які використовують даний сервіс."
       icon_pic: "Іконка"
       icon_url: "Адреса"
       name: "Назва"
@@ -42,7 +46,11 @@ uk:
         price: "Ціна"
         number: "Номер"
     edit:
-      editing_service: "Редагування"
+      editing_service: "Редагування сервісу"
+      editing_service_desription: "Сторінка для редагування сервісу."
+    form:
+      service_form_description: "Сторінка для створення нового сервісу."
+      service_form_title: "Новий сервіс"
   rooms:
     index:
       page-title: "Ruby Hotel"

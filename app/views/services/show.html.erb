@@ -1,9 +1,13 @@
-<div class="container" style="margin-top: 50px">
-  <div class="row">
-    <div class="col-10"></div>
-    <div class="col-2">
-        <%= link_to t('global.forms.all_services'), services_path, class: 'btn btn-primary', role: 'button' %>
-    </div>
+
+    <div style="float: right; margin-top: 20px; margin-right: 20px;"><%= link_to t('global.forms.all_services'), services_path, class: 'btn btn-primary', role: 'button' %></div>
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <h1 class="display-4 fst-italic"><%= t("services.show.show_service_title") %></h1>
+    <p class="lead my-3"><%= t('services.show.description_show_service') %></p>
   </div>
 </div>
 <table class="tbl-2">

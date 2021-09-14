@@ -22,16 +22,18 @@ en:
 
     controller:
       issue_successfully_created: "Issue was successfully created!"
-
-
   services:
     index:
+      services_title: "Services"
+      services_description: "Page for managing room's services"
       add_service: "Add service"
       show_rooms: "Rooms"
       edit: "Edit"
       destroy: "Destroy"
       disabled_button_title: "You cannot delete service with working orders"
     show:
+      show_service_title: "Service description"
+      description_show_service: "Service description with rooms using this service."
       icon_pic: "Icon"
       icon_url: "Icon url"
       name: "Name"
@@ -43,7 +45,12 @@ en:
        price: "Price"
        number: "Number"
     edit:
-      editing_service: "Editing"
+      editing_service: "Editing service"
+      editing_service_desription: "Page for editing service."
+    form:
+      service_form_description: "Page for creating new service."
+      service_form_title: "New service"
+
   rooms:
     index:
       page-title: "Ruby Hotel"
