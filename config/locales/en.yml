@@ -79,6 +79,10 @@ en:
       show_more: "Show more"
       disabled_title: "You cannot delete room with processing orders"
     form:
+      room_form_title: "New room"
+      room_form_description: "Page for creating new room"
+      room_form_title_edit: "Editing room"
+      room_form_description_edit: "Page for editing room"
       create_room: "Create"
       all_rooms: "All rooms"
       update_room: "Update"
@@ -107,7 +111,8 @@ en:
     index:
       category: "Categories"
     edit:
-      editing_category_description: "Editing Category Description"
+      editing_category_description: "Page for editing category description"
+      editing_category_title: "Editing category description"
   users:
     sessions:
       new:
@@ -127,12 +132,14 @@ en:
       table_role: "Role"
       table_status: "Status"
       table_action: "Action"
-      user_managment: "User managment"
+      user_managment: "Users"
+      user_managment_description: "Page for user managment."
       pagination:
         previous: "Previous"
         next: "Next"
     edit:
       editing_user: "User editing"
+      editing_user_description: "Page for editing user."
 
   global:
     menu:

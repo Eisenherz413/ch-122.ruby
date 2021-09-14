@@ -84,6 +84,10 @@ uk:
       update_room: "Зберегти"
       new_room: "Нова кімната"
       editing_room: "Редагування кімнати"
+      room_form_title: "New room"
+      room_form_description: "Page for creating new room"
+      room_form_title_edit: "Editing room"
+      room_form_description_edit: "Page for editing room"
     show:
       room: "Кімната"
       description: "У готелі є багато сучасних номерів у європейському стилі. Вишукані теплі кольори роблять кімнату тихим притулком затишку з прекрасним краєвидом."
@@ -108,7 +112,8 @@ uk:
     index:
       category: "Категорії"
     edit:
-      editing_category_description: "Редагування опису"
+      editing_category_description: "Сторінка для редагування опису катігорії."
+      editing_category_title: "Редагування опису категорії"
   users:
     sessions:
       new:
@@ -128,12 +133,14 @@ uk:
       table_role: "Роль"
       table_status: "Статус"
       table_action: "Дія"
-      user_managment: "Керування користувачами"
+      user_managment: "Користувачі"
+      user_managment_description: "Сторінка для редагування користувачів."
       pagination:
         previous: "Попередня"
         next: "Наступна"
     edit:
       editing_user: "Редагування користувача"
+      editing_user_description: "Сторінка для редагування користувача."
   global:
     menu:
       services: "Сервіси"

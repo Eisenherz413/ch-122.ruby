@@ -12,8 +12,8 @@ class Room < ApplicationRecord
   has_many_attached :images
 
   def destroyable?
-    Order.all.each do |order|
-      status = order.status
+    orders.each do |order|
+       status = order.status
       return false if status != 'cancelled' && status != 'completed'
     end
   end
