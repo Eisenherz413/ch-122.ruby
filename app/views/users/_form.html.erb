@@ -13,26 +13,42 @@
     <tr>
       <div class="field">
         <td><%= form.label :full_name %></td>
-        <td><%= form.text_field :full_name, readonly: true %></td>
+        <% if @user.role == 'admin' %>
+        <td><%= form.text_field :full_name%></td>
+          <% else %>
+          <td><%= form.text_field :full_name, readonly: true %></td>
+          <% end %>
       </div>
     </tr>
     <tr>
       <div class="field">
         <td><%= form.label :email %></td>
-        <td><%= form.text_field :email, readonly: true  %></td>
+        <% if @user.role == 'admin' %>
+        <td><%= form.text_field :email %></td>
+          <% else %>
+          <td><%= form.text_field :email, readonly: true %></td>
+          <% end %>
+
       </div>
     </tr>
-    <tr>
-      <div class="field">
-        <td><%= form.label :role %></td>
-        <td><%= form.text_field :role %></td>
-      </div>
+    <tr><td></td>
+      <% if @user.role == 'user'%>
+      <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'user'), {}, {class: "form-select"}) %></td>
+        <% elsif @user.role == 'manager' %>
+        <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'manager'), {}, {class: "form-select"}) %></td>
+        <% else %>
+        <td><%= form.select(:role, options_for_select([[User.roles.key(2), 'admin']], 'admin'), {class: "form-select"}, disabled: true) %></td>
+        <% end %>
     </tr>
     <tr>
-      <div class="field">
-        <td><%= form.label :status %></td>
-        <td><%= form.text_field :status %></td>
-      </div>
+      <td></td>
+      <% if @user.role == "admin" %>
+      <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active']],'active'), {class: "form-select"}, disabled: true) %></td>
+      <% elsif @user.status == "active" %>
+       <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active'], [User.statuses.key(1), 'blocked']], 'active'), {}, {class: "form-select"}) %></td>
+        <% elsif @user.status == "blocked"%>
+        <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active'], [User.statuses.key(1), 'blocked']], 'blocked'), {}, {class: "form-select"}) %></td>
+        <% end %>
     </tr>
     <tr>
       <div class="actions">

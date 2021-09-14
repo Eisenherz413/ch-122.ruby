@@ -13,11 +13,11 @@ Rails.application.routes.draw do
     resources :issues
     resources :feedbacks
     resources :orders
-      devise_for  :users do
-        resources :registrations
-        resources :sessions
-        resources :confirmations
-      end
+    devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations'
+    }
     resources :users
   end
 
