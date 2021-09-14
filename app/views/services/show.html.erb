@@ -12,7 +12,7 @@
     <td><p class="h5"><%= image_tag(@service.icon_url)%></p></td>
   </tr>
   <tr>
-    <td><p class="hrooms_using_this_service4"><%= t('services.show.icon_url') %></p></td>
+    <td><p class="h4"><%= t('services.show.icon_url') %></p></td>
     <td><p class="h5"><%= @service.icon_url %></p></td>
   </tr>
 <tr>
@@ -27,11 +27,11 @@
 
 <div class="row justify-content-center">
   <% if @service.rooms.empty? %>
-    <h4 style="margin-top: 30px; color: red; text-align: center;"><%= t('services.show.there_are_no_rooms_using_this_service') %></h4>
+    <h3 style="margin-top: 30px; color: red; text-align: center;"><%= t('services.show.there_are_no_rooms_using_this_service') %></h3>
     <% else %>
-    <h4 style="margin-top: 30px; text-align: center;"><%= t('services.show.rooms_using_this_service') %></h4>
+    <h3 style="margin-top: 30px; text-align: center;"><%= t('services.show.rooms_using_this_service') %></h3>
 <div class="col-4">
-<table class="table table-hover" style="margin-top: 40px">
+  <table class="table table-hover" style="margin-top: 40px">
   <thead>
   <tr>
     <td class="h4">#</td>

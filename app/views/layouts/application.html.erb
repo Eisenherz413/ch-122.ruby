@@ -47,7 +47,7 @@
             </li>
           <% elsif user_signed_in? %>
             <li class="nav-item">
-              <%= active_link_to t('global.menu.home'), root_path, class: "nav-link" %>
+              <%= active_link_to t('global.menu.home'), rooms_path, class: "nav-link", active: :exclusive%>
             </li>
           <% end %>
         </ul>

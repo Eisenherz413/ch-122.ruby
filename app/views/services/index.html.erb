@@ -36,5 +36,8 @@
     <% end %>
       </div>
 </section>
+<div class="pagination" >
+  <%= will_paginate @services, previous_label:  t('users.index.pagination.previous'), next_label: t('users.index.pagination.next'), list_classes: %w(pagination justify-content-end), :inner_window => 1, :outer_window => 1 %>
+</div>
 
 

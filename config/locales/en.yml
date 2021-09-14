@@ -46,7 +46,7 @@ en:
       editing_service: "Editing"
   rooms:
     index:
-      page-title: "Rooms"
+      page-title: "Ruby Hotel"
       page-description: "The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit."
       search:
         check-in-out: "CHECK IN/CHECK OUT"

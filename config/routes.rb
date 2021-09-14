@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :issues_manager_controllers
     resources :issues_managers
     devise_scope :user do
-      get '/users/sign_out' => 'users/sessions#destroy'
+      get 'users/sign_out' => 'users/sessions#destroy'
     end
     devise_for :users, controllers: {
       sessions: 'users/sessions',
