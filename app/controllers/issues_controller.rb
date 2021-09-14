@@ -3,15 +3,18 @@ class IssuesController < ApplicationController
   # GET /issues or /issues.json
   def index
     @issues = Issue.all.order(:status).paginate(:page => params[:page], :per_page => 7)
+    authorize! :read, @issues
   end
 
   # GET /issues/1 or /issues/1.json
   def show
+    authorize! :read, Issue
   end
 
   # GET /issues/new
   def new
     @issue = Issue.new
+    authorize! :create, Issue
   end
 
   # GET /issues/1/edit
@@ -31,6 +34,7 @@ class IssuesController < ApplicationController
         format.json { render json: @issue.errors, status: :unprocessable_entity }
       end
     end
+    authorize! :create, Issue
   end
 
   def mark_closed
