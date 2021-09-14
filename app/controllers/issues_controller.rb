@@ -3,7 +3,7 @@ class IssuesController < ApplicationController
 
   # GET /issues or /issues.json
   def index
-    @issues = Issue.all.order(:status).first(10)
+    @issues = Issue.all.order(:status).paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /issues/1 or /issues/1.json
@@ -43,6 +43,26 @@ class IssuesController < ApplicationController
 
     issue.update_attribute('status', 2)
 
+  end
+
+  def close
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
+      format.json { head :no_content }
+    end
+
+    issue.update_attribute('status', 2)
+
+  end
+
+  def proceed
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
+      format.json { head :no_content }
+    end
+    issue.update_attribute('status', 1)
   end
 
   # PATCH/PUT /issues/1 or /issues/1.json

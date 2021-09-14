@@ -18,7 +18,7 @@ class Ability
         can :manage, :all
       end
 
-      if Order.order('created_at DESC').where("user_id = ? AND check_out < ? AND check_in > ?",
+      if Order.order('created_at DESC').where("user_id = ? AND check_in <= ? AND check_out >= ?",
                                               user.id, Date.today, Date.today).count > 0
         can :create, Issue
       end

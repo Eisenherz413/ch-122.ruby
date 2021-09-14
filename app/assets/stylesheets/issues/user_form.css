@@ -20,9 +20,14 @@
 }
 .table td {
     text-align: center;
+    font-size: 18px;
+}
+.table td.text-left {
+    text-align: left;
 }
 .table th {
     text-align: center;
+    font-size: 22px;
 }
 .buttons_new_issue {
     text-align: right;
