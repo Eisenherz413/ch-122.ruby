@@ -15,6 +15,7 @@ en:
       no_manager_issues: "There are no issues :("
       page_description: "In this section you are able to leave some valuable information
       Our manager will react as soon as possible and you can follow your issue progress"
+      manager_page_description: "Here you are able to view users issues as same as manage particular issue status"
     _form:
       new_issue: "New Issue"
       send: "Send"
@@ -106,8 +107,9 @@ en:
   categories:
     index:
       category: "Categories"
+      page_description: "In this section you are able to edit category description"
     edit:
-      editing_category_description: "Editing Category Description"
+      editing_category_description: "Edit Category"
   users:
     sessions:
       new:

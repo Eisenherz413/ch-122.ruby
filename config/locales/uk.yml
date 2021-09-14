@@ -15,6 +15,7 @@ uk:
       new_issue: "Cтворити"
       page_description: "Ви можете залишити повідомлення,
       наш менеджер зреагує на нього якнайшвидше і Ви побачите оновлення статусу Вашого повідомлення"
+      manager_page_description: "Ви можете переглянути повідомлення користувачів та кувати статусом повідомлення"
     _form:
       new_issue: "Нове повідомлення"
       send: "Надіслати"
@@ -107,8 +108,9 @@ uk:
   categories:
     index:
       category: "Категорії"
+      page_description: "На цій сторінці Ви можете змінити опис відповідної категорії"
     edit:
-      editing_category_description: "Редагування опису"
+      editing_category_description: "Редагування Категорій"
   users:
     sessions:
       new:
