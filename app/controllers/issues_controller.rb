@@ -3,7 +3,7 @@ class IssuesController < ApplicationController
 
   # GET /issues or /issues.json
   def index
-    @issues = Issue.all
+    @issues = Issue.all.order(:status).paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /issues/1 or /issues/1.json
@@ -25,13 +25,44 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: "Issue was successfully created." }
-        format.json { render :show, status: :created, location: @issue }
+        format.html { redirect_to issues_url, notice: t('.controller.issue_successfully_created') }
+        format.json { render :index, status: :created, location: @issue }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @issue.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def mark_closed
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_url, notice: "Issue was successfully closed" }
+      format.json { head :no_content }
+    end
+
+    issue.update_attribute('status', 2)
+
+  end
+
+  def close
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
+      format.json { head :no_content }
+    end
+
+    issue.update_attribute('status', 2)
+
+  end
+
+  def proceed
+    issue = Issue.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to issues_managers_url, notice: "You have changed issues status" }
+      format.json { head :no_content }
+    end
+    issue.update_attribute('status', 1)
   end
 
   # PATCH/PUT /issues/1 or /issues/1.json
@@ -57,13 +88,14 @@ class IssuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def issue_params
-      params.require(:issue).permit(:category_id, :user_id, :text, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def issue_params
+    params.require(:issue).permit(:category_id, :user_id, :text, :status)
+  end
 end

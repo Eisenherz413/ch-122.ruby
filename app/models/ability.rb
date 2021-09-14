@@ -6,6 +6,9 @@ class Ability
   def initialize(user)
 
       user ||= User.new # guest user (not logged in)
+      if user.role == 'user'
+        can :read, Issue
+      end
       if user.role == 'manager'
         can :manage, Category
         can :manage, Room
@@ -13,6 +16,11 @@ class Ability
       end
       if user.role == 'admin'
         can :manage, :all
+      end
+
+      if Order.order('created_at DESC').where("user_id = ? AND check_in <= ? AND check_out >= ?",
+                                              user.id, Date.today, Date.today).count > 0
+        can :create, Issue
       end
     #
     # The first argument to `can` is the action you are giving the user

@@ -1,0 +1,73 @@
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <h1 class="display-4 fst-italic"><%= t("global.menu.issues") %></h1>
+    <p class="lead my-3"><%= t('issues.index.page_description') %></p>
+
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-7">
+    <table class="table table-striped">
+      <% if Issue.all.empty? %>
+        <h1 class="display-4 fst-italic"> <%= t('issues.index.no_manager_issues') %> </h1>
+      <% else %>
+        <thead>
+        <tr class="issues">
+          <th scope="col"><%= t('issues.index.room_num') %></th>
+          <th scope="col"><%= sortable "category_id", t('global.menu.categories') %></th>
+          <th scope="col"><%= t('issues.index.text') %></th>
+          <th scope="col"><%= sortable "status", t('issues.index.status')%></th>
+          <th scope="col"><%= sortable "created_at", t('issues.index.created_at') %></th>
+          <th scope="col"><%= sortable "updated_at", t('issues.index.last_update') %></th>
+          <th colspan="7"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <% @issues.each do |issue| %>
+            <td><%= Room.find(Order.where("user_id = ? AND check_in <= ? AND check_out >= ?",
+                                          issue.user_id, issue.created_at.to_date, issue.created_at.to_date).first.room_id).number %></td>
+            <td><%= t("activerecord.attributes.category.names.#{Category.find(issue.category_id).name}") %></td>
+            <td class="text-left"><%= issue.text %></td>
+            <td>
+              <% case issue.status
+                 when 'opened' %>
+                <%= fa_icon "battery-empty lg", :title => 'just opened' %>
+              <% when 'in_progress' %>
+                <%= fa_icon "battery-half lg", :title => 'in progress' %>
+              <% when 'done' %>
+                <%= fa_icon "battery-full lg", :title => 'closed' %>
+              <% end %>
+            <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
+            <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
+            <td>
+              <%= link_to_if issue.status == 'opened', (fa_icon "play lg"), issues_proceed_path(:id => issue.id),
+                          data: { confirm: 'Issue will be marked as in progress. Continue?' },
+                          :title => 'Proceed' do %>
+                <%= fa_icon "play lg" %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to_if issue.status != 'done', (fa_icon 'stop lg'), issues_close_path(:id => issue.id),
+                          data: { confirm: 'Issue will be marked as closed. Continue?' },
+                          :title => 'Close', disabled: true do %>
+                <%= fa_icon "stop lg" %>
+              <% end %>
+            </td>
+            </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="pagination-issues" >
+      <%= will_paginate @issues, :inner_window => 1, :outer_window => 1, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button') %>
+    </div>
+
+  </div>
+</div>
