@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
                                                               message: 'should not start from a digit' },
                           allow_blank: true
   has_many :issues
-  enum name: [:Advice, :Breakage, :Urgent, :Other, :Other2]
+  enum name: [:Urgent, :Breakage, :Advice, :Other]
 
   def translated_name
     I18n.t(name, :scope => 'activerecord.attributes.category.names')

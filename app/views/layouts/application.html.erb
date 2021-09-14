@@ -21,67 +21,76 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <%= javascript_importmap_tags %>
-  </head>
-  <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <div class="container-fluid">
-        <div class="navbar-collapse collapse" id="collapseNavbar">
-            <ul class="navbar-nav h6">
-              <% if can? :manage, Category %>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.services'),services_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.rooms'),rooms_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link"%>
-              </li>
-              <li class="nav-item">
-                <%= active_link_to t('global.menu.users'), users_path, class: "nav-link"%>
-              </li>
-            </ul>
-          <% end %>
-        </div>
-
-        <ul class="navbar-nav ms-auto h6">
-          <li class="nav-item">
-            <%= active_link_to "EN", url_for(locale: :en), class: "nav-link"%>
-          </li>
-          <li class="nav-item">
-            <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link"%>
-          </li>
-          <% if user_signed_in? %>
-            <div class="dropdown">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= current_user.email %>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <% if (can? :read, Issue) && user_signed_in? %>
-                  <li><a><%= link_to t('global.menu.my_issues'), issues_path, class: "dropdown-item" %></a></li>
-                <% end %>
-                <li><a><%= link_to t('global.menu.my_orders'), issues_path, class: "dropdown-item" %></a></li>
-                <li>
-                  <div role="separator" class="dropdown-divider"></div>
-                </li>
-                <li>
-                  <a><%= link_to t("users.sessions.new.log_out"), destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
-                </li>
-              </ul>
-            </div>
-
-          <% else %>
+  <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"></script>-->
+  <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-multidatespicker/1.6.6/jquery-ui.multidatespicker.css"></script>-->
+</head>
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse" id="collapseNavbar">
+        <ul class="navbar-nav h6">
+          <% if can? :manage, Category %>
             <li class="nav-item">
-              <%= active_link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
+              <%= active_link_to t('global.menu.services'), services_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= active_link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
+              <%= active_link_to t('global.menu.rooms'), rooms_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.categories'), categories_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.users'), users_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.issues'), issues_managers_path, class: "nav-link" %>
+            </li>
+          <% elsif user_signed_in? %>
+            <li class="nav-item">
+              <%= active_link_to t('global.menu.home'), root_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>
       </div>
-    </nav>
-  </header>
+
+      <ul class="navbar-nav ms-auto h6">
+        <li class="nav-item">
+          <%= active_link_to "EN", url_for(locale: :en), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to 'UK', url_for(locale: :uk), class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <% if (can? :read, Issue) && user_signed_in? %>
+                <li><a><%= link_to t('global.menu.my_issues'), issues_path, class: "dropdown-item" %></a></li>
+              <% end %>
+              <li><a><%= link_to t('global.menu.my_orders'), issues_path, class: "dropdown-item" %></a></li>
+              <li>
+                <div role="separator" class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a><%= link_to t("users.sessions.new.log_out"), destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
+              </li>
+            </ul>
+          </div>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to t("users.sessions.new.sign_up"), new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t("users.sessions.new.log_in"), new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
 <body>
 <% unless flash.empty? %>
   <script type="text/javascript">
