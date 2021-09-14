@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   before_action :set_locale
-  around_action :switch_locale
+  # around_action :switch_locale
   after_action :store_action
   private
 

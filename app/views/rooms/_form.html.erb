@@ -72,10 +72,18 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       <td><%= form.label :cover %></td>
       <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1" >
         <%= form.file_field :cover, direct_upload: true, data: { target: 'dropzone.input' } %>
+        <% if !@room.cover.attached?%>
         <div class="dropzone-msg dz-message needsclick" >
           <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
           <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types_cover')  %></span>
         </div>
+          <% else %>
+          <div class="dropzone-msg dz-message needsclick" >
+            <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.if_cover_attached') %></h3>
+            <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types_cover')  %></span>
+          </div>
+          <% end %>
+
       </div></td>
     </div>
   </tr>
@@ -84,10 +92,17 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       <td><%= form.label :images %></td>
       <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
         <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true%>
+        <% if !@room.images.attached?%>
         <div class="dropzone-msg dz-message needsclick" >
           <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
           <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
         </div>
+          <% else %>
+          <div class="dropzone-msg dz-message needsclick" >
+            <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click_if_attached') %></h3>
+            <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
+          </div>
+          <% end %>
       </div></td>
     </div>
   </tr>

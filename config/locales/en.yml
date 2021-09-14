@@ -206,7 +206,9 @@ en:
         no_photos_attached: "No photos attached."
         no_cover_attached: "No main image attached."
         drag_here_or_click: "Drag here to upload or click here to browse. "
+        drag_here_or_click_if_attached: "If there are 4 uploaded images, remove them before upload."
         allowed_types: "2 MB file size maximum. Allowed file types png, jpg. Maximum 4 photos."
+        if_cover_attached: "Drag here to upload or click here to change main image. "
         allowed_types_cover: "2 MB file size maximum. Allowed file types png, jpg. Maximum 1 photo."
     errors:
       models:
