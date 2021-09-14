@@ -22,6 +22,14 @@ uk:
     controller:
       issue_successfully_created: "Запис успішно створено!"
 
+  orders:
+      page_description: "Тут ви можете знайти відображення Ваших бронювань та деяку додаткову інформацію"
+      no_orders: "Бронювання відсутні"
+      room_num: "Номер"
+      check_in: "Дата заїзду"
+      check_out: "Дата виїзду"
+      price: "Загалом"
+      price_show: "%{price}€"
 
   services:
     index:
