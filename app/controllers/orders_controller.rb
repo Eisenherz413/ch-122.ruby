@@ -25,12 +25,12 @@ class OrdersController < ApplicationController
       @order = Order.new(order_params)
     respond_to do |format|
         if @order.save && orders.length == 0
-          UserMailer.with(order: @order).new_order_email.deliver_later
+          UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
           flash[:success] = "Thank you for your order! We'll get contact you soon!"
           format.html { redirect_to @room, alert: "Order was successfully created."  }
           format.json { render :show, status: :created, location: @order }
         elsif orders.length > 0
-          UserMailer.with(order: @order).new_order_email.deliver_later
+          UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
           format.html { redirect_to request.referer, alert: "Order was not successfully created." }
           format.json { render :show, status: :conflict, location: @room }
         else
