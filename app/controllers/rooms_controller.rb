@@ -45,7 +45,7 @@ class RoomsController < ApplicationController
             @room.services << service
           end
         end
-        format.html { redirect_to @room, notice: "Room was successfully created"}
+        format.html { redirect_to new_room_url, notice: "Room was successfully created"}
         format.json { render :show, status: :created, location: @room }
 
       else
@@ -60,7 +60,7 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room }
+        format.html { redirect_to edit_room_url, notice: "Room was successfully updated" }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit, status: :unprocessable_entity }

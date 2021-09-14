@@ -323,8 +323,8 @@ DEPENDENCIES
   dropzonejs-rails
   enum_attributes_validation
   factory_bot_rails
-  importmap-rails
   font-awesome-rails
+  importmap-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)

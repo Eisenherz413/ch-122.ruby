@@ -3,15 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   private
-  #
-  # def set_locale
-  #   I18n.locale = params[:locale] || I18n.default_locale
-  # end
+
 
   def default_url_options
     { locale: I18n.locale }
   end
-  # around_action :switch_locale
   after_action :store_action
 
   private
@@ -34,19 +30,19 @@ class ApplicationController < ActionController::Base
                     locale :
                     I18n.default_locale
   end
-  #
-  # def default_url_options
-  #   {locale: I18n.locale}
-  # end
-  # def extract_locale
-  #   parsed_locale = params[:locale]
-  #   I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
-  #     # parsed_locale.to_sym :
-  # end
-  # def switch_locale(&action)
-  #   locale = params[:locale] || I18n.default_locale
-  #   I18n.with_locale(locale, &action)
-  # end
-  # respond_to :html, :json
+
+  def default_url_options
+    {locale: I18n.locale}
+  end
+  def extract_locale
+    parsed_locale = params[:locale]
+    I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
+      # parsed_locale.to_sym :
+  end
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
+  respond_to :html, :json
 
 end

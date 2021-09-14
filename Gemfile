@@ -104,3 +104,4 @@ gem "rails-ujs"
 gem 'enum_attributes_validation'
 
 gem "font-awesome-rails"
+

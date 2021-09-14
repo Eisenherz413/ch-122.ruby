@@ -33,7 +33,7 @@
     </tr>
     <tr><td></td>
       <% if @user.role == 'user'%>
-      <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'user'), {}, {class: "form-select"}) %></td>
+      <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'user'), {}, {class: "form-select", id: "sel"}) %></td>
         <% elsif @user.role == 'manager' %>
         <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'manager'), {}, {class: "form-select"}) %></td>
         <% else %>
@@ -53,9 +53,11 @@
     <tr>
       <div class="actions">
         <td></td>
-        <% if !@user.new_record? %>
+        <% if !@user.new_record?%>
           <td><%= form.submit t('activerecord.attributes.user.update_user_button'), class: "btn btn-success text-white bottom-0 end-0"%>&nbsp;<%= link_to t('activerecord.attributes.user.all_users_button') , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
-        <% end %>
+            <% else %>
+            <td><%= form.submit t('activerecord.attributes.user.update_user_button'), class: "btn btn-success text-white bottom-0 end-0", disabled: true%>&nbsp;<%= link_to t('activerecord.attributes.user.all_users_button') , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+          <% end %>
       </div>
     </tr>
 

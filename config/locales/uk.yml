@@ -188,7 +188,8 @@ uk:
         no_photos_attached: "Нема завантажених фото."
         no_cover_attached: "Головне фото не завантажене."
         drag_here_or_click: "Перетягніть сюди або клікніть для завантаження."
-        allowed_types: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg."
+        allowed_types: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg. Максимум 4 фото."
+        allowed_types_cover: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg. Максимум 1 фото."
     errors:
       models:
         service:
@@ -226,6 +227,7 @@ uk:
             cover:
               size: "більше за 2 MB"
               format: "може бути JPEG, JPG чи PNG формату"
+              count: "моде бути лише одна"
             images:
               size: "містять файл з розміром більше 2 MB"
               images: "можуть бути лише JPG, JPEG чи PNG формату"

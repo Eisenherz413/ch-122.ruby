@@ -192,7 +192,8 @@ en:
         no_photos_attached: "No photos attached."
         no_cover_attached: "No main image attached."
         drag_here_or_click: "Drag here to upload or click here to browse. "
-        allowed_types: "2 MB file size maximum. Allowed file types png, jpg."
+        allowed_types: "2 MB file size maximum. Allowed file types png, jpg. Maximum 4 photos."
+        allowed_types_cover: "2 MB file size maximum. Allowed file types png, jpg. Maximum 1 photo."
     errors:
       models:
         service:
@@ -230,10 +231,11 @@ en:
             cover:
               size: "more than 2 MB"
               format: "can be only JPG, JPEG or PNG"
+              count: "is not allowed more than 1."
             images:
               size: "contains file with more than 2 MB"
               format: "can be only JPG, JPEG or PNG"
-              count: "cannot be more than 4"
+              count: "are not allowed more than 4."
         user:
           attributes:
             full_name:

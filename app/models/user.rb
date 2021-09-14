@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validate_enum_attributes :role
   validate_enum_attributes :status
 
-
   has_many :issues
   has_many :feedbacks
   has_many :orders
