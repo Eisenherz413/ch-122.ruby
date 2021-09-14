@@ -31,7 +31,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
           <% @issues.each do |issue| %>
             <% if issue.user == current_user %>
               <td><%= t("activerecord.attributes.category.names.#{Category.find(issue.category_id).name}") %></td>
-              <td><%= issue.text %></td>
+              <td class="text-left"><%= issue.text %></td>
               <td>
                 <% case issue.status
                    when 'opened' %>
