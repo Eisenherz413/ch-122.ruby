@@ -4,11 +4,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-
   def default_url_options
     { locale: I18n.locale }
   end
-  after_action :store_action
+  # after_action :store_action
 
   private
 

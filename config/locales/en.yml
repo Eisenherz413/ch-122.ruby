@@ -127,8 +127,6 @@ en:
     edit:
       editing_user: "User editing"
 
-
-
   global:
     menu:
       services: "Services"
@@ -250,9 +248,6 @@ en:
               invalid_enum: "doesnt exist."
             status:
               invalid_enum: "doesnt exist."
-
-
-
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
