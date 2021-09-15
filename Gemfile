@@ -95,3 +95,7 @@ gem 'cancancan'
 gem 'toastr-rails'
 
 gem "font-awesome-rails"
+
+group :development, :test do
+  gem 'dotenv-rails'
+end
