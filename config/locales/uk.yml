@@ -24,6 +24,7 @@ uk:
       issue_successfully_created: "Запис успішно створено!"
 
   orders:
+    index:
       page_description: "Тут ви можете знайти відображення Ваших бронювань та деяку додаткову інформацію"
       no_orders: "Бронювання відсутні"
       room_num: "Номер"
