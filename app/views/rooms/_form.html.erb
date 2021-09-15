@@ -50,23 +50,37 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
     <td><%= form.text_field :price %></td>
   </div>
   </tr>
+<!--  <tr>-->
+<!--    <div class="field">-->
+<!--      <td><label for="services"><%#= t('activerecord.attributes.room.services') %></label></td>-->
+<!--      <td><input type="text" id="services" name="services" autocomplete="off"></td>-->
+<!--    </div>-->
+<!--  </tr>-->
   <tr>
     <div class="field">
       <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
-      <td><input type="text" id="services" name="services" autocomplete="off"></td>
+<!--    <td><select class="select" multiple>-->
+     <td> <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
+              <div class="checkbox" style="display: inline-block;">
+      <%= b.check_box %>
+      <%#= image_tag(b.object.icon_url) %>
+      <%= b.label class:'labels' %>
+              </div>
+       <% end %></td>
+<!--    </select> </td>-->
     </div>
-    <dialog id="dialog_window">
-      <img src="/assets/exit_button.png" id="close">
-      <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
-        <div class="checkbox" style="display: block;">
-          <%= b.check_box %>
-          <%= image_tag(b.object.icon_url) %>
-          <%= b.label class:'labels' %>
-        </div>
-      <% end %>
-    </dialog>
-    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
   </tr>
+<!--    <dialog id="dialog_window">-->
+<!--      <img src="/assets/exit_button.png" id="close">-->
+      <%#= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
+<!--        <div class="checkbox" style="display: block;">-->
+          <%#= b.check_box %>
+          <%#= image_tag(b.object.icon_url) %>
+          <%#= b.label class:'labels' %>
+<!--        </div>-->
+      <%# end %>
+<!--    </dialog>-->
+    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
   <tr>
     <div class="field">
       <td><%= form.label :cover %></td>

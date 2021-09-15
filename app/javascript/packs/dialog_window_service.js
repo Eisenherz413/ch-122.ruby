@@ -21,7 +21,8 @@ function getInputCoordinates(input){
 function setDialogCoordinates(window){
     window.style.left = coordinates.left + "px";
     window.style.right = coordinates.right + "px";
-    window.style.top= coordinates.bottom + "px";
+    window.style.top =  coordinates.bottom + 100 + "px";
+
     window.style.width = coordinates.width + "px";
 }
 window.onresize = function(){
@@ -36,3 +37,4 @@ function check_checked_boxes(checkboxes){
     }
 }
 check_checked_boxes(checkboxes);
+setDialogCoordinates(dialog_window);
