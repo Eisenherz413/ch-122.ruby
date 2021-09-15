@@ -21,8 +21,8 @@
       <input id="input-datepicker" class="search-form-input">
     </div>
 
-    <%= f.date_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input' %>
-    <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input' %>
+    <%= f.date_field :orders_check_out_gt, class: 'search-form-input date-input', id: 'check-out-input', :value => Time.now.strftime('%Y-%m-%d') %>
+    <%= f.date_field :orders_check_in_lt, class: 'search-form-input date-input', id: 'check-in-input', :value => Time.now.strftime('%Y-%m-%d') %>
 
     <div class="search-input">
       <p><%= f.label :capacity, t('rooms.index.search.capacity') %></p>
@@ -46,11 +46,12 @@
       <%= f.submit t('rooms.index.search.submit'), class: 'btn btn-primary', id: 'search-button' %>
     </div>
 
-    <div class="advance-search-button">
-      <%= button_to t('rooms.index.search.clear-filters'), rooms_path,
-                    :class => "btn btn-primary clear-filters", :method => :get %>
-    </div>
+      <div class="advance-search-button">
+        <%= button_to t('rooms.index.search.clear-filters'), rooms_path,
+                      :class => "btn btn-primary clear-filters", :method => :get %>
+      </div>
   </div>
+
     <div class="sort-container">
       <% unless @rooms.size < 2 %>
         <%= f.select :sorts,
