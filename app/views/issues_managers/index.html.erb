@@ -5,7 +5,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
 ">
   <div class="mask mask-custom">
     <h1 class="display-4 fst-italic"><%= t("global.menu.issues") %></h1>
-    <p class="lead my-3"><%= t('issues.index.page_description') %></p>
+    <p class="lead my-3"><%= t('issues.index.manager_page_description') %></p>
 
   </div>
 </div>
@@ -49,14 +49,12 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
               <%= link_to_if issue.status == 'opened', (fa_icon "play lg"), issues_proceed_path(:id => issue.id),
                           data: { confirm: 'Issue will be marked as in progress. Continue?' },
                           :title => 'Proceed' do %>
-                <%= fa_icon "play lg" %>
               <% end %>
             </td>
             <td>
               <%= link_to_if issue.status != 'done', (fa_icon 'stop lg'), issues_close_path(:id => issue.id),
                           data: { confirm: 'Issue will be marked as closed. Continue?' },
                           :title => 'Close', disabled: true do %>
-                <%= fa_icon "stop lg" %>
               <% end %>
             </td>
             </tr>

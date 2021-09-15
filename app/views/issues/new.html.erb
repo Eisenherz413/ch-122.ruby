@@ -1,2 +1,15 @@
 
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <h1 class="display-4 fst-italic"><%= t('issues._form.new_issue') %></h1>
+    <p class="lead my-3"><%= t('issues.index.manager_page_description') %></p>
+
+  </div>
+</div>
+
+
 <%= render 'form', issue: @issue %>
