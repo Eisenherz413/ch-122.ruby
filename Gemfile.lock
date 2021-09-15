@@ -322,12 +322,9 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   devise (~> 4.2)
-<<<<<<< HEAD
   dropzonejs-rails
   enum_attributes_validation
-=======
   dotenv-rails
->>>>>>> e7f0d3292efd2b7cb52900e28980a825c62174af
   factory_bot_rails
   font-awesome-rails
   importmap-rails
