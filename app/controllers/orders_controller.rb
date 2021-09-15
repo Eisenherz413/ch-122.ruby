@@ -22,18 +22,23 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
-
+    orders = Order.where(check_in: order_params[:check_in], check_out: order_params[:check_out])
+      @order = Order.new(order_params)
     respond_to do |format|
-      if @order.save
-        # format.html { redirect_to @order, notice: "Order was successfully created." }
-        format.html { redirect_to request.referer, notice: "Order was successfully created."  }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        if @order.save && orders.length == 0
+          UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
+          flash[:success] = "Thank you for your order! We'll get contact you soon!"
+          format.html { redirect_to @room, alert: "Order was successfully created."  }
+          format.json { render :show, status: :created, location: @order }
+        elsif orders.length > 0
+          UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
+          format.html { redirect_to request.referer, alert: "Order was not successfully created." }
+          format.json { render :show, status: :conflict, location: @room }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style type="text/css" media="screen">
+      td { border: 1px solid black; }
+  </style>
+</head>
+<body>
+<p>Booking confirmation</p>
+<p>Good day!</p>
+<p>
+  We have already started preparing for your arrival!
+</p>
+<p>
+  Do not forget to complete the booking in our hotel on <%= @order.check_in %></p> - <%= @order.check_out %>.
+</p>
+<p>Details of your booking:<br>
+  ----------------------------
+</p>
+
+<table>
+  <tr>
+  </tr>
+  <tr>
+    <td>Check in: <b><%= @order.check_in %> (12:00)</b></td>
+    <td rowspan="2">
+      nights <br/>
+      <%= @numberOfNights %>
+    </td>
+  </tr>
+  <tr>
+    <td>Check out: <b><%= @order.check_out %> (17:00)</b></td>
+  </tr>
+</table>
+
+<p>Total price: <%= @order.total_price %></p>
+<p>
+  Sincerely,<br/>
+  Hotel Booking Service
+</p>
+</body>
+</html>
