@@ -80,19 +80,17 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Sending email confirmation in development environment
-  config.action_mailer.perform_deliveries = true
-
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {address: 'localhost', port: 587}
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => host, protocol: 'http' }
 
-  ActionMailer::Base.smtp_settings = {
-    tls: true,
-    address: 'smtp@gmail.com',
-    port: 587,
-    domain: 'gmail.com',
-    authentication: 'plain',
-    user_name: 'rubygem.hotel',
-    password: 'RubyTeamPass'
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :user_name => 'rubygem.hotel@gmail.com',
+    :password => GMAIL_PASSWORD,
+    :authentication => "plain",
+    :enable_starttls_auto => true
   }
-
 end

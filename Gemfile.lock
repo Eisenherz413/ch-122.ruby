@@ -102,6 +102,10 @@ GEM
     enum_attributes_validation (0.1.7)
       activerecord
       activesupport
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -318,8 +322,12 @@ DEPENDENCIES
   cancancan
   capybara (>= 3.26)
   devise (~> 4.2)
+<<<<<<< HEAD
   dropzonejs-rails
   enum_attributes_validation
+=======
+  dotenv-rails
+>>>>>>> e7f0d3292efd2b7cb52900e28980a825c62174af
   factory_bot_rails
   font-awesome-rails
   importmap-rails

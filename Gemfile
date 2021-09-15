@@ -105,3 +105,7 @@ gem 'enum_attributes_validation'
 
 gem "font-awesome-rails"
 
+
+group :development, :test do
+  gem 'dotenv-rails'
+end

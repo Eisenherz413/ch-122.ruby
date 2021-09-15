@@ -21,6 +21,7 @@ class Room < ApplicationRecord
   def non_destroyable?
     !destroyable?
   end
+
   def acceptable_cover
     return if !cover.attached?
     # errors.add(:cover, :count) if cover.id.nil?
@@ -29,6 +30,7 @@ class Room < ApplicationRecord
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     errors.add(:cover, :format) if !acceptable_types.include?(cover.content_type)
   end
+
   def acceptable_images
     return if !images.attached?
 
@@ -39,6 +41,5 @@ class Room < ApplicationRecord
       errors.add(:images, :format) if !acceptable_types.include?(image.content_type)
 
     end
-
   end
 end
