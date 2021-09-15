@@ -12,7 +12,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
 <div class="row justify-content-center">
   <div class="col-7">
     <div class="row justify-content-center">
-      <div class="col-6 row justify-content-center">
+      <div class="col-8 row justify-content-center">
 
         <%= form_with(model: issue) do |form| %>
           <% if issue.errors.any? %>
@@ -49,7 +49,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
             <%= form.hidden_field :status %>
           </div>
 
-          <div>
+          <div class="d-grid gap-3 d-md-flex justify-content-md-end">
             <%= form.submit t('issues._form.send'), class: "btn btn-success text-white bottom-0 end-0" %>
             <%= link_to t('issues._form.all_issues'), issues_path, class: "btn btn-primary text-white bottom-0 end-0" %>
           </div>

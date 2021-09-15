@@ -28,11 +28,11 @@ class OrdersController < ApplicationController
         if @order.save && orders.length == 0
           UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
           flash[:success] = "Thank you for your order! We'll get contact you soon!"
-          format.html { redirect_to @room, alert: "Order was successfully created."  }
+          format.html { redirect_to @room, notice: "Order was successfully created."  }
           format.json { render :show, status: :created, location: @order }
         elsif orders.length > 0
           UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
-          format.html { redirect_to request.referer, alert: "Order was not successfully created." }
+          format.html { redirect_to request.referer, notice: "Order was successfully created." }
           format.json { render :show, status: :conflict, location: @room }
         else
           format.html { render :new, status: :unprocessable_entity }
