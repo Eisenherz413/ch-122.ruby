@@ -65,7 +65,7 @@
               <% if (can? :read, Issue) && user_signed_in? %>
                 <li><a><%= link_to t('global.menu.my_issues'), issues_path, class: "dropdown-item" %></a></li>
               <% end %>
-              <li><a><%= link_to t('global.menu.my_orders'), issues_path, class: "dropdown-item" %></a></li>
+              <li><a><%= link_to t('global.menu.my_orders'), orders_path, class: "dropdown-item" %></a></li>
               <li>
                 <div role="separator" class="dropdown-divider"></div>
               </li>
@@ -93,7 +93,7 @@
   <script type="text/javascript">
       <% flash.each do |f| %>
       <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
-      toastr['<%= type %>']('<%= f[1] %>');
+      toastr['<%= type %>']('<%= f[1] %>', '', {"showDuration": "1000", "hideDuration": "500", "timeOut": "3000", "extendedTimeOut": "500" });
       <% end %>
   </script>
 <% end %>

@@ -3,7 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   around_action :switch_locale
   after_action :store_action
-
+  rescue_from CanCan::AccessDenied do |exeption|
+    flash[:error] = 'Access denied'
+    redirect_to root_url
+  end
   private
 
   def store_action
