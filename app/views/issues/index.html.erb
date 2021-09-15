@@ -35,11 +35,11 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
               <td>
                 <% case issue.status
                    when 'opened' %>
-                  <%= fa_icon "battery-empty lg", :title => 'just opened'%>
+                  <%= fa_icon "battery-empty lg", :title => 'just opened' %>
                 <% when 'in_progress' %>
                   <%= fa_icon "battery-half lg", :title => 'in progress' %>
                 <% when 'done' %>
-                  <%= fa_icon "battery-full lg", :title => 'closed'%>
+                  <%= fa_icon "battery-full lg", :title => 'closed' %>
                 <% end %>
               <td><%= issue.created_at.strftime t("time.datetime.formats.my_format") %></td>
               <td><%= issue.updated_at.strftime t("time.datetime.formats.my_format") %></td>
@@ -59,14 +59,16 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       </tbody>
     </table>
     <% if can? :create, Issue %>
-    <div class="button_new_issue">
-      <%= link_to t('.new_issue'), new_issue_path, class: "btn btn-primary text-white bottom-0 end-0 col-2" %>
-    </div>
+      <div class="button_new_issue">
+        <%= link_to t('.new_issue'), new_issue_path, class: "btn btn-primary text-white bottom-0 end-0 col-2" %>
+      </div>
     <% end %>
 
   </div>
-  <div class="pagination-issues" >
-    <%= will_paginate @issues, :inner_window => 1, :outer_window => 1, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button') %>
-  </div>
+  <% unless Issue.find_by_user_id(current_user.id).nil? %>
+    <div class="pagination-issues">
+      <%= will_paginate @issues, :inner_window => 1, :outer_window => 1, previous_label: t('rooms.index.previous-button'), next_label: t('rooms.index.next-button') %>
+    </div>
+  <% end %>
 
 </div>

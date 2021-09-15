@@ -7,12 +7,13 @@ class Ability
 
       user ||= User.new # guest user (not logged in)
       if user.role == 'user'
-        can :read, Issue
+        can :read, [Issue, Room, Order]
+        can :create, [Order, Issue]
       end
       if user.role == 'manager'
-        can :manage, Category
-        can :manage, Room
-        can :manage, User
+        can :manage, [Category, Room, Service, Order]
+        can :update, Issue
+        can :read, Issue
       end
       if user.role == 'admin'
         can :manage, :all

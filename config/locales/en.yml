@@ -22,6 +22,14 @@ en:
 
     controller:
       issue_successfully_created: "Issue was successfully created!"
+  orders:
+      page_description: "Here you are able to follow all the orders made before as long as some more information"
+      no_orders: "There are no orders completed"
+      room_num: "Room"
+      check_in: "Check in"
+      check_out: "Check out"
+      price: "Total price"
+      price_show: "%{price}€"
   services:
     index:
       services_title: "Services"

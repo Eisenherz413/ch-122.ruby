@@ -3,6 +3,7 @@ class IssuesManagersController < ApplicationController
   # GET /issues_managers or /issues_managers.json
   def index
     @issues = Issue.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 7)
+    authorize! :update, Issue
   end
 
   private
