@@ -27,7 +27,8 @@ end
 
 User.create!([
   {full_name: "test", email: "test@gmail.com", password: "password", role: nil, status: nil},
-  {full_name: "user1", email: "user@gmail.com", password: "password",  role: nil, status: nil}
+  {full_name: "user1", email: "user@gmail.com", password: "password",  role: nil, status: nil},
+  {full_name: "admin", email: "admin@gmail.com", password: "password", role: 'admin', status: 'active'}
 ])
 Category.create!([
                    {name: 0, description: 'You can leave a word of advice in this section, help us to become even better!'},

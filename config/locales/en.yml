@@ -15,6 +15,7 @@ en:
       no_manager_issues: "There are no issues :("
       page_description: "In this section you are able to leave some valuable information
       Our manager will react as soon as possible and you can follow your issue progress"
+      manager_page_description: "Here you are able to view users issues as same as manage particular issue status"
     _form:
       new_issue: "New Issue"
       send: "Send"
@@ -22,7 +23,6 @@ en:
 
     controller:
       issue_successfully_created: "Issue was successfully created!"
-
   orders:
       page_description: "Here you are able to follow all the orders made before as long as some more information"
       no_orders: "There are no orders completed"
@@ -33,12 +33,16 @@ en:
       price_show: "%{price}€"
   services:
     index:
+      services_title: "Services"
+      services_description: "Page for managing room's services"
       add_service: "Add service"
       show_rooms: "Rooms"
       edit: "Edit"
       destroy: "Destroy"
       disabled_button_title: "You cannot delete service with working orders"
     show:
+      show_service_title: "Service description"
+      description_show_service: "Service description with rooms using this service."
       icon_pic: "Icon"
       icon_url: "Icon url"
       name: "Name"
@@ -50,10 +54,15 @@ en:
        price: "Price"
        number: "Number"
     edit:
-      editing_service: "Editing"
+      editing_service: "Editing service"
+      editing_service_desription: "Page for editing service."
+    form:
+      service_form_description: "Page for creating new service."
+      service_form_title: "New service"
+
   rooms:
     index:
-      page-title: "Rooms"
+      page-title: "Ruby Hotel"
       page-description: "The hotel complex offers its guests comfortable rooms, as well as the full range of services needed both on a business trip and during a tourist visit."
       search:
         check-in-out: "CHECK IN/CHECK OUT"
@@ -79,11 +88,15 @@ en:
       show_more: "Show more"
       disabled_title: "You cannot delete room with processing orders"
     form:
+      room_form_title: "New room"
+      room_form_description: "Page for creating new room"
+      room_form_title_edit: "Editing room"
+      room_form_description_edit: "Page for editing room"
       create_room: "Create"
       all_rooms: "All rooms"
       update_room: "Update"
       new_room: "New room"
-      editing_room: "Editing room"
+      editing_room: "Edit room"
     show:
       room: "Room"
       description: "The hotel as a lot of modern rooms in European style. Exquisite warm colors make the room a quiet haven of coziness with beautiful views."
@@ -106,8 +119,10 @@ en:
   categories:
     index:
       category: "Categories"
+      page_description: "In this section you are able to edit category description"
     edit:
-      editing_category_description: "Editing Category Description"
+      editing_category_description: "Page for editing category description"
+      editing_category_title: "Editing category description"
   users:
     sessions:
       new:
@@ -121,6 +136,20 @@ en:
       _links:
         already_have_an_account: "Already have an account?"
         dont_have_an_account: "Don't have an account?"
+    index:
+      table_name: "Name"
+      table_date_created_at: "Date created"
+      table_role: "Role"
+      table_status: "Status"
+      table_action: "Action"
+      user_managment: "Users"
+      user_managment_description: "Page for user managment."
+      pagination:
+        previous: "Previous"
+        next: "Next"
+    edit:
+      editing_user: "User editing"
+      editing_user_description: "Page for editing user."
 
   global:
     menu:
@@ -129,6 +158,7 @@ en:
       categories: "Categories"
       room_services: "Room services"
       orders: "Orders"
+      users: "Users"
       issues: "Issues"
       home: "Home"
       my_issues: "My Issues"
@@ -172,6 +202,8 @@ en:
         status: "Status"
         password: "Password"
         password_confirmation: "Password Confirmation"
+        update_user_button: "Update"
+        all_users_button: "All users"
       room:
         number: "Number"
         title: "Title"
@@ -180,6 +212,14 @@ en:
         services: "Services"
         cover: "Main image"
         images: "Photos"
+        remove: "Remove"
+        no_photos_attached: "No photos attached."
+        no_cover_attached: "No main image attached."
+        drag_here_or_click: "Drag here to upload or click here to browse. "
+        drag_here_or_click_if_attached: "If there are 4 uploaded images, remove them before upload."
+        allowed_types: "2 MB file size maximum. Allowed file types png, jpg. Maximum 4 photos."
+        if_cover_attached: "Drag here to upload or click here to change main image. "
+        allowed_types_cover: "2 MB file size maximum. Allowed file types png, jpg. Maximum 1 photo."
     errors:
       models:
         service:
@@ -217,9 +257,23 @@ en:
             cover:
               size: "more than 2 MB"
               format: "can be only JPG, JPEG or PNG"
+              count: "is not allowed more than 1."
             images:
               size: "contains file with more than 2 MB"
               format: "can be only JPG, JPEG or PNG"
+              count: "are not allowed more than 4."
+        user:
+          attributes:
+            full_name:
+              blank: "cannot be empty"
+              too_short: "is too short(minimum 2 symbols)"
+            email:
+              blank: "cannot be empty"
+              format: "is not right format"
+            role:
+              invalid_enum: "doesnt exist."
+            status:
+              invalid_enum: "doesnt exist."
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

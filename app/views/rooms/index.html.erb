@@ -1,10 +1,10 @@
 <div class="rooms-top-container">
   <% if can? :manage, Room %>
-  <div style="float: right; margin-top: 20px;"><%= link_to t('rooms.index.add_room'), new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
+  <div style="float: right; margin-top: 20px; margin-right: 20px;"><%= link_to t('rooms.index.add_room'), new_room_path, class: "btn btn-primary text-white bottom-0 end-0", role: 'button' %></div>
   <% end %>
   <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
   background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-    url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
+    url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
     background-size: cover; height: 250px;
   ">
     <div class="mask mask-custom">
@@ -14,7 +14,6 @@
     </div>
   </div>
 </div>
-
 <%= search_form_for @q do |f| %>
   <div class= "advance-search-container">
     <div class="search-input">
@@ -64,7 +63,6 @@
                  { :class => 'sort-input', :id => 'sort-input' } %>
       <% end %>
     </div>
-
   <div class="container">
     <% if @rooms.empty? %>
       <p class="lead my-3 text-center"><%= t('rooms.index.no-rooms') %></p>
@@ -84,7 +82,7 @@
                 <% if can? :manage, Room %>
                 <div><%= link_to t('rooms.index.edit_room'), edit_room_path(room), :class => "btn btn-primary text-white bottom-0 end-0" %></div>
                 <% if room.destroyable? %>
-                  <div><%= link_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, role: 'button', class: 'btn btn-danger text-white bottom-0 end-0'%></div>
+                  <div><%= button_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, class: 'btn btn-danger text-white bottom-0 end-0'%></div>
                 <% else %>
                   <div title="<%= t('rooms.index.disabled_title') %>">
                     <%= button_to t('rooms.index.destroy_room'), room, method: :delete,  data: { confirm: 'Room services will be also deleted, continue?'}, disabled: true, class: 'btn btn-danger text-white bottom-0 end-0' %>
@@ -98,6 +96,7 @@
     <% end %>
     </div>
   <% end %>
+    </ul>
 <% end %>
 
 <div class="pagination" >
@@ -110,9 +109,9 @@
       startDate: '<%= check_in_date %>',
       endDate: '<%= check_out_date %>',
   }, function(start, end, label) {
+
       $('#check-in-input').val(start.format('YYYY-MM-DD'));
       $('#check-out-input').val(end.format('YYYY-MM-DD'));
-
       $('#input-datepicker').val(`${start.format('MM/DD/YYYY')} - ${end.format('MM/DD/YYYY')}`);
   });
 </script>

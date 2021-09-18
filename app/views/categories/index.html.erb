@@ -1,10 +1,10 @@
 <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
 background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
-  url(<%= asset_path 'main-page-image.jpg' %>) no-repeat center 70%;
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
   background-size: cover; height: 250px;
 ">
   <div class="mask mask-custom">
-    <h2 class="text-center"><%= t(".category") %></h2>
+    <h1 class="display-4 fst-italic"><%= t(".category") %></h1>
     <p class="lead my-3"><%= t('issues.index.page_description') %></p>
   </div>
 </div>
@@ -25,7 +25,7 @@ background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
       <tr>
         <% @categories.each do |category| %>
           <td><%= category.name %></td>
-          <td><%= category.description %></td>
+          <td class="text-left"><%= category.description %></td>
           <td><%= link_to edit_category_path(category), :title => 'Edit' do %>
               <%= fa_icon "pencil 2x" %>
             <% end %>

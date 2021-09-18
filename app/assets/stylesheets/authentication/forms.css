@@ -1,12 +1,12 @@
 input[type="text"] {
-    width: 552px !important;
+    width: 700px;
     height: 50px;
 }
 input[type="email"] {
-    width: 552px;
+    width: 700px;
     height: 50px;
 }
 input[type="password"] {
-    width: 552px;
+    width: 700px;
     height: 50px;
 }

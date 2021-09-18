@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all.order(:check_in).paginate(:page => params[:page], :per_page => 10)
+    @orders = Order.all.order(:check_in).paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -28,11 +28,11 @@ class OrdersController < ApplicationController
         if @order.save && orders.length == 0
           UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
           flash[:success] = "Thank you for your order! We'll get contact you soon!"
-          format.html { redirect_to @room, alert: "Order was successfully created."  }
+          format.html { redirect_to @room, notice: "Order was successfully created."  }
           format.json { render :show, status: :created, location: @order }
         elsif orders.length > 0
           UserMailer.with(order: @order, email: current_user.email).new_order_email.deliver_later
-          format.html { redirect_to request.referer, alert: "Order was not successfully created." }
+          format.html { redirect_to request.referer, notice: "Order was successfully created." }
           format.json { render :show, status: :conflict, location: @room }
         else
           format.html { render :new, status: :unprocessable_entity }

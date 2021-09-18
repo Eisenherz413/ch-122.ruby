@@ -8,15 +8,8 @@ let labels = document.querySelectorAll('.labels');
 service_input.onclick = function(){
     dialog_window.show();
     service_input.value = null;
-}
-service_input.oninput = function(){
-   for(let i = 0; i < checkboxes.length; i++){
-       if(labels[i].innerHTML.toLowerCase().includes(service_input.value.toLowerCase())){
-            services_checkboxes[i].style.display = 'block';
-       } else {
-           services_checkboxes[i].style.display = 'none';
-       }
-   }
+    getInputCoordinates(service_input);
+    setDialogCoordinates(dialog_window);
 }
 close_icon.onclick = function(){
     dialog_window.close();
@@ -26,9 +19,11 @@ function getInputCoordinates(input){
   coordinates = input.getBoundingClientRect();
 }
 function setDialogCoordinates(window){
+    window.style.position = "absolute";
     window.style.left = coordinates.left + "px";
     window.style.right = coordinates.right + "px";
-    window.style.top = coordinates.top + 50 + "px";
+    window.style.top =  coordinates.bottom  + "px";
+    window.style.width = coordinates.width + "px";
 }
 window.onresize = function(){
     getInputCoordinates(service_input);
@@ -41,5 +36,4 @@ function check_checked_boxes(checkboxes){
         }
     }
 }
-getInputCoordinates(service_input);
-setDialogCoordinates(dialog_window);
+check_checked_boxes(checkboxes);

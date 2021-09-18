@@ -1,7 +1,18 @@
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <h1 class="display-4 fst-italic"><%= t('issues._form.new_issue') %></h1>
+    <p class="lead my-3"><%= t('issues.index.page_description') %></p>
+
+  </div>
+</div>
 <div class="row justify-content-center">
   <div class="col-7">
     <div class="row justify-content-center">
-      <div class="col-6 row justify-content-center">
+      <div class="col-8 row justify-content-center">
 
         <%= form_with(model: issue) do |form| %>
           <% if issue.errors.any? %>
@@ -38,7 +49,7 @@
             <%= form.hidden_field :status %>
           </div>
 
-          <div class="buttons_new_issue">
+          <div class="d-grid gap-3 d-md-flex justify-content-md-end">
             <%= form.submit t('issues._form.send'), class: "btn btn-success text-white bottom-0 end-0" %>
             <%= link_to t('issues._form.all_issues'), issues_path, class: "btn btn-primary text-white bottom-0 end-0" %>
           </div>

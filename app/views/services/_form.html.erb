@@ -1,5 +1,20 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <%if @service.new_record? %>
+    <h1 class="display-4 fst-italic"><%= t("services.form.service_form_title") %></h1>
+    <p class="lead my-3"><%= t('services.form.service_form_description') %></p>
+      <% else  %>
+      <h1 class="display-4 fst-italic"><%= t("services.edit.editing_service") %></h1>
+      <p class="lead my-3"><%= t('services.edit.editing_service_desription') %></p>
+      <% end %>
+  </div>
+</div>
 <%= form_with(model: service, name: 'form' ) do |form| %>
   <% if service.errors.any? %>
     <div id="er" class="alert alert-danger" role="alert">
@@ -41,9 +56,9 @@
     <tr>
       <td></td>
       <% if @service.new_record? %>
-      <td><%= form.submit t('global.forms.create_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+      <td style="float: right;"><%= form.submit t('global.forms.create_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
         <% else %>
-        <td><%= form.submit t('global.forms.update_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+        <td style="float: right;"><%= form.submit t('global.forms.update_button'), class: "btn btn-success text-white bottom-0 end-0", id: 'but', disabled: true%>&nbsp;<%= link_to t('global.forms.all_services') , services_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
         <% end  %>
     </tr>
     </div>

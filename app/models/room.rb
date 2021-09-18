@@ -13,7 +13,7 @@ class Room < ApplicationRecord
 
   def destroyable?
     orders.each do |order|
-      status = Order.statuses.key(Order.statuses[order.status])
+       status = order.status
       return false if status != 'cancelled' && status != 'completed'
     end
   end
@@ -23,30 +23,23 @@ class Room < ApplicationRecord
   end
 
   def acceptable_cover
-    if !cover.attached?
-      return
-    end
-    if cover.byte_size  > 2.megabyte
-      errors.add(:cover, :size)
-    end
+    return if !cover.attached?
+    # errors.add(:cover, :count) if cover.id.nil?
+    errors.add(:cover, :size) if cover.byte_size  > 2.megabyte
+
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
-    if !acceptable_types.include?(cover.content_type)
-      errors.add(:cover, :format)
-    end
+    errors.add(:cover, :format) if !acceptable_types.include?(cover.content_type)
   end
 
   def acceptable_images
-    if !images.attached?
-      return
-    end
+    return if !images.attached?
+
+    errors.add(:images, :count) if images.count > 4
     acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
     images.each do |image|
-      if image.byte_size  > 2.megabyte
-        errors.add(:images, "are more than 2 MB")
-      end
-      if !acceptable_types.include?(image.content_type)
-        errors.add(:images, "must be a JPEG, JPG or PNG")
-      end
+      errors.add(:images, :size) if image.byte_size  > 2.megabyte
+      errors.add(:images, :format) if !acceptable_types.include?(image.content_type)
+
     end
   end
 end

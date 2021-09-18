@@ -1,44 +1,31 @@
-<%= form_with(model: room) do |form| %>
-  <% if room.errors.any? %>
-    <div id="er" class="alert alert-danger" role="alert" style="height: 200px;">
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+    <%if @room.new_record? %>
+      <h1 class="display-4 fst-italic"><%= t("rooms.form.room_form_title") %></h1>
+      <p class="lead my-3"><%= t('rooms.form.room_form_description') %></p>
+    <% else  %>
+      <h1 class="display-4 fst-italic"><%= t("rooms.form.room_form_title_edit") %></h1>
+      <p class="lead my-3"><%= t('rooms.form.room_form_title_description') %></p>
+    <% end %>
+  </div>
+</div>
+<%=  form_with model: @room do |form| %>
+  <% if @room.errors.any? %>
+    <div id="er" class="alert alert-danger" role="alert" style="height: 250px; width: 500px;">
       <ul>
-        <% room.errors.each do |error| %>
+        <% @room.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 <table class="tbl" style="margin-top: 30px;">
-  <tr>
-    <div class="field">
-      <td><%= form.label :cover %></td>
-      <td><%= form.file_field :cover, accept: 'image/png,image/jpg,image/jpeg' %></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><%= form.label :images %></td>
-      <td><%= form.file_field :images, accept: 'image/png,image/jpg,image/jpeg', multiple: true%></td>
-    </div>
-  </tr>
-  <tr>
-    <div class="field">
-      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
-      <td><input type="text" id="services" name="services" autocomplete="off"></td>
-    </div>
-    <dialog id="dialog_window">
-      <img src="/assets/exit_button.png" id="close">
-     <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
-        <div class="checkbox">
-          <%= b.check_box %>
-          <%= image_tag(b.object.icon_url) %>
-          <%= b.label class:'labels' %>
-        </div>
-      <% end %>
-    </dialog>
-    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
-  </tr>
-
   <tr>
   <div class="field">
     <td><%= form.label :number %></td>
@@ -64,14 +51,110 @@
   </div>
   </tr>
   <tr>
+  <tr>
+    <div class="field">
+      <td><label for="services"><%= t('activerecord.attributes.room.services') %></label></td>
+      <td><input type="text" id="services" name="services" autocomplete="off"></td>
+    </div>
+  </tr>
+  <div id="my-dialog">
+    <dialog id="dialog_window">
+      <img src="/assets/exit_button.png" id="close">
+      <%= collection_check_boxes(:room, :service_ids, Service.all, :id, :name, {}) do |b| %>
+        <div class="checkbox" style="display: block;">
+          <%= b.check_box %>
+          <%= image_tag(b.object.icon_url) %>
+          <%= b.label class:'labels' %>
+        </div>
+      <% end %>
+    </dialog>
+  </div>
+    <%=  javascript_pack_tag 'dialog_window_service', 'data-turbolinks-track': 'reload' %>
+  <tr>
+    <div class="field">
+      <td><%= form.label :cover %></td>
+      <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1" >
+        <%= form.file_field :cover, direct_upload: true, data: { target: 'dropzone.input' } %>
+        <% if !@room.cover.attached?%>
+        <div class="dropzone-msg dz-message needsclick" >
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
+          <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types_cover')  %></span>
+        </div>
+          <% else %>
+          <div class="dropzone-msg dz-message needsclick" >
+            <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.if_cover_attached') %></h3>
+            <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types_cover')  %></span>
+          </div>
+          <% end %>
+
+      </div></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= form.label :images %></td>
+      <td><div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="4">
+        <%= form.file_field :images, direct_upload: true, data: { target: 'dropzone.input' }, multiple: true%>
+        <% if !@room.images.attached?%>
+        <div class="dropzone-msg dz-message needsclick" >
+          <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click') %></h3>
+          <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
+        </div>
+          <% else %>
+          <div class="dropzone-msg dz-message needsclick" >
+            <h3 class="dropzone-msg-title" style="font-size: 1.2em; text-align: center;"><%= t('activerecord.attributes.room.drag_here_or_click_if_attached') %></h3>
+            <span class="dropzone-msg-desc text-sm"><%=t('activerecord.attributes.room.allowed_types')  %></span>
+          </div>
+          <% end %>
+      </div></td>
+    </div>
+  </tr>
+  <tr>
   <div class="actions">
     <td></td>
     <% if @room.new_record? %>
-      <td><%= form.submit t('rooms.form.create_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+      <td style="float: right;"><%= form.submit t('rooms.form.create_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
     <% else %>
-      <td><%= form.submit t('rooms.form.update_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
-    <% end  %>
+      <td style="float: right;"><%= form.submit t('rooms.form.update_room'), class: "btn btn-success text-white bottom-0 end-0", id: 'but'%>&nbsp;<%= link_to t('rooms.form.all_rooms') , rooms_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+    <% end %>
   </div>
   </tr>
 </table>
 <% end %>
+<% if !@room.new_record? %>
+<% if @room.cover.attached?%>
+    <h4 id="main-image-edit">Main image:</h4>
+<div class="uploaded-cover">
+  <% if  !@room.cover.id.nil? %>
+  <div style="display: inline-block;">
+  <div><%= image_tag @room.cover, size: "200x100" %></div>
+  <div style="align-items: center;">
+    <%= link_to t('activerecord.attributes.room.remove'), delete_image_attachment_room_url(@room.cover.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }, role: 'button'%>
+  </div>
+  </div>
+  <% end  %>
+</div>
+  <% else %>
+  <div class="no-uploaded-cover">
+    <h4><%= t('activerecord.attributes.room.no_cover_attached') %></h4>
+  </div>
+<% end %>
+<% if @room.images.attached? %>
+    <h4 id="images-edit">Photos:</h4>
+<div class="uploaded-images" style="float: right; margin-top: -400px; margin-right: 15px;">
+  <% @room.images.each do |image| %>
+    <% unless image.id.nil? %>
+    <div style="display: inline-block;">
+    <div><%= image_tag image, class: "room_images_in_edit" %></div>
+    <div><%= link_to t('activerecord.attributes.room.remove'), delete_image_attachment_room_url(image.id), method: :delete, data: { confirm: 'The photo will be permanently deleted, continue?' }%></div>
+    </div>
+      <% end %>
+    <% end  %>
+</div>
+  <% else %>
+  <div class="no-uploaded-images">
+    <h4><%= t('activerecord.attributes.room.no_photos_attached') %></h4>
+  </div>
+<% end %>
+<% end %>
+

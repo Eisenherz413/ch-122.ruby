@@ -1,27 +1,75 @@
+<div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="
+background: linear-gradient(rgba(0, 0, 0, 0.327),rgba(0, 0, 0, 0.5)),
+  url(<%= asset_path 'main_8.jpg' %>) no-repeat center 70%;
+  background-size: cover; height: 250px;
+">
+  <div class="mask mask-custom">
+      <h1 class="display-4 fst-italic"><%= t('users.edit.editing_user') %></h1>
+      <p class="lead my-3"><%= t('users.edit.editing_user_description') %></p>>
+  </div>
+</div>
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
+    <div id="er" class="alert alert-danger" role="alert" style="height: 250px; width: 500px;">
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
+
   <% end %>
+  <table class="tbl" style="margin-top: 50px;">
+    <tr>
+      <div class="field">
+        <td><%= form.label :full_name %></td>
+        <% if @user.role == 'admin' %>
+        <td><%= form.text_field :full_name%></td>
+          <% else %>
+          <td><%= form.text_field :full_name, disabled: true%></td>
+          <% end %>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= form.label :email %></td>
+        <% if @user.role == 'admin' %>
+        <td><%= form.text_field :email %></td>
+          <% else %>
+          <td><%= form.text_field :email, disabled: true %></td>
+          <% end %>
 
-  <div class="field">
-    <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
-  </div>
+      </div>
+    </tr>
+    <tr><td><%= form.label :role %></td>
+      <% if @user.role == 'user'%>
+      <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'user'), {}, {class: "form-select", id: "sel"}) %></td>
+        <% elsif @user.role == 'manager' %>
+        <td><%= form.select(:role, options_for_select([[User.roles.key(0), 'user'], [User.roles.key(1), 'manager']], 'manager'), {}, {class: "form-select"}) %></td>
+        <% else %>
+        <td><%= form.select(:role, options_for_select([[User.roles.key(2), 'admin']], 'admin'), {class: "form-select"}, disabled: true) %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <td><%= form.label :status %></td>
+      <% if @user.role == "admin" %>
+      <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active']],'active'), {class: "form-select"}, disabled: true) %></td>
+      <% elsif @user.status == "active" %>
+       <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active'], [User.statuses.key(1), 'blocked']], 'active'), {}, {class: "form-select"}) %></td>
+        <% elsif @user.status == "blocked"%>
+        <td><%= form.select(:status, options_for_select([[User.statuses.key(0), 'active'], [User.statuses.key(1), 'blocked']], 'blocked'), {}, {class: "form-select"}) %></td>
+        <% end %>
+    </tr>
+    <tr>
+      <div class="actions">
+        <td></td>
+        <% if !@user.new_record?%>
+          <td style="float: right;"><%= form.submit t('activerecord.attributes.user.update_user_button'), class: "btn btn-success text-white bottom-0 end-0"%>&nbsp;<%= link_to t('activerecord.attributes.user.all_users_button') , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+            <% else %>
+            <td style="float: right;"><%= form.submit t('activerecord.attributes.user.update_user_button'), class: "btn btn-success text-white bottom-0 end-0", disabled: true%>&nbsp;<%= link_to t('activerecord.attributes.user.all_users_button') , users_path, class: 'btn btn-primary text-white bottom-0 end-0', role: 'button'%></td>
+          <% end %>
+      </div>
+    </tr>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  </table>
 <% end %>

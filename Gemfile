@@ -88,13 +88,23 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'launchy'
   gem 'factory_bot_rails'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 gem 'cancancan'
 gem 'toastr-rails'
 
+gem 'importmap-rails'
+gem 'stimulus-rails'
+gem 'dropzonejs-rails'
+
+gem "tailwindcss-rails", "~> 0.4.3"
+
+gem "rails-ujs"
+gem 'enum_attributes_validation'
+
 gem "font-awesome-rails"
+
 
 group :development, :test do
   gem 'dotenv-rails'

@@ -15,6 +15,7 @@ uk:
       new_issue: "Cтворити"
       page_description: "Ви можете залишити повідомлення,
       наш менеджер зреагує на нього якнайшвидше і Ви побачите оновлення статусу Вашого повідомлення"
+      manager_page_description: "Ви можете переглянути повідомлення користувачів та кувати статусом повідомлення"
     _form:
       new_issue: "Нове повідомлення"
       send: "Надіслати"
@@ -23,6 +24,7 @@ uk:
       issue_successfully_created: "Запис успішно створено!"
 
   orders:
+    index:
       page_description: "Тут ви можете знайти відображення Ваших бронювань та деяку додаткову інформацію"
       no_orders: "Бронювання відсутні"
       room_num: "Номер"
@@ -33,12 +35,16 @@ uk:
 
   services:
     index:
+      services_title: "Сервіси"
+      services_description: "Сторінка для керування сервісами."
       add_service: "Додати"
       show_rooms: "Кімнати"
       edit: "Редагувати"
       destroy: "Видалити"
       disabled_button_title: "Ви не можете видалити сервіси з активними замовленнями"
     show:
+      show_service_title: "Опис сервісу"
+      description_show_service: "Опис сервісу з кімнатами, які використовують даний сервіс."
       icon_pic: "Іконка"
       icon_url: "Адреса"
       name: "Назва"
@@ -50,10 +56,14 @@ uk:
         price: "Ціна"
         number: "Номер"
     edit:
-      editing_service: "Редагування"
+      editing_service: "Редагування сервісу"
+      editing_service_desription: "Сторінка для редагування сервісу."
+    form:
+      service_form_description: "Сторінка для створення нового сервісу."
+      service_form_title: "Новий сервіс"
   rooms:
     index:
-      page-title: "Кімнати"
+      page-title: "Ruby Hotel"
       page-description: "Готельний комплекс пропонує своїм гостям комфортабельні номери, а також повний спектр послуг, необхідних як у відрядженні, так і під час туристичного візиту."
       search:
         check-in-out: "ЗАЇЗД / ВИЇЗД"
@@ -70,7 +80,7 @@ uk:
       label-before-capacity: "Ця кімната для"
       label-after-capacity: "людей."
       per-page: "за ніч"
-      show-more: "Показати більше"
+      show-more: "Детальніше"
       previous-button: "Попередня"
       next-button: "Наступна"
       add_room: "Створити кімнату"
@@ -84,6 +94,10 @@ uk:
       update_room: "Зберегти"
       new_room: "Нова кімната"
       editing_room: "Редагування кімнати"
+      room_form_title: "New room"
+      room_form_description: "Page for creating new room"
+      room_form_title_edit: "Editing room"
+      room_form_description_edit: "Page for editing room"
     show:
       room: "Кімната"
       description: "У готелі є багато сучасних номерів у європейському стилі. Вишукані теплі кольори роблять кімнату тихим притулком затишку з прекрасним краєвидом."
@@ -107,8 +121,10 @@ uk:
   categories:
     index:
       category: "Категорії"
+      page_description: "На цій сторінці Ви можете змінити опис відповідної категорії"
     edit:
-      editing_category_description: "Редагування опису"
+      editing_category_description: "Сторінка для редагування опису катігорії."
+      editing_category_title: "Редагування опису категорії"
   users:
     sessions:
       new:
@@ -122,6 +138,20 @@ uk:
       _links:
         already_have_an_account: "Акаунт вже існує?"
         dont_have_an_account: "Немає акаунту?"
+    index:
+      table_name: "Ім'я"
+      table_date_created_at: "Дата реєстрації"
+      table_role: "Роль"
+      table_status: "Статус"
+      table_action: "Дія"
+      user_managment: "Користувачі"
+      user_managment_description: "Сторінка для редагування користувачів."
+      pagination:
+        previous: "Попередня"
+        next: "Наступна"
+    edit:
+      editing_user: "Редагування користувача"
+      editing_user_description: "Сторінка для редагування користувача."
   global:
     menu:
       services: "Сервіси"
@@ -129,6 +159,7 @@ uk:
       categories: "Категорії"
       room_services: "Сервіси кімнат"
       orders: "Замовлення"
+      users: "Користувачі"
       issues: "Cкарги та Пропозиції"
       home: "Головна"
       my_issues: "Мої повідомлення"
@@ -165,6 +196,8 @@ uk:
         status: "Статус"
         password: "Пароль"
         password_confirmation: "Підтвердження паролю"
+        update_user_button: "Зберегти"
+        all_users_button: "Всі користувачі"
       service:
         name: "Назва"
         description: "Опис"
@@ -179,6 +212,14 @@ uk:
         services: "Сервіси"
         cover: "Головне фото"
         images: "Фото"
+        remove: "Видалити"
+        no_photos_attached: "Нема завантажених фото."
+        no_cover_attached: "Головне фото не завантажене."
+        drag_here_or_click: "Перетягніть сюди або клікніть для завантаження."
+        drag_here_or_click_if_attached: "Якщо завантажено 4 фото, видаліть їх перед завантаженням нових."
+        allowed_types: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg. Максимум 4 фото."
+        allowed_types_cover: "Максимальний розмір файлу 2MB. Дозволені формати: png, jpg, jpeg. Максимум 1 фото."
+        if_cover_attached: "Перетягніть сюди або клікніть для зсіни головного зображення."
     errors:
       models:
         service:
@@ -216,16 +257,30 @@ uk:
             cover:
               size: "більше за 2 MB"
               format: "може бути JPEG, JPG чи PNG формату"
+              count: "моде бути лише одна"
             images:
-              size: "містять файл з розмфром більше 2 MB"
+              size: "містять файл з розміром більше 2 MB"
               images: "можуть бути лише JPG, JPEG чи PNG формату"
+              count: "не може бути більше ніж 4"
+        user:
+          attributes:
+            full_name:
+              blank: "не може бути порожнім"
+              too_short: "занадто коротке(мінімум 2 символи)."
+            email:
+              blank: "не може бути порожнім"
+              format: "неправильного формату"
+            role:
+              invalid_enum: "не існуюча"
+            status:
+              invalid_enum: "не існуючий"
   devise:
     confirmations:
       confirmed: "Email успішно підтверджений."
       send_instructions: "На вказаний email будуть надіслані інструкції щодо підтвердження."
       send_paranoid_instructions: "На вказаний email будуть надіслані інструкції щодо підтвердження."
     failure:
-      already_authenticated: "You are already signed in."
+      already_authenticated: "Ви вже авторизовані."
       inactive: "Даний акаунт не активований."
       invalid: "Невірний %{authentication_keys} чи пароль."
       not_found_in_database: "Невірний %{authentication_keys} чи пароль"
